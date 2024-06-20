@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:18:25 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/20 16:21:18 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:11:19 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_atoi(const char *str)
 	}
 	return (converted * sign);
 }
-
+/*
 int	main(void)
 {
 	int	result;
@@ -101,3 +101,4 @@ int	main(void)
     return 0;
 
 }
+*/

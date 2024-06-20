@@ -1,44 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/20 16:36:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/20 17:46:24 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/06/20 17:47:20 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/06/20 18:05:03 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_strdup(const char *s)
 {
-	unsigned char	*buff;
-	size_t			i;
+	int		i;
+	char	*cpy;
 
-	buff = (unsigned char *)malloc(sizeof (char) * (size * nmemb));
-	if (!buff)
+	i = 0;
+	while (s[i])
+		i++;
+	cpy = (char *)malloc(i * sizeof(char) + 1);
+	if (!cpy)
 		return (NULL);
 	i = 0;
-	if (nmemb > 0)
+	while (s[i])
 	{
-		while (i < nmemb * size)
-			buff[i++] = 0;
+		cpy[i] = s[i];
+		i++;
 	}
-	return (buff);
+	cpy[i] = '\0';
+	return (cpy);
 }
 /*
 int	main(void)
 {
-	unsigned char *str = (unsigned char *)ft_calloc(10, 5);
-	if (!str)
-	{
-		printf("Memory allocation failed.\n");
-		return (1);
-	}
-	printf("Allocated memory: %.*s\n", 10*5, str);
-	free(str);
+	char *str = "lorem ipsum dolor sit amet";
+	char *cpy = ft_strdup(str);
+	printf("%s", cpy);
 	return (0);
 }
 */
