@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:42:07 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/14 18:35:46 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:25:25 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_isalnum(int c)
 	return (ft_isalpha(c) || ft_isdigit(c));
 }
 /*
+#include <stdio.h>
+
 int main(void)
 {
 	char c;

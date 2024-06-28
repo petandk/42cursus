@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 15:32:54 by rmanzana          #+#    #+#              #
-#    Updated: 2024/06/26 18:32:41 by rmanzana         ###   ########.fr        #
+#    Updated: 2024/06/28 14:46:12 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ FILES	:= ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint\
 		   ft_strlen ft_memset ft_bzero ft_memcpy ft_memmove ft_strlcpy\
 		   ft_strlcat ft_toupper ft_tolower ft_strchr ft_strrchr ft_strncmp\
 		   ft_memchr ft_memcmp ft_strnstr ft_atoi ft_calloc ft_strdup\
-		   ft_substr ft_strjoin ft_strtrim ft_split
+		   ft_substr ft_strjoin ft_strtrim ft_split ft_itoa ft_strmapi\
+		   ft_striteri
 SOURCEFILES := $(addsuffix .c, $(FILES))
 OBJECTFILES	:= $(patsubst %.c, %.o, $(SOURCEFILES))
 

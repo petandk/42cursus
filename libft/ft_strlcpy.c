@@ -6,11 +6,11 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 13:38:07 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/18 16:34:53 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:05:07 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
@@ -32,7 +32,9 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (slen);
 }
 /*
-int main() {
+#include <stdio.h>
+
+int main(void) {
     // Example 1: Copy a string with sufficient buffer size
     char dest1[20];
     char src1[] = "Hello, World!";

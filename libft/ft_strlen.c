@@ -6,22 +6,24 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 14:46:04 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/15 15:02:04 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:11:30 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 size_t	ft_strlen(const char *s)
 {
-	int	index;
+	size_t	index;
 
 	index = 0;
 	while (s[index])
 		index++;
-	return ((size_t)index);
+	return (index);
 }
 /*
+#include <stdio.h>
+
 int	main(void)
 {
 	char	*str = "Hello world!";

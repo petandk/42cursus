@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 14:16:50 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/27 16:09:37 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/06/28 12:57:38 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/06/28 15:47:22 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+#include <stddef.h>
 
 static void	*ft_free(char **strings, int count)
 {
@@ -102,6 +104,7 @@ char	**ft_split(const char *s, char c)
 	return (ft_fill_matrix(s, c, matrix));
 }
 /*
+#include <stdio.h>
 // to compile: cc -Wall -Werror -Wextra ft_split.c ft_calloc.c ft_strlen.c
 int	main(int argc, char *argv[])
 {

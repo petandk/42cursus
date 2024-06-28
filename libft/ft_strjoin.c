@@ -6,11 +6,13 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:12:33 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/26 15:44:06 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:08:30 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+#include <stddef.h>
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -40,6 +42,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (joined);
 }
 /*
+#include <stdio.h>
 int	main(void)
 {
 	char *str1 = "Holas que vienen de lejos...";

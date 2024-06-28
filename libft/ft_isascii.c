@@ -6,17 +6,17 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:36:14 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/18 16:03:42 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:58:57 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_isascii(int c)
 {
 	return (c >= 0 && c <= 127);
 }
 /*
+#include <stdio.h>
+
 int main(void)
 {
 	int c;

@@ -6,11 +6,11 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:30:15 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/19 15:53:31 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:14:06 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -26,6 +26,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 /*
+#include <stdio.h>
+
 int	main(void)
 {
 	char *str1 = "hola que tal";

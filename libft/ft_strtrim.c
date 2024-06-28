@@ -6,11 +6,12 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:45:06 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/26 18:32:12 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:23:40 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 static int	ft_appears(char c, char *str)
 {
@@ -67,6 +68,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (ft_cleanstring(start, end, str, finalstring));
 }
 /*
+#include <stdio.h>
+
 int	main(void)
 {
 	char *str = "123ho1a543";

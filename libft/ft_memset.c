@@ -6,11 +6,11 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:26:46 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/15 15:27:36 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:54:49 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 void	*ft_memset(void *s, int c, size_t n)
 {
@@ -27,6 +27,8 @@ void	*ft_memset(void *s, int c, size_t n)
 	return (s);
 }
 /*
+#include <stdio.h>
+
 int	main(void)
 {
 	char str[] = "hola que tal";

@@ -6,11 +6,11 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:11:59 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/20 15:35:15 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:56:55 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
@@ -30,6 +30,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	return (0);
 }
 /*
+#include <stdio.h>
+
 int	main(void)
 {
 	//char	*s1 = "lorem asilu";

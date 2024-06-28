@@ -6,11 +6,11 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:35:36 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/20 16:17:41 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:15:24 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
@@ -38,6 +38,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	return (NULL);
 }
 /*
+#include <stdio.h>
+
 int	main(void)
 {
 	char *str = "lorem ipsum dolor sit amet";

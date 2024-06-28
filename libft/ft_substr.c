@@ -6,11 +6,12 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:48:48 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/26 12:05:35 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:24:35 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
+#include <stddef.h>
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -30,6 +31,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (subs);
 }
 /*
+#include <stdio.h>
+
 int	main(void)
 {
 	char	*string = "Hola que tal estas?";

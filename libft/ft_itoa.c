@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 16:28:18 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/27 18:00:54 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/06/28 12:58:39 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/06/28 15:58:10 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
 static int	ft_count_digits(int number)
 {
@@ -69,7 +69,7 @@ static void	ft_fill_string(char *str, int num, int start)
 	{
 		str[0] = '0';
 		str[1] = '\0';
-		return;
+		return ;
 	}
 	while (num > 0)
 	{
@@ -107,6 +107,8 @@ char	*ft_itoa(int n)
 	return (str);
 }
 /*
+#include <stdio.h>
+
 int	main(void)
 {
 	int	number;

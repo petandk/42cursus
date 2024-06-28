@@ -6,11 +6,11 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:18:48 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/19 15:29:13 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:31:10 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
 char	*ft_strrchr(const char *s, int c)
 {
@@ -29,3 +29,14 @@ char	*ft_strrchr(const char *s, int c)
 		return ((char *)s + index);
 	return (NULL);
 }
+/*
+#include <stdio.h>
+
+int	main(void)
+{
+	char *str = "Hello, World!";
+	char *res = ft_strrchr(str, 'l');
+	printf("Last 'l' in '%s' is at: %s\n", str, res);
+	return (0);
+}
+*/

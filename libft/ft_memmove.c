@@ -6,11 +6,11 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:55:27 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/18 15:55:31 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:55:12 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
@@ -32,9 +32,9 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	return (dest);
 }
 /*
-#include <string.h>
+#include <stdio.h>
 
-int main() {
+int main(void) {
     // Test without overlap
     char src[] = "Hello, World!";
     char dest[] = "Goodbye, World!";

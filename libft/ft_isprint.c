@@ -6,17 +6,17 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 13:25:37 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/15 13:33:31 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:58:30 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_isprint(int c)
 {
 	return (c >= 32 && c <= 126);
 }
 /*
+#include <stdio.h>
+
 int	main(void) 
 {
 	int	index;
