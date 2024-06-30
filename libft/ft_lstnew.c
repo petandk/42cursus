@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 19:00:30 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/30 19:30:59 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/30 19:36:02 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(void)
 	node = ft_lstnew(&num);
 	if (node)
 	{
-		printf("Node info:\nContent: %d\nNext: %p\n", *(int *)node -> content, (void *)node -> next);
+		printf("C: %d\nN: %p\n", *(int *)node -> content, (void *)node -> next);
 		free(node);
 	}
 	else
@@ -48,7 +48,7 @@ int	main(void)
 	node = ft_lstnew(str);
 	if (node)
 	{
-		printf("Node info:\nContent: %s\nNext: %p\n", (char *)node -> content, (void *)node -> next);
+		printf("C: %s\nN: %p\n", (char *)node -> content, (void *)node -> next);
 		free(node);
 	}
 	else
