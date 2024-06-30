@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 19:58:57 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/30 20:12:46 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/06/30 23:22:03 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,10 @@
 t_list	*ft_lstlast(t_list *lst)
 {
 	t_list	*nodes;
-	int		nodescount;
 
 	nodes = lst;
-	nodescount = ft_lstsize(nodes);
-	while (nodescount > 1)
-	{
+	while (nodes -> next != NULL)
 		nodes = nodes -> next;
-		nodescount--;
-	}
 	return (nodes);
 }
 /*
