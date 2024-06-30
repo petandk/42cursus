@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 15:32:54 by rmanzana          #+#    #+#              #
-#    Updated: 2024/06/30 20:11:21 by rmanzana         ###   ########.fr        #
+#    Updated: 2024/06/30 20:43:52 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ FILES		:= ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint\
 			   ft_substr ft_strjoin ft_strtrim ft_split ft_itoa ft_strmapi\
 			   ft_striteri ft_putchar_fd ft_putstr_fd ft_putendl_fd ft_putnbr_fd
 
-BONUSFILES	:= ft_lstnew ft_lstadd_front ft_lstsize ft_lstlast
+BONUSFILES	:= ft_lstnew ft_lstadd_front ft_lstsize ft_lstlast ft_lstadd_back
 
 SOURCEFILES := $(addsuffix .c, $(FILES))
 OBJECTFILES	:= $(patsubst %.c, %.o, $(SOURCEFILES))
@@ -35,9 +35,11 @@ OBJECTBONUS := $(patsubst %.c, %.o, $(SOURCEBONUS))
 #######################################
 ## COMPILER 
 #######################################
+
 CC	:= cc
 CFLAGS	:= -Wall -Werror -Wextra
-AR	:= ar rcs
+AR	:= ar rcs $(NAME)
+RAN	:= ranlib $(NAME)
 
 #######################################
 ## OTHER TOOLS
@@ -48,21 +50,23 @@ RM	:= rm -f
 all : $(NAME)
 
 $(NAME): $(OBJECTFILES)
-	$(AR) $(NAME) $(OBJECTFILES)
-	ranlib $(NAME)
+	$(AR) $(OBJECTFILES)
+	 $(RAN)
+
+bonus: $(OBJECTBONUS)
+	$(AR) $(OBJECTBONUS)
+	$(RAN)
 
 %.o : %.c Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJECTFILES)
+	$(RM) $(OBJECTFILES) $(OBJECTBONUS)
 
 fclean: clean
 	$(RM) $(NAME)
 
-re:
-	$(MAKE) fclean
-	$(MAKE) all
+re: fclean all
 
 .PHONY: clean fclean re
 
