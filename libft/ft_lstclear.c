@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 10:04:01 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/07/01 10:04:17 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/07/01 11:01:25 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/07/01 12:14:04 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int	index;
+	t_list	*aux;
 
-	index = 0;
-	while (s[index])
+	while (*lst)
 	{
-		ft_putchar_fd(s[index], fd);
-		index++;
+		aux = (*lst)-> next;
+		del((*lst)-> content);
+		free(*lst);
+		*lst = aux;
 	}
 }
-/*
-int	main(void)
-{
-	char	*str = "Hello, World!";
-	ft_putstr_fd(str, 1);
-	return (0);
-}
-*/

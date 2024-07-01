@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 16:01:00 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/28 15:56:23 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:21:35 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	index = 0;
 	d = (char *)dest;
 	s = (const char *)src;
+	if (dest == (void *) 0 && src == (void *)0)
+		return (dest);
 	while (index < n)
 	{
 		d[index] = s[index];

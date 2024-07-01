@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/30 20:13:32 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/30 23:23:43 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/07/01 10:04:52 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/07/01 10:05:01 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

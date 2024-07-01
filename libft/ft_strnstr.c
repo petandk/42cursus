@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:35:36 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/28 16:15:24 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:14:47 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,22 @@
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t	index;
-	size_t	tofindlen;
+	size_t	i;
 	size_t	aux;
 
-	index = 0;
-	tofindlen = 0;
-	while (little[tofindlen])
-		tofindlen++;
-	if (tofindlen == 0)
+	i = 0;
+	if (!*little)
 		return ((char *)big);
-	while (index < len && big[index])
+	while (i < len && big[i])
 	{
 		aux = 0;
-		while (big[index + aux] == little[aux] && index + aux < len)
+		while (big[i + aux] && big[i + aux] == little[aux] && i + aux < len)
 		{
 			aux++;
 		}
-		if (aux == tofindlen)
-			return ((char *)big + index);
-		index++;
+		if (!little[aux])
+			return ((char *)big + i);
+		i++;
 	}
 	return (NULL);
 }

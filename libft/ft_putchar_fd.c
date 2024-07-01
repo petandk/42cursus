@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 18:50:25 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/28 18:57:14 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/07/01 10:01:37 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/07/01 10:11:20 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

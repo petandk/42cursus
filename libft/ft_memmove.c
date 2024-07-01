@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:55:27 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/28 15:55:12 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:25:30 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 	d = (char *)dest;
 	s = (const char *)src;
+	if (!dest && !src)
+		return (NULL);
 	if (d < s)
 		while (n--)
 			*d++ = *s++;

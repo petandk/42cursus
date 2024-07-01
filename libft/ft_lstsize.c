@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/30 19:49:35 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/30 19:57:06 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/07/01 10:06:37 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/07/01 10:06:45 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

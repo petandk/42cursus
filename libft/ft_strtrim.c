@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:45:06 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/28 16:23:40 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:58:45 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 	end = ft_strlen(s1) - 1;
 	str = (char *)s1;
 	subs = (char *)set;
-	while (ft_appears(str[start], subs))
+	if (!s1 || !set)
+		return (NULL);
+	while (s1[start] && ft_appears(str[start], subs))
 		start++;
-	while (ft_appears(str[end], subs))
+	while (end > start && ft_appears(str[end], subs))
 		end--;
 	finalstring = (char *)malloc(end - start + 2 * sizeof(char));
 	if (!finalstring)

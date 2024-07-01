@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:03:54 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/28 16:33:13 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:00:38 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	index = 0;
 	aux = ft_strdup(s);
+	if (!aux)
+		return (NULL);
 	while (s[index])
 	{
 		aux[index] = f(index, s[index]);

@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 10:05:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/07/01 15:03:39 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/07/01 12:56:46 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/07/01 15:31:39 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*nodes;
+	t_list	*aux;
+	t_list	*newlist;
+	t_list	*newnode;
+	void	*content;
 
-	if (lst == NULL)
+	aux = lst;
+	if (!lst || !f || !del)
 		return (NULL);
-	nodes = lst;
-	while (nodes -> next != NULL)
-		nodes = nodes -> next;
-	return (nodes);
+	newlist = NULL;
+	while (aux)
+	{
+		content = f(aux -> content);
+		newnode = ft_lstnew(content);
+		if (!newnode)
+		{
+			del(content);
+			ft_lstclear(&newlist, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&newlist, newnode);
+		aux = aux -> next;
+	}
+	return (newlist);
 }
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	t_list *list = ft_lstnew("last");
-	t_list	*lastnode;
-	ft_lstadd_front(&list, ft_lstnew("middle"));
-	ft_lstadd_front(&list, ft_lstnew("first"));
-	lastnode = ft_lstlast(list);
-	printf("Last node: %s\n", (char *)lastnode -> content);
-	return (0);
-}
-*/

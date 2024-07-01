@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:18:48 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/28 16:31:10 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:10:14 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ char	*ft_strrchr(const char *s, int c)
 		index++;
 	while (index > 0)
 	{
-		if (s[index] == c)
+		if (s[index] == (unsigned char)c)
 			return ((char *)s + index);
 		index--;
 	}
-	if (s[index] == c)
+	if (s[index] == (unsigned char)c)
 		return ((char *)s + index);
 	return (NULL);
 }

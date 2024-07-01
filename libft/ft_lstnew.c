@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/30 19:00:30 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/30 19:36:02 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/07/01 10:06:12 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/07/01 10:06:21 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
