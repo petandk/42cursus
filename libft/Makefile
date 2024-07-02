@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 15:32:54 by rmanzana          #+#    #+#              #
-#    Updated: 2024/07/01 12:59:20 by rmanzana         ###   ########.fr        #
+#    Updated: 2024/07/02 16:51:35 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,14 +25,18 @@ FILES		:=	ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint\
 		   		ft_substr ft_strjoin ft_strtrim ft_split ft_itoa ft_strmapi\
 		   		ft_striteri ft_putchar_fd ft_putstr_fd ft_putendl_fd ft_putnbr_fd
 
-BONUSFILES 	:= 	ft_lstnew ft_lstadd_front ft_lstsize ft_lstlast ft_lstadd_back\
-				ft_lstdelone ft_lstclear ft_lstiter ft_lstmap
+BONUSFILES 	:= 	ft_lstnew_bonus ft_lstadd_front_bonus ft_lstsize_bonus ft_lstlast_bonus\
+				ft_lstadd_back_bonus ft_lstdelone_bonus ft_lstclear_bonus ft_lstiter_bonus\
+				ft_lstmap_bonus
 
 SOURCEFILES := $(addsuffix .c, $(FILES))
 OBJECTFILES	:= $(patsubst %.c,%.o,$(SOURCEFILES))
 
 SOURCEBONUS := $(addsuffix .c, $(BONUSFILES))
 OBJECTBONUS := $(patsubst %.c,%.o,$(SOURCEBONUS))
+
+DEPFILES	:= $(addsuffix .d, $(FILES))
+DEPBONUS	:= $(addsuffix .d,$(BONUSFILES))
 
 #######################################
 ## COMPILER 
@@ -63,11 +67,11 @@ bonus: .libft
 	touch .libft
 
 
-%.o : %.c Makefile libft.h
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o : %.c Makefile
+	$(CC) $(CFLAGS) -MMD -c $< -o $@
 
 clean:
-	$(RM) $(OBJECTFILES) $(OBJECTBONUS)
+	$(RM) $(OBJECTFILES) $(OBJECTBONUS) $(DEPFILES) $(DEPBONUS)
 
 fclean: clean
 	$(RM) $(NAME) .libft
@@ -75,3 +79,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all bonus clean fclean re
+
+-include $(DEPFILES) $(DEPBONUS)
