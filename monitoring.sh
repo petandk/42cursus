@@ -12,7 +12,7 @@
 # **************************************************************************** #
 
 echo "#Architecture: $(uname -a)"
-echo "#CPU physical : $(grep -c ^processor /proc/cpuinfo)"
+echo "#CPU physical : $(grep 'physical id' /proc/cpuinfo | sort -u | wc -l)"
 echo "#vCPU : $(grep -c ^processor /proc/cpuinfo)"
 echo "#Memory Usage: $(free -m | awk 'NR==2{printf "%s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }')"
 echo "#Disk Usage: $(df -h | awk '$NF=="/"{printf "%d/%dGB (%s)", $3,$2,$5}')"
