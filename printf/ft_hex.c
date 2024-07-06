@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:35:04 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/07/04 15:35:56 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/07/06 14:58:35 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_puthex_fd(unsigned long long num, int fd, int uppercase)
 	if (result == -1)
 		return (-1);
 	count += result;
-	return (count + 1);
+	return (count);
 }
 
 int	ft_putpointer_fd(void *ptr, int fd)

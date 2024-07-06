@@ -6,6 +6,21 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:03:40 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/07/06 15:18:36 by rmanzana         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+#include <stdio.h>
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/04 13:03:40 by rmanzana          #+#    #+#             */
 /*   Updated: 2024/07/06 11:50:46 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -13,14 +28,14 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-int main(void) 
+int main(void)
 {
     char c = 'a';
     char *str = "Hello, World!";
     int i = 42;
     unsigned int u = 4294967295;
 	int d = -2147483648;
-	int	chars;
+	int	aux;
 
     printf("+Original printf\n");
 	printf("-Your ft_printf\n");
@@ -67,15 +82,15 @@ int main(void)
 	aux = printf("+pNULL: %p", NULL);
 	printf(" = %d\n", aux);
 	aux = ft_printf("-pNULL: %p", NULL);
-	printf(" = %d\n", aux);	
+	printf(" = %d\n", aux);
 	aux = printf("+%%s empty: %s", "");
 	printf(" = %d\n", aux);
 	aux = ft_printf("-%%s empty: %s", "");
 	printf(" = %d\n", aux);
-	chars = printf("+La cadena %c con texto %s que incluye el numero %i tiene un tamaño de:", c, str, i);
-	printf("+%d\n", chars);
-	chars = ft_printf("-La cadena %c con texto %s que incluye el numero %i tiene un tamaño de:", c, str, i);
-	ft_printf("-%d\n", chars);
+	aux = printf("+La cadena %c con texto %s que incluye el numero %i tiene un tamaño de:", c, str, i);
+	printf("+%d\n", aux);
+	aux = ft_printf("-La cadena %c con texto %s que incluye el numero %i tiene un tamaño de:", c, str, i);
+	ft_printf("-%d\n", aux);
 	ft_printf("\nTests de evaluacion:\n");
 	ft_printf("%%c: %c\n", 'b');
 	ft_printf("%%s: %s\n", "hola que tal");
