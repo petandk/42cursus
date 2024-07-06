@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 19:48:45 by rmanzana          #+#    #+#              #
-#    Updated: 2024/07/03 19:52:23 by rmanzana         ###   ########.fr        #
+#    Updated: 2024/07/04 15:48:20 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@
 ## APP INFO
 #######################################
 
-NAME			:= ft_printf.a
+NAME			:= libftprintf.a
 SOURCEFOLDER	:= srcs
 HEADERFOLDER	:= includes
 
-FILES		:=	ft_printf ft_strings ft_numbers
+FILES		:=	ft_printf ft_strings ft_numbers ft_hex
 
 SOURCEFILES := $(addsuffix .c, $(FILES))
 OBJECTFILES	:= $(patsubst %.c,%.o,$(SOURCEFILES))

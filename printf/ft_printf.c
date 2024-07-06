@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 11:47:55 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/07/03 22:33:45 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:45:52 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_cases(char c, int output, va_list vargs)
 	else if (c == 'x')
 		ret = ft_puthex_fd(va_arg(vargs, unsigned int), output, 0);
 	else if (c == 'X')
-		ret = ft_puthex_fd(va_arg(vargs,unsigned int), output, 1);
+		ret = ft_puthex_fd(va_arg(vargs, unsigned int), output, 1);
 	else if (c == 'p')
 		ret = ft_putpointer_fd(va_arg(vargs, void *), output);
 	else
@@ -42,67 +42,27 @@ static int	ft_cases(char c, int output, va_list vargs)
 int	ft_printf(char const *str, ...)
 {
 	int		index;
-	int		output;
 	va_list	vargs;
-	int		extrachars;
+	int		result;
+	int		totalchars;
 
 	index = 0;
-	output = 1;
-	extrachars = 0;
+	totalchars = 0;
 	va_start(vargs, str);
 	while (str[index])
 	{
 		if (str[index] == '%' && str[index + 1])
-		{
-			index++;
-			extrachars += ft_cases(str[index], output, vargs);
-		}
+			result = ft_cases(str[++index], 1, vargs);
 		else
+			result = ft_putchar_fd(str[index], 1);
+		if (result == -1)
 		{
-			ft_putchar_fd(str[index], output);
-			extrachars++;	
+			va_end(vargs);
+			return (-1);
 		}
+		totalchars += result;
 		index++;
 	}
 	va_end(vargs);
-	return (extrachars);
-}
-
-#include <stdio.h>
-
-int main(void) 
-{
-    char c = 'a';
-    char *str = "Hello, World!";
-    int i = 42;
-    unsigned int u = 4294967295;
-	int d = -2147483648;
-	int	chars;
-
-    printf("+Original printf\n");
-	printf("-Your ft_printf\n");
-	printf("+%%c: %c\n", c);
-	ft_printf("-%%c: %c\n", c);
-    printf("+%%s: %s\n", str);
-    ft_printf("-%%s: %s\n", str);
-	printf("+%%i: %i\n", i);
-	ft_printf("-%%i: %i\n", i);
-    printf("+%%d: %d\n", d);
-	ft_printf("-%%d: %d\n", d);
-    printf("+%%u: %u\n", u);
-	ft_printf("-%%u: %u\n", u);
-    printf("+%%x: %x\n", i);
-	ft_printf("-%%x: %x\n", i);
-    printf("+%%X: %X\n", i);
-	ft_printf("-%%X: %X\n", i);
-    printf("+%%%%: %%\n");
-	ft_printf("-%%%%: %%\n");
-    printf("+%%p: %p\n", &i);
-	ft_printf("-%%p: %p\n", &i);
-
-	chars = printf("+La cadena %c con texto %s que incluye el numero %i tiene un tamaño de:", c, str, i);
-	printf("%d\n", chars);
-	chars = ft_printf("-La cadena %c con texto %s que incluye el numero %i tiene un tamaño de:", c, str, i);
-	ft_printf("%d\n", chars);
-	return (0);
+	return (totalchars);
 }
