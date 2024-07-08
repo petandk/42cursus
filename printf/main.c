@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:03:40 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/07/06 11:50:46 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:12:59 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int main(void)
 	ft_printf("%%u smallest: %u\n", d);
 	ft_printf("-%%s empty: %s\n", "");
 	ft_printf("%%p NULL: %p\n", NULL);
+	ft_printf("Values next command: a, hola, &i, 15, -42, 63, 127, 127\n");
 	ft_printf("%%c: %c, %%s: %s, %%p: %p, %%d: %d, %%i: %i, %%u: %u, %%x: %x, %%X: %X, %%%%: %%\n", 'a', "hola", &i, 15, -42, 63, 127, 127);
 	ft_printf("Going crazy: %s%s%s%s%i%i%i", "hola", "QUE", "ase", "uteh!", 3, 4, 5);
 
