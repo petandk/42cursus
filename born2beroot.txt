@@ -1,0 +1,135 @@
+Certainly! I'll provide a step-by-step guide to complete the Born2beRoot exercise using VirtualBox and Debian. This guide will cover the main requirements of the project:
+
+Set up VirtualBox and Debian:
+
+Download and install VirtualBox from the official website
+Download the latest stable Debian ISO
+
+
+Create a new virtual machine:
+
+Open VirtualBox and click "New"
+Name it yourusername42 (e.g., john42)
+Choose Linux as the type and Debian as the version
+Allocate at least 1024MB of RAM
+Create a new virtual hard disk (VDI, dynamically allocated, at least 8GB)
+
+
+Configure the virtual machine:
+
+Go to Settings > Network and set the adapter to Bridged
+Mount the Debian ISO in Settings > Storage
+
+
+Install Debian:
+
+Start the VM and boot from the Debian ISO
+Choose "Install" (not graphical install)
+Follow the installation prompts, selecting your language, location, and keyboard layout
+
+
+Partition the disk:
+
+Choose "Manual" partitioning
+Create two encrypted partitions using LVM:
+a. Create a 500MB /boot partition (not encrypted)
+b. Create an encrypted partition with the remaining space
+c. Set up LVM within the encrypted partition
+d. Create logical volumes for root, swap, home, var, srv, tmp, and var/log
+
+
+Complete the Debian installation:
+
+Install the GRUB boot loader
+Complete the installation and reboot
+
+
+Configure SSH:
+
+Edit /etc/ssh/sshd_config:
+
+Change the port to 4242
+Disable root login
+
+
+Restart the SSH service
+
+
+Set up UFW firewall:
+
+Install UFW: sudo apt install ufw
+Enable UFW: sudo ufw enable
+Allow port 4242: sudo ufw allow 4242
+
+
+Configure password policy:
+
+Edit /etc/login.defs:
+
+Set PASS_MAX_DAYS to 30
+Set PASS_MIN_DAYS to 2
+Set PASS_WARN_AGE to 7
+
+
+Install libpam-pwquality: sudo apt install libpam-pwquality
+Edit /etc/security/pwquality.conf:
+
+Set minlen to 10
+Set ucredit to -1
+Set dcredit to -1
+Set maxrepeat to 3
+Set usercheck to 1
+Set difok to 7
+
+
+Apply changes to existing users
+
+
+Set up sudo:
+
+Install sudo: sudo apt install sudo
+Configure sudo:
+
+Run sudo visudo
+Add the following lines:
+Defaults        passwd_tries=3
+Defaults        badpass_message="Custom error message"
+Defaults        logfile="/var/log/sudo/sudo.log"
+Defaults        log_input,log_output
+Defaults        requiretty
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
+
+
+
+
+Create user and groups:
+
+Create user42 group: sudo groupadd user42
+Create a user with your login: sudo adduser yourusername
+Add the user to user42 and sudo groups:
+sudo usermod -aG user42,sudo yourusername
+
+
+Create the monitoring script:
+
+Create a file named monitoring.sh in /root/
+Write the script to display the required information
+Make the script executable: sudo chmod +x /root/monitoring.sh
+
+
+Set up cron job:
+
+Edit the crontab: sudo crontab -e
+Add the line: */10 * * * * /root/monitoring.sh | wall
+
+
+Finalize and test:
+
+Reboot the system
+Test SSH connection from host machine
+Verify all requirements are met
+
+
+
+Remember to document your steps and be prepared to explain your choices during the defense. This guide covers the main requirements, but make sure to read the full project description for any additional details or specific instructions.
