@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:17:46 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/07/22 00:02:41 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/07/21 23:58:39 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,13 @@ void	create_line(t_list *lst, char *str)
 		node_index = 0;
 		while (copy -> content[node_index])
 		{
-			str[str_index++] = copy -> content[node_index++];
-			if (copy -> content[node_index - 1] == '\n')
+			if (copy -> content[node_index] == '\n')
 			{
+				str[str_index++] = '\n';
 				str[str_index] = '\0';
 				return ;
 			}
+			str[str_index++] = copy -> content[node_index++];
 		}
 		copy = copy -> next;
 	}
