@@ -3,117 +3,120 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 18:50:03 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/07/22 00:17:42 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/07/23 16:50:00 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/07/23 16:58:05 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_list	*ft_lstnew(void *content)
+static char	*join_helper(int i, int j, char *str1, char *str2)
 {
-	t_list	*newnode;
+	int		k;
+	char	*ret;
 
-	newnode = (t_list *)malloc(sizeof(t_list));
-	if (newnode)
+	k = 0;
+	ret = (char *)malloc(((i + j) + 1) * sizeof(char));
+	if (!ret)
+		return (NULL);
+	while (k < i)
 	{
-		newnode -> content = content;
-		newnode -> next = NULL;
-		return (newnode);
+		ret[k] = str1[k];
+		k++;
 	}
-	return (NULL);
+	while (k < i + j)
+	{
+		ret[k] = str2[k - i];
+		k++;
+	}
+	ret[k] = '\0';
+	return (ret);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new_node)
+static char	*ft_join(char *gnl, char *buf)
 {
-	t_list	*nodes;
+	int		i;
+	int		j;
+	char	*result;
 
-	if (lst == NULL || new_node == NULL)
-		return ;
-	if (*lst == NULL)
-	{
-		*lst = new_node;
-		return ;
-	}
-	nodes = *lst;
-	while (nodes -> next != NULL)
-		nodes = nodes -> next;
-	nodes -> next = new_node;
+	i = 0;
+	j = 0;
+	if (!buf)
+		return (NULL);
+	while (gnl[i])
+		i++;
+	while (buf[j])
+		j++;
+	result = join_helper(i, j, gnl, buf);
+	free(gnl);
+	return (result);
 }
 
-void	keep_last_node(t_list **lst)
+char	*get_line(char *buffer)
 {
-	t_list	*last;
-	char	*new_content;
-	int		newline_pos;
-	int		new_content_pos;
-	int		content_len;
+	char	*line;
+	int		i;
 
-	if (!lst || !*lst)
-		return ;
-	last = *lst;
-	while (last -> next)
-		last = last -> next;
-	newline_pos = 0;
-	content_len = 0;
-	while (last -> content[content_len])
+	i = 0;
+	if (!buffer[i])
+		return (NULL);
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	line = (char *)malloc((i + 2) * sizeof(char));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
 	{
-		if (last -> content[content_len] == '\n' && newline_pos == 0)
-			newline_pos = content_len + 1;
-		content_len++;
+		line[i] = buffer[i];
+		i++;
 	}
-	if (newline_pos == 0)
-		newline_pos = content_len;
-	new_content = (char *)malloc(content_len - newline_pos + 1);
-	if (!new_content)
-		return ;
-	new_content_pos = 0;
-	while (last -> content[newline_pos])
-		new_content[new_content_pos++] = last ->content[newline_pos++];
-	new_content[new_content_pos] = '\0';
-	free_list(lst);
-	last = ft_lstnew(new_content);
-	if (!last)
-	{
-		free(new_content);
-		*lst = NULL;
-		return ;
-	}
-	*lst = last;
+	if (buffer[i] && buffer[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
+	return (line);
 }
 
-void	free_list(t_list **lst)
-{
-	t_list	*current;
-	t_list	*next;
-
-	if (lst == NULL || *lst == NULL)
-		return ;
-	current = *lst;
-	while (current != NULL)
-	{
-		next = current -> next;
-		free(current -> content);
-		free(current);
-		current = next;
-	}
-	*lst = NULL;
-}
-
-int	contains_newline(t_list *node)
+static int	contains_newline(char *buff)
 {
 	int	i;
 
-	if (node == NULL || node -> content == NULL)
-		return (0);
 	i = 0;
-	while (node -> content[i] != '\0')
+	while (buff[i])
 	{
-		if (node -> content[i] == '\n')
+		if (buff[i] == '\n')
 			return (1);
 		i++;
 	}
 	return (0);
+}
+
+char	*read_file(int fd, char *buffer)
+{
+	char	*aux;
+	int		bytes_read;
+
+	if (!buffer)
+	{
+		buffer = (char *)malloc(1 * sizeof(char));
+		buffer[0] = '\0';
+	}
+	aux = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!aux)
+		return (NULL);
+	bytes_read = 1;
+	while (bytes_read > 0)
+	{
+		bytes_read = read(fd, aux, BUFFER_SIZE);
+		if (bytes_read == -1)
+			return (free(aux), NULL);
+		aux[bytes_read] = '\0';
+		buffer = ft_join(buffer, aux);
+		if (contains_newline(buffer))
+			break ;
+	}
+	free(aux);
+	return (buffer);
 }
