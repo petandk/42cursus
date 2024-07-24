@@ -1,45 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_gnl.c                                         :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 12:09:24 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/07/24 14:48:45 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/07/23 10:25:05 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/07/24 15:11:33 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+# ifndef MAX_FD
+#  define MAX_FD 1024
+# endif
+
 # include <fcntl.h>
 # include <stdlib.h>
 # include <stddef.h>
 # include <unistd.h>
 # include <stdio.h>
 
-int	main(int argc, char *argv[])
-{
-	int		i;
-	char	*line;
-	int		fd;
+char	*read_file(int fd, char *buffer);
+char	*get_line(char *buffer);
+char	*get_next_line(int fd);
 
-	if (argc == 1 || argv[1][0] == '\0')
-	{
-		printf("Debes introducir el archivo a leer.");
-		return (1);	
-	}
-	i = 1;
-	fd = open(argv[1], O_RDONLY);
-	line = get_next_line(fd);
-	printf("Linea %d -> %s\n", i, line);
-	free(line);
-	while(line)
-	{
-		i++;
-		line = get_next_line(fd);
-		printf("Linea %d -> %s\n", i, line);
-		free(line);
-	}
-	close(fd);
-	return (0);
-}
+#endif

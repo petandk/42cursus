@@ -6,7 +6,7 @@
 /*   By: pamanzan <pamanzan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 11:39:24 by pamanzan          #+#    #+#             */
-/*   Updated: 2024/07/23 17:06:13 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:59:33 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(void)
 	int		read_bytes = 1;
 	int		count = 0, i = 0;
 
-	fd = open("prueba.txt", O_RDONLY);
+	fd = open("prueba2.txt", O_RDONLY);
 	if (fd == -1)
 		return (printf("Error al abrir el archivo"), 1);
 	while (read_bytes == 1)
@@ -38,7 +38,7 @@ int	main(void)
 	}
 	close(fd);
 	printf("%i\n", count);
-	fd = open("prueba.txt", O_RDONLY);
+	fd = open("prueba2.txt", O_RDONLY);
 	if (fd == -1)
 		return (printf("Error al abrir el archivo"), 1);
 
