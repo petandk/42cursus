@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 10:24:58 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/07/24 15:05:45 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/09/19 17:17:43 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,8 @@ char	*get_next_line(int fd)
 	static char	*buffer[MAX_FD];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= MAX_FD)
 	{
-		free(buffer[fd]);
-		buffer[fd] = NULL;
 		return (NULL);
 	}
 	buffer[fd] = read_file(fd, buffer[fd]);
