@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 16:44:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/10/01 19:56:27 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/07/01 10:05:17 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/07/01 10:05:27 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_rotate(t_stack **lst)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	t_stack	*head;
-	t_stack	*next;
-	t_stack	*last;
-
-	head = *lst;
-	if (head == NULL || head -> next == NULL)
-		return ;
-	next = head -> next;
-	next -> prev = NULL;
-	last = ft_lstlastnode(head);
-	head -> prev = last;
-	head -> next = NULL;
-	last -> next = head;
-	*lst = next;
+	if (lst && new)
+	{
+		new -> next = *lst;
+		*lst = new;
+	}
 }
+/*
+#include <stdio.h>
 
-void	ft_rotate_both(t_stack **a, t_stack **b)
+int	main(void)
 {
-	ft_rotate(a);
-	ft_rotate(b);
+	t_list	*list = ft_lstnew("Old");
+	ft_lstadd_front(&list, ft_lstnew("New"));
+	t_list	*node = list;
+	while (node)
+	{
+		printf("%s\n", (char *)node -> content);
+		node = node -> next;
+	}
+	return (0);
 }
+*/

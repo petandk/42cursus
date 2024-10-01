@@ -1,37 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 16:44:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/10/01 19:56:27 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/06/20 17:47:20 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/06/28 15:53:23 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdlib.h>
 
-void	ft_rotate(t_stack **lst)
+char	*ft_strdup(const char *s)
 {
-	t_stack	*head;
-	t_stack	*next;
-	t_stack	*last;
+	int		i;
+	char	*cpy;
 
-	head = *lst;
-	if (head == NULL || head -> next == NULL)
-		return ;
-	next = head -> next;
-	next -> prev = NULL;
-	last = ft_lstlastnode(head);
-	head -> prev = last;
-	head -> next = NULL;
-	last -> next = head;
-	*lst = next;
+	i = 0;
+	while (s[i])
+		i++;
+	cpy = (char *)malloc(i * sizeof(char) + 1);
+	if (!cpy)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		cpy[i] = s[i];
+		i++;
+	}
+	cpy[i] = '\0';
+	return (cpy);
 }
+/*
+#include <stdio.h>
 
-void	ft_rotate_both(t_stack **a, t_stack **b)
+int	main(void)
 {
-	ft_rotate(a);
-	ft_rotate(b);
+	char *str = "lorem ipsum dolor sit amet";
+	char *cpy = ft_strdup(str);
+	printf("%s", cpy);
+	free(cpy);
+	return (0);
 }
+*/

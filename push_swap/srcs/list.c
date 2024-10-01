@@ -6,17 +6,17 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:14:05 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/09/30 16:19:48 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:39:49 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_lstnew(int value)
+t_stack	*ft_lstnewnode(int value)
 {
-	t_list	*newnode;
+	t_stack	*newnode;
 
-	newnode = (t_list *)malloc(sizeof(t_list));
+	newnode = (t_stack *)malloc(sizeof(t_stack));
 	if (newnode)
 	{
 		newnode -> value = value;
@@ -27,9 +27,9 @@ t_list	*ft_lstnew(int value)
 	return (NULL);
 }
 
-t_list	*ft_lstlast(t_list *lst)
+t_stack	*ft_lstlastnode(t_stack *lst)
 {
-	t_list	*nodes;
+	t_stack	*nodes;
 
 	if (lst == NULL)
 		return (NULL);
@@ -39,9 +39,9 @@ t_list	*ft_lstlast(t_list *lst)
 	return (nodes);
 }
 
-t_list	*ft_lstfirst(t_list *lst)
+t_stack	*ft_lstfirstnode(t_stack *lst)
 {
-	t_list	*nodes;
+	t_stack	*nodes;
 
 	if (lst == NULL)
 		return (NULL);
@@ -51,9 +51,9 @@ t_list	*ft_lstfirst(t_list *lst)
 	return (nodes);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_backnode(t_stack **lst, t_stack *new)
 {
-	t_list	*lastnode;
+	t_stack	*lastnode;
 
 	if (lst && new)
 	{
@@ -61,7 +61,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 			*lst = new;
 		else
 		{
-			lastnode = ft_lstlast(*lst);
+			lastnode = ft_lstlastnode(*lst);
 			lastnode -> next = new;
 			new -> prev = lastnode;
 		}

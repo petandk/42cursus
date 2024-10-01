@@ -6,17 +6,17 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 15:51:02 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/09/30 18:19:11 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:18:48 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(t_list **lst)
+void	ft_swap(t_stack **lst)
 {
-	t_list	*head;
-	t_list	*next;
-	t_list	*third;
+	t_stack *head;
+	t_stack *next;
+	t_stack *third;
 
 	head = *lst;
 	if (head == NULL || head -> next == NULL)
@@ -34,7 +34,7 @@ void	ft_swap(t_list **lst)
 	*lst = next;
 }
 
-void	ft_swap_both(t_list **a, t_list **b)
+void	ft_swap_both(t_stack **a, t_stack **b)
 {
 	ft_swap(a);
 	ft_swap(b);

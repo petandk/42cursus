@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 16:44:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/10/01 19:56:27 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/06/15 14:46:04 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/06/28 16:11:30 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stddef.h>
 
-void	ft_rotate(t_stack **lst)
+size_t	ft_strlen(const char *s)
 {
-	t_stack	*head;
-	t_stack	*next;
-	t_stack	*last;
+	size_t	index;
 
-	head = *lst;
-	if (head == NULL || head -> next == NULL)
-		return ;
-	next = head -> next;
-	next -> prev = NULL;
-	last = ft_lstlastnode(head);
-	head -> prev = last;
-	head -> next = NULL;
-	last -> next = head;
-	*lst = next;
+	index = 0;
+	while (s[index])
+		index++;
+	return (index);
 }
+/*
+#include <stdio.h>
 
-void	ft_rotate_both(t_stack **a, t_stack **b)
+int	main(void)
 {
-	ft_rotate(a);
-	ft_rotate(b);
+	char	*str = "Hello world!";
+	char	*str2 = "123 hola 456 @";
+	printf("Lenghth of '%s': %zu\n", str, ft_strlen(str));
+	printf("Lenghth of '%s': %zu\n", str2, ft_strlen(str2));
 }
+*/

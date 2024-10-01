@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:30:39 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/09/30 20:31:23 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:41:41 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,28 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
+# include "../libft/libft.h"
+# include "../printf/ft_printf.h"
 
-typedef struct s_list
+typedef struct s_stack
 {
 	int				value;
 	//int				cost;
-	struct s_list	*next;
-	struct s_list	*prev;
-}	t_list;
+	struct s_stack	*next;
+	struct s_stack	*prev;
+}	t_stack;
 
-t_list	*ft_lstnew(int value);
-t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstfirst(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_swap(t_list **lst);
-void	ft_swap_both(t_list **a, t_list **b);
-void	ft_rotate(t_list **lst);
-void	ft_rotate_both(t_list **a, t_list **b);
-void	ft_reverse(t_list **lst);
-void	ft_reverse_both(t_list **a, t_list **b);
-void	ft_push(t_list **src, t_list **dest);
+t_stack	*ft_lstnewnode(int value);
+t_stack	*ft_lstlastnode(t_stack *lst);
+t_stack	*ft_lstfirstnode(t_stack *lst);
+void	ft_lstadd_backnode(t_stack **lst, t_stack *new);
+void	ft_swap(t_stack **lst);
+void	ft_swap_both(t_stack **a, t_stack **b);
+void	ft_rotate(t_stack **lst);
+void	ft_rotate_both(t_stack **a, t_stack **b);
+void	ft_reverse(t_stack **lst);
+void	ft_reverse_both(t_stack **a, t_stack **b);
+void	ft_push(t_stack **src, t_stack **dest);
+int		*divide_string(const char *input);
+
 #endif

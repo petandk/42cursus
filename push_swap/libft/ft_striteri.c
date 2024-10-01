@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 16:44:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/10/01 19:56:27 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/06/28 14:43:55 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/06/28 15:52:53 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void	ft_rotate(t_stack **lst)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	t_stack	*head;
-	t_stack	*next;
-	t_stack	*last;
+	int	index;
 
-	head = *lst;
-	if (head == NULL || head -> next == NULL)
-		return ;
-	next = head -> next;
-	next -> prev = NULL;
-	last = ft_lstlastnode(head);
-	head -> prev = last;
-	head -> next = NULL;
-	last -> next = head;
-	*lst = next;
+	index = 0;
+	while (s[index])
+	{
+		f(index, &s[index]);
+		index++;
+	}
+}
+/*
+#include <stdio.h>
+void to_upper(unsigned int i, char *c)
+{
+	printf("%d\n", i);
+	if(*c >= 'a' && *c <= 'z')
+		*c = *c - 32;
 }
 
-void	ft_rotate_both(t_stack **a, t_stack **b)
+int	main(void)
 {
-	ft_rotate(a);
-	ft_rotate(b);
+	char str[] = "Hello, World!";
+	ft_striteri(str, &to_upper);
+	printf("result: %s\n", str);
+	return (0);
 }
+*/
