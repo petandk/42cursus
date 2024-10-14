@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:59:37 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/10/01 19:55:42 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/10/14 20:29:53 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	*divide_string(const char *input)
 		return (NULL);
 	}
 	i = 0;
-	while (split_input[i])
+	while (i < numbers)
 	{
 		number_list[i] = ft_atoi(split_input[i]);
 		temp = ft_itoa(number_list[i]);
@@ -75,4 +75,50 @@ int	*divide_string(const char *input)
 	}
 	free_stack(split_input);
 	return (number_list);
+}
+
+int	*get_numbers(char *argv[], int argc)
+{
+	int		*number_list;
+	int		i;
+	char	*temp;
+
+	number_list = (int *) malloc((argc - 1) * sizeof(int));
+	if (number_list == NULL)
+		return NULL;
+	i = 1;
+	while(i < argc)
+	{
+		number_list[i - 1] = ft_atoi(argv[i]);
+		temp = ft_itoa(number_list[i-1]);
+		if (temp == NULL || ft_strncmp(temp, argv[i], ft_strlen(argv[i])) != 0)
+		{
+			free(temp);
+			free(number_list);
+			return (NULL);
+		}
+		free(temp);
+		i++;
+	}
+	return (number_list);
+}
+
+int	check_repeated(int *numbers, int argc)
+{
+	int	j;
+	int	i;
+
+	i = 0;
+	while (i < argc)
+	{
+		j = i + 1;
+		while (j < argc)
+		{
+			if (numbers[i] == numbers[j])
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
