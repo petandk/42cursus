@@ -6,9 +6,11 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:41:14 by rmanzana          #+#    #+#              #
-#    Updated: 2024/10/01 18:26:39 by rmanzana         ###   ########.fr        #
+#    Updated: 2024/10/02 14:52:40 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+.SILENT:
 
 #######################################
 ## APP INFO
@@ -45,32 +47,39 @@ INCLUDES:= -I $(HEADERFOLDER) -I $(LIBFT) -I $(PRINTF)
 RM	:= rm -rf
 
 all : $(OBJECTFOLDER) $(DEPFOLDER) libft printf $(NAME)
+	@echo "Building $(NAME)"
 
 $(NAME): $(OBJECTFILES) libft printf
+	@echo "Linking $(NAME)"
 	$(CC) $(CFLAGS) $(OBJECTFILES) -L $(LIBFT) -lft -L $(PRINTF) -lftprintf -o $(NAME)
 
 $(OBJECTFOLDER)/%.o : $(SOURCEFOLDER)/%.c Makefile
 	@mkdir -p $(OBJECTFOLDER) $(DEPFOLDER)
+	@echo "Compiling $<"
 	$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -MF $(DEPFOLDER)/$*.d -c $< -o $@
 
 $(OBJECTFOLDER) $(DEPFOLDER):
 	@mkdir -p $@
 
 libft:
-	@$(MAKE) -C $(LIBFT)
+	@echo "Building libft"
+	@$(MAKE) -s -C $(LIBFT)
 
 printf:
-	@$(MAKE) -C $(PRINTF)
+	@echo "Building printf"
+	@$(MAKE) -s -C $(PRINTF)
 
 clean:
+	@echo "Cleaning object files"
 	$(RM) $(OBJECTFOLDER) $(DEPFOLDER)
-	@$(MAKE) -C $(LIBFT) clean
-	@$(MAKE) -C $(PRINTF) clean
+	@$(MAKE) -s -C $(LIBFT) clean
+	@$(MAKE) -s -C $(PRINTF) clean
 
 fclean: clean
+	@echo "Cleaning executable"
 	$(RM) $(NAME)
-	@$(MAKE) -C $(LIBFT) fclean
-	@$(MAKE) -C $(PRINTF) fclean
+	@$(MAKE) -s -C $(LIBFT) fclean
+	@$(MAKE) -s -C $(PRINTF) fclean
 
 re: fclean all
 

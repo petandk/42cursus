@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:30:39 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/10/01 19:41:41 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:55:41 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ void	ft_reverse(t_stack **lst);
 void	ft_reverse_both(t_stack **a, t_stack **b);
 void	ft_push(t_stack **src, t_stack **dest);
 int		*divide_string(const char *input);
+int		*get_numbers(char *argv[], int argc);
+int		check_repeated(int *numbers, int argc);
 
 #endif
