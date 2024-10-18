@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:57:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/10/14 20:31:13 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:47:25 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	if (argc == 2)
 	{
-		numbers = divide_string(argv[1]);
-		i = 0;
-		while (i < (argc - 1))
-		{
-			ft_printf("%d", numbers[i]);
-			i++;
-		}
+		return (0);
 	}
 	if (argc > 2)
 	{
