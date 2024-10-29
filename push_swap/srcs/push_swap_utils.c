@@ -12,58 +12,60 @@
 
 #include "push_swap.h"
 
-void	free_stack(char **stack)
+void	free_stack(t_stack *stack)
 {
-	int	i;
+	t_stack	*temp;
 
-	i = 0;
-	while (stack[i])
+	while (*stack != NULL)
 	{
-		free(stack[i]);
-		i++;
+		temp = *stack;
+		*stack = (*stack)-> next;
+		free(temp);
 	}
 	free(stack);
 }
 
-int	*get_numbers(char *argv[], int argc)
+t_stack	*find_biggest(t_stack *stack)
 {
-	int		*number_list;
-	int		i;
-	char	*temp;
+	t_stack	*biggest;
 
-	number_list = (int *) malloc((argc - 1) * sizeof(int));
-	if (number_list == NULL)
-		return NULL;
-	i = 1;
-	while(i < argc)
+	if (stack == NULL)
+		return (NULL);
+	biggest = stack;
+	while (*stack != NULL)
 	{
-		number_list[i - 1] = ft_atoi(argv[i]);
-		temp = ft_itoa(number_list[i-1]);
-		if (temp == NULL || ft_strncmp(temp, argv[i], ft_strlen(argv[i])) != 0)
-		{
-			free(temp);
-			free(number_list);
-			return (NULL);
-			ft_printf("Error\n");
-		}
-		free(temp);
-		i++;
+		if (stack -> value > biggest -> value)
+			biggest = stack;
+		stack = stack -> next;
 	}
-	return (number_list);
+	return (biggest);
 }
 
-int	check_repeated(int *numbers, int argc)
+void	order_3(t_stack *stack)
+{
+	t_stack	*biggest;
+
+	biggest = find_biggest(stack);
+	if (biggest == stack)
+		ra(stack);
+	else if (biggest == stack ->next)
+		rra(stack);
+	if (stack -> value > stack -> next -> value)
+		sa(stack);
+}
+
+int	check_repeated(int argc)
 {
 	int	j;
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (i < argc)
 	{
 		j = i + 1;
 		while (j < argc)
 		{
-			if (numbers[i] == numbers[j])
+			if (argc[i] == argc[j])
 				return (1);
 			j++;
 		}

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_rotate(t_stack **lst)
+static void	ft_rotate(t_stack **lst)
 {
 	t_stack	*head;
 	t_stack	*next;
@@ -30,8 +30,21 @@ void	ft_rotate(t_stack **lst)
 	*lst = next;
 }
 
-void	ft_rotate_both(t_stack **a, t_stack **b)
+void	ra(t_stack **a)
+{
+	ft_rotate(a);
+	ft_printf("ra\n");
+}
+
+void	rb(t_stack **b)
+{
+	ft_rotate(b);
+	ft_printf("rb\n");
+}
+
+void	rr(t_stack **a, t_stack **b)
 {
 	ft_rotate(a);
 	ft_rotate(b);
+	ft_printf("rr\n");
 }

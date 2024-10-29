@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_reverse(t_stack **lst)
+static void	ft_reverse(t_stack **lst)
 {
 	t_stack	*head;
 	t_stack	*last;
@@ -30,8 +30,21 @@ void	ft_reverse(t_stack **lst)
 	*lst = last;
 }
 
-void	ft_reverse_both(t_stack **a, t_stack **b)
+void	rra(t_stack **a)
+{
+	ft_reverse(a);
+	ft_printf("rra\n");
+}
+
+void	rrb(t_stack **b)
+{
+	ft_reverse(b);
+	ft_printf("rrb\n");
+}
+
+void	rrr(t_stack **a, t_stack **b)
 {
 	ft_reverse(a);
 	ft_reverse(b);
+	ft_printf("rrr\n");
 }

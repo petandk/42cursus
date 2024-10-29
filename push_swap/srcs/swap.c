@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-void	ft_swap(t_stack **lst)
+static void	ft_swap(t_stack **lst)
 {
-	t_stack *head;
-	t_stack *next;
-	t_stack *third;
+	t_stack	*head;
+	t_stack	*next;
+	t_stack	*third;
 
 	head = *lst;
 	if (head == NULL || head -> next == NULL)
@@ -34,8 +34,21 @@ void	ft_swap(t_stack **lst)
 	*lst = next;
 }
 
-void	ft_swap_both(t_stack **a, t_stack **b)
+void	sa(t_stack **a)
+{
+	ft_swap(a);
+	ft_printf("sa\n");
+}
+
+void	sb(t_stack **b)
+{
+	ft_swap(b);
+	ft_printf("sb\n");
+}
+
+void	ss(t_stack **a, t_stack **b)
 {
 	ft_swap(a);
 	ft_swap(b);
+	ft_printf("ss\n");
 }

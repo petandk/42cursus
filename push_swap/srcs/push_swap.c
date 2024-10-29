@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 15:57:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/10/18 13:47:25 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/10/29 11:04:02 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/10/29 19:18:48 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,26 @@
 
 int	main(int argc, char *argv[])
 {
-	int	*numbers;
-	int	i;
+	int		i;
+	int		num;
+	t_stack	*nodes_a;
 
-	numbers = NULL;
-	if (argc == 1)
-		return (0);
+	i = 1;
+	nodes_a = NULL;
 	if (argc == 2)
-	{
 		return (0);
-	}
-	if (argc > 2)
+	if (argc == 3)
+		if (argv[1] > argv[2])
+			ft_printf("sa\n");
+	if (argc == 4)
 	{
-		numbers = get_numbers(argv, argc);
-		i = 0;
-		while (i < (argc - 1))
+		while (i < argc)
 		{
-			ft_printf("%d", numbers[i]);
+			num = ft_atoi(argv[i]);
+			ft_lstadd_backnode(&nodes_a, ft_lstnewnode(num));
 			i++;
 		}
+		order_3(&nodes_a);
 	}
-	if (check_repeated(numbers, argc - 1))
-		ft_printf("\nrepeated nums");
-	else
-		ft_printf("\nnon repeated");
-	free(numbers);
 	return (0);
 }
