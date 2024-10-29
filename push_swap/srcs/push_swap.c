@@ -23,7 +23,7 @@ int	main(int argc, char *argv[])
 	if (argc == 2)
 		return (0);
 	if (argc == 3)
-		if (argv[1] > argv[2])
+		if (ft_atoi(argv[1]) > ft_atoi(argv[2]))
 			ft_printf("sa\n");
 	if (argc == 4)
 	{
@@ -33,7 +33,7 @@ int	main(int argc, char *argv[])
 			ft_lstadd_backnode(&nodes_a, ft_lstnewnode(num));
 			i++;
 		}
-		order_3(&nodes_a);
+		order_3(nodes_a);
 	}
 	return (0);
 }

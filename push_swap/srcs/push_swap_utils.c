@@ -16,10 +16,10 @@ void	free_stack(t_stack *stack)
 {
 	t_stack	*temp;
 
-	while (*stack != NULL)
+	while (stack != NULL)
 	{
-		temp = *stack;
-		*stack = (*stack)-> next;
+		temp = stack;
+		stack = stack-> next;
 		free(temp);
 	}
 	free(stack);
@@ -32,7 +32,7 @@ t_stack	*find_biggest(t_stack *stack)
 	if (stack == NULL)
 		return (NULL);
 	biggest = stack;
-	while (*stack != NULL)
+	while (stack != NULL)
 	{
 		if (stack -> value > biggest -> value)
 			biggest = stack;
@@ -47,14 +47,14 @@ void	order_3(t_stack *stack)
 
 	biggest = find_biggest(stack);
 	if (biggest == stack)
-		ra(stack);
-	else if (biggest == stack ->next)
-		rra(stack);
+		ra(&stack);
+	else if (biggest == stack -> next)
+		rra(&stack);
 	if (stack -> value > stack -> next -> value)
-		sa(stack);
+		sa(&stack);
 }
 
-int	check_repeated(int argc)
+int	check_repeated(int argc, char *argv[])
 {
 	int	j;
 	int	i;
@@ -65,7 +65,7 @@ int	check_repeated(int argc)
 		j = i + 1;
 		while (j < argc)
 		{
-			if (argc[i] == argc[j])
+			if (argv[i] == argv[j])
 				return (1);
 			j++;
 		}
