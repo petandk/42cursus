@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 16:13:19 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/07/05 13:07:55 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:34:59 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,23 @@ static int	ft_putnbr_recursive(unsigned int n, int fd)
 			return (-1);
 		count += result;
 	}
-	result = ft_putchar_fd(n % 10 + '0', fd);
+	result = ft_singlechar_fd(n % 10 + '0', fd);
 	if (result == -1)
 		return (-1);
 	return (count + 1);
 }
 
-int	ft_putnbr_fd(int n, int fd)
+int	ft_putnum_fd(int n, int fd)
 {
 	int	count;
 	int	result;
 
 	count = 0;
 	if (n == -2147483648)
-		return (ft_putstr_fd("-2147483648", fd));
+		return (ft_putstring_fd("-2147483648", fd));
 	if (n < 0)
 	{
-		result = ft_putchar_fd('-', fd);
+		result = ft_singlechar_fd('-', fd);
 		if (result == -1)
 			return (-1);
 		count = 1;
@@ -72,7 +72,7 @@ int	ft_putunsignednbr_fd(unsigned int n, int fd)
 	}
 	else
 	{
-		result = ft_putchar_fd(n + '0', fd);
+		result = ft_singlechar_fd(n + '0', fd);
 		if (result == -1)
 			return (-1);
 		count++;

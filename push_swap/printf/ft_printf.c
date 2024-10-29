@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 11:47:55 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/07/04 15:45:52 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:37:05 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static int	ft_cases(char c, int output, va_list vargs)
 
 	ret = 1;
 	if (c == '%')
-		ft_putchar_fd('%', output);
+		ft_singlechar_fd('%', output);
 	else if (c == 'c')
-		ft_putchar_fd((char)va_arg(vargs, int), output);
+		ft_singlechar_fd((char)va_arg(vargs, int), output);
 	else if (c == 's')
-		ret = ft_putstr_fd(va_arg(vargs, char *), output);
+		ret = ft_putstring_fd(va_arg(vargs, char *), output);
 	else if (c == 'd' || c == 'i')
-		ret = ft_putnbr_fd(va_arg(vargs, int), output);
+		ret = ft_putnum_fd(va_arg(vargs, int), output);
 	else if (c == 'u')
 		ret = ft_putunsignednbr_fd(va_arg(vargs, unsigned int), output);
 	else if (c == 'x')
@@ -35,7 +35,7 @@ static int	ft_cases(char c, int output, va_list vargs)
 	else if (c == 'p')
 		ret = ft_putpointer_fd(va_arg(vargs, void *), output);
 	else
-		ft_putchar_fd(c, output);
+		ft_singlechar_fd(c, output);
 	return (ret);
 }
 
@@ -54,7 +54,7 @@ int	ft_printf(char const *str, ...)
 		if (str[index] == '%' && str[index + 1])
 			result = ft_cases(str[++index], 1, vargs);
 		else
-			result = ft_putchar_fd(str[index], 1);
+			result = ft_singlechar_fd(str[index], 1);
 		if (result == -1)
 		{
 			va_end(vargs);

@@ -1,0 +1,21 @@
+After you've completed all the configuration steps and your virtual machine is in the desired state for evaluation:
+
+In VirtualBox, select your virtual machine.
+Instead of shutting down normally, use the "Save State" option. You can do this by:
+a) Clicking on "Machine" in the VirtualBox menu, then "Save State"
+b) Or using the shortcut Ctrl+S (on Windows/Linux) or Cmd+S (on Mac)
+
+
+This will preserve the exact state of your virtual machine, including all running processes and open applications.
+When you need to resume work or prepare for evaluation, simply start the VM, and it will return to exactly the same state it was in when you saved it.
+For the evaluation, you should provide the signature of this saved state. The process to get the signature remains the same as described in the PDF:
+
+Navigate to the VirtualBox VMs folder
+Find your VM's .vdi file
+Generate a SHA1 hash of this file
+
+
+Save this hash in the signature.txt file in your Git repository.
+
+Using save state ensures that your VM remains in a consistent state for all evaluations, preventing any unintended changes that might occur during normal shutdown and startup processes.
+Thank you for pointing this out. It's a crucial step for ensuring consistent evaluation of your project.
