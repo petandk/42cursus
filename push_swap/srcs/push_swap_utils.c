@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:59:37 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/10/18 13:57:03 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/11/13 01:03:14 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,5 @@ void	order_3(t_stack *stack)
 		rra(&stack);
 	if (stack -> value > stack -> next -> value)
 		sa(&stack);
-}
-
-int	check_repeated(int argc, char *argv[])
-{
-	int	j;
-	int	i;
-
-	i = 1;
-	while (i < argc)
-	{
-		j = i + 1;
-		while (j < argc)
-		{
-			if (argv[i] == argv[j])
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
+	stack = ft_lstfirstnode(stack);
 }

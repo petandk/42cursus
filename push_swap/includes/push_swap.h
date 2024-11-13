@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:30:39 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/10/14 19:55:41 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/11/13 00:50:10 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_stack	*ft_lstnewnode(int value);
 t_stack	*ft_lstlastnode(t_stack *lst);
 t_stack	*ft_lstfirstnode(t_stack *lst);
 void	ft_lstadd_backnode(t_stack **lst, t_stack *new);
+int		ft_countnodes(t_stack *lst);
 void	sa(t_stack **a);
 void	sb(t_stack **b);
 void	ss(t_stack **a, t_stack **b);
@@ -40,9 +41,13 @@ void	rrb(t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 void	pa(t_stack **a, t_stack **b);
 void	pb(t_stack **a, t_stack **b);
-void	free_stack(t_stack **stack);
-int		check_repeated(int argc);
-t_stack	*find_biggest(t_stack **stack);
-void	order_3(t_stack **stack);
-
+void	free_stack(t_stack *stack);
+t_stack	*find_biggest(t_stack *stack);
+void	process_args(int argc, char **argv);
+void	order_3(t_stack *stack);
+void	order_4(t_stack *stack);
+void	check_args(int args, char **argv);
+//void	turk(t_stack *stack);
+void	print_lists(t_stack *a, t_stack *b);
+void	print_single(t_stack *stack);
 #endif

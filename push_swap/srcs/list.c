@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:14:05 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/10/01 19:39:49 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/11/12 23:15:24 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,19 @@ void	ft_lstadd_backnode(t_stack **lst, t_stack *new)
 			new -> prev = lastnode;
 		}
 	}
+}
+
+int	ft_countnodes(t_stack *lst)
+{
+	t_stack *list;
+	int		i;
+
+	list = ft_lstfirstnode(lst);
+	i = 0;
+	while (list != NULL)
+	{
+		i++;
+		list = list -> next;
+	}
+	return (i);
 }

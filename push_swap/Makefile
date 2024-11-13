@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:41:14 by rmanzana          #+#    #+#              #
-#    Updated: 2024/10/02 14:52:40 by rmanzana         ###   ########.fr        #
+#    Updated: 2024/11/12 23:25:12 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ LIBFT			:= libft
 PRINTF			:= printf
 
 FILES		:=	push_swap push_swap_utils\
-				list swap push rotate reverse
+				list swap push rotate reverse\
+				errors args turk print_nodes
 
 SOURCEFILES := $(addprefix $(SOURCEFOLDER)/, $(addsuffix .c, $(FILES)))
 OBJECTFILES	:= $(addprefix $(OBJECTFOLDER)/, $(addsuffix .o, $(FILES)))
@@ -81,8 +82,28 @@ fclean: clean
 	@$(MAKE) -s -C $(LIBFT) fclean
 	@$(MAKE) -s -C $(PRINTF) fclean
 
+test:
+	@NUM_QTY=500; \
+    MAX_MOVES=5500; \
+    ARG=$$(shuf -i 0-5000000 -n $$NUM_QTY); \
+    RESULT=$$(./$(NAME) $$ARG | ./checker_linux $$ARG); \
+    if [ "$$RESULT" = "OK" ]; then \
+        COLOR="\033[0;32m"; \
+    else \
+        COLOR="\033[0;31m"; \
+    fi; \
+    echo "󱝿⚙️ Checker verify: $$COLOR$$RESULT\033[0m"; \
+    echo -n "🔢 Num of moves:    "; \
+    NUM_MOVES=$$(./$(NAME) $$ARG | wc -l); \
+    if [ $$NUM_MOVES -lt $$MAX_MOVES ]; then \
+        COLOR="\033[0;32m"; \
+    else \
+        COLOR="\033[0;31m"; \
+    fi; \
+    echo "$$COLOR$$NUM_MOVES\033[0m"
+
 re: fclean all
 
-.PHONY: all clean fclean re libft printf
+.PHONY: all clean fclean re libft printf test
 
 -include $(DEPFILES)
