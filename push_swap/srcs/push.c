@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:15:17 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/11/13 00:09:45 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:47:26 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,15 @@ static void	ft_push(t_stack **src, t_stack **dest)
 void	pa(t_stack **a, t_stack **b)
 {
 	ft_push(b, a);
+	*a = ft_lstfirstnode(*a);
+	*b = ft_lstfirstnode(*b);
 	ft_printf("pa\n");
 }
 
 void	pb(t_stack **a, t_stack **b)
 {
 	ft_push(a, b);
+	*a = ft_lstfirstnode(*a);
+	*b = ft_lstfirstnode(*b);
 	ft_printf("pb\n");
 }

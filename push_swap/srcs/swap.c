@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 15:51:02 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/10/01 19:18:48 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:46:07 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ static void	ft_swap(t_stack **lst)
 void	sa(t_stack **a)
 {
 	ft_swap(a);
+	*a = ft_lstfirstnode(*a);
 	ft_printf("sa\n");
 }
 
 void	sb(t_stack **b)
 {
 	ft_swap(b);
+	*b = ft_lstfirstnode(*b);
 	ft_printf("sb\n");
 }
 
@@ -50,5 +52,7 @@ void	ss(t_stack **a, t_stack **b)
 {
 	ft_swap(a);
 	ft_swap(b);
+	*a = ft_lstfirstnode(*a);
+	*b = ft_lstfirstnode(*b);
 	ft_printf("ss\n");
 }

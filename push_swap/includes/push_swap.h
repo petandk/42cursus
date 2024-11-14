@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:30:39 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/11/13 00:50:10 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:25:18 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	pb(t_stack **a, t_stack **b);
 void	free_stack(t_stack *stack);
 t_stack	*find_biggest(t_stack *stack);
 void	process_args(int argc, char **argv);
+int		is_sorted(t_stack *stack);
 void	order_3(t_stack *stack);
 void	order_4(t_stack *stack);
 void	check_args(int args, char **argv);

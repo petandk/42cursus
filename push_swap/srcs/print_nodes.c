@@ -6,17 +6,19 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 22:49:40 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/11/13 00:50:42 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:35:53 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_lists(t_stack *a,t_stack *b)
+void	print_lists(t_stack *a, t_stack *b)
 {
 	t_stack	*curr_a;
-	t_stack *curr_b;
+	t_stack	*curr_b;
 
+	curr_a = NULL;
+	curr_b = NULL;
 	if (a != NULL)
 		curr_a = ft_lstfirstnode(a);
 	if (b != NULL)
@@ -33,7 +35,6 @@ void	print_lists(t_stack *a,t_stack *b)
 		if (curr_b != NULL)
 			ft_printf(" %d ", curr_b -> value);
 		ft_printf("\n");
-
 		if (curr_a != NULL)
 			curr_a = curr_a -> next;
 		if (curr_b != NULL)
@@ -43,8 +44,9 @@ void	print_lists(t_stack *a,t_stack *b)
 
 void	print_single(t_stack *stack)
 {
-	t_stack *single;
+	t_stack	*single;
 
+	single = NULL;
 	if (stack != NULL)
 		single = ft_lstfirstnode(stack);
 	ft_printf(" a \n-----\n");
