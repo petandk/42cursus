@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 22:21:23 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/04 23:50:32 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:18:38 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_commands(t_command *comm)
 	}
 }
 
-static void	free_array(char **arr)
+void	free_array(char **arr)
 {
 	int	i;
 
