@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 22:10:44 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/05 16:35:35 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/10 18:57:49 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 
 typedef enum s_bool
 {
