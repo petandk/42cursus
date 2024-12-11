@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:41:14 by rmanzana          #+#    #+#              #
-#    Updated: 2024/12/11 18:50:25 by rmanzana         ###   ########.fr        #
+#    Updated: 2024/12/11 19:01:06 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ fclean: clean
 re: fclean all
 
 normi norminette check:
-	@echo "Running Norminette on $(SOURCEFOLDER) files"
+	@echo "Running Norminette for $(NAME) $(SOURCEFOLDER) files"
 	norminette $(SOURCEFOLDER)/*
 
 .PHONY: all clean fclean re libft printf normi norminette check
