@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:46:54 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/08 00:30:36 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:51:41 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char *argv[])
 		if (success != 0)
 		{
 			ft_printf("Failed to execute command\n");
+			free_commands(comm);
 			return (EXIT_FAILURE);
 		}
 		free_commands(comm);

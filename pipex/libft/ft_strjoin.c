@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:12:33 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/28 16:08:30 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:20:08 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	l1 = ft_strlen(s1);
 	l2 = ft_strlen(s2);
-	joined = (char *)malloc(l1 + l2 * sizeof(char) + 1);
+	joined = (char *)malloc((l1 + l2) * sizeof(char) + 1);
 	if (!joined)
 		return (NULL);
 	index = 0;

@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 22:10:44 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/10 18:57:49 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:54:50 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,23 @@
 # include "../printf/ft_printf.h"
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <fcntl.h>
+# include <stdio.h>
 # include <sys/wait.h>
-
-typedef enum s_bool
-{
-	false,
-	true
-}	t_bool;
 
 typedef struct s_command
 {
 	char	*infile;
-	char	*first_command;
-	char	*first_flags;
-	char	*second_command;
-	char	*second_flags;
+	char	**first_argv;
+	char	**second_argv;
 	char	*outfile;
 
 }	t_command;
 
+t_command	*ft_check_args(int argc, char **argv);
 void		free_commands(t_command *comm);
 void		free_array(char **arr);
-t_command	*ft_check_args(int argc, char **argv);
 char		*get_path(char *command);
 int			exec_comms(t_command *comm);
+
 #endif
