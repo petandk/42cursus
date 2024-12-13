@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 22:21:23 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/12 16:05:07 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/13 20:59:02 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,49 @@ void	free_array(char **arr)
 	free (arr);
 }
 
+static int	comm_path(char *cmd, char **argv, t_command *comm, int is_second)
+{
+	char	*last_part;
+	char	*base;
+
+	if (ft_strncmp(cmd, "./", 2) == 0)
+	{
+		free (cmd);
+		if (!is_second)
+			comm->first_argv = argv;
+		else
+			comm->second_argv = argv;
+		return (1);
+	}
+	last_part = ft_strrchr(cmd, '/');
+	if (last_part)
+	{
+		base = ft_strdup(last_part + 1);
+		free(argv[0]);
+		argv[0] = base;
+		free(cmd);
+	}
+	return (0);
+}
+
 static int	parse_command(char *arg, t_command *comm, int is_second)
 {
 	char	**argv;
+	char	*cmd;
 
 	argv = ft_split(arg, ' ');
 	if (!argv)
 		return (0);
+	cmd = ft_strdup(argv[0]);
+	if (!cmd)
+		return (free_array(argv), 0);
+	if (cmd && (cmd[0] == '/' || (cmd[0] == '.' && cmd[1] == '/')))
+	{
+		if (comm_path(cmd, argv, comm, is_second))
+			return (1);
+	}
+	else
+		free(cmd);
 	if (!is_second)
 		comm->first_argv = argv;
 	else
@@ -61,7 +97,7 @@ t_command	*ft_check_args(int argc, char **argv)
 		return (NULL);
 	if (argv[2][0] == '\0' || argv[3][0] == '\0')
 	{
-		ft_printf("ERROR: invalid commands\n");
+		write(2, "ERROR: one or more empty commands\n", 34);
 		return (NULL);
 	}
 	comm = (t_command *)malloc(sizeof(t_command));

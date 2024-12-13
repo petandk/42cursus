@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:41:14 by rmanzana          #+#    #+#              #
-#    Updated: 2024/12/12 16:17:21 by rmanzana         ###   ########.fr        #
+#    Updated: 2024/12/13 20:42:29 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ HEADERFOLDER	:= includes
 LIBFT			:= libft
 PRINTF			:= printf
 
-FILES		:= main args path execution
+FILES		:= main args path execution errors
 
 SOURCEFILES := $(addprefix $(SOURCEFOLDER)/, $(addsuffix .c, $(FILES)))
 OBJECTFILES	:= $(addprefix $(OBJECTFOLDER)/, $(addsuffix .o, $(FILES)))
@@ -45,7 +45,9 @@ INCLUDES:= -I $(HEADERFOLDER) -I $(LIBFT) -I $(PRINTF)
 
 RM	:= rm -rf
 
-all : $(OBJECTFOLDER) $(DEPFOLDER) libft printf $(NAME)
+all :
+	@clear
+	@$(MAKE) -s $(OBJECTFOLDER) $(DEPFOLDER) libft printf $(NAME)
 	@echo "Building $(NAME)"
 
 $(NAME): $(OBJECTFILES) libft printf
@@ -69,20 +71,27 @@ printf:
 	@$(MAKE) -s -C $(PRINTF)
 
 clean:
+	@clear
 	@echo "Cleaning object files"
 	$(RM) $(OBJECTFOLDER) $(DEPFOLDER)
 	@$(MAKE) -s -C $(LIBFT) clean
 	@$(MAKE) -s -C $(PRINTF) clean
 
-fclean: clean
+fclean:
+	@clear
+	@$(MAKE) -s clean
 	@echo "Cleaning executable"
 	$(RM) $(NAME)
 	@$(MAKE) -s -C $(LIBFT) fclean
 	@$(MAKE) -s -C $(PRINTF) fclean
 
-re: fclean all
+re: 
+	@clear
+	@$(MAKE) -s fclean
+	@$(MAKE) -s all
 
 normi norminette check:
+	@clear
 	@echo "Running Norminette for $(NAME) $(SOURCEFOLDER) and $(HEADERFOLDER) files"
 	norminette $(SOURCEFOLDER) $(HEADERFOLDER)
 
