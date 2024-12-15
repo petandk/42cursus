@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing.c                                          :+:      :+:    :+:   */
+/*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/14 23:38:58 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/15 19:52:10 by rmanzana         ###   ########.fr       */
+/*   Created: 2024/12/15 21:01:19 by rmanzana          #+#    #+#             */
+/*   Updated: 2024/12/15 21:04:44 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	paint_pixel(t_window *win, int x, int y, int color)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	*dst;
+	size_t	index;
 
-	dst = win->image + (y * win->line_length + x * (win->bits_per_px / 8));
-	*(unsigned int *)dst = color;
+	index = 0;
+	while ((s1[index] || s2[index]) && index < n)
+	{
+		if ((unsigned char)s1[index] != (unsigned char)s2[index])
+			return ((unsigned char)s1[index] - (unsigned char)s2[index]);
+		index++;
+	}
+	return (0);
 }
