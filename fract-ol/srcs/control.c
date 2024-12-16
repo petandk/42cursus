@@ -6,11 +6,12 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:00:23 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/15 21:22:51 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/16 22:28:39 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <stdio.h>
 
 int	key_handler(int key, t_window *window)
 {
@@ -28,21 +29,25 @@ int	click_x(t_window *window)
 	exit(0);
 	return (0);
 }
-/*
-int	mouse_handler(int button, int x, int y, t_window *window)
+
+int	mouse_handler(int button, int x, int y, t_window *win)
 {
+	double		zoom;
 	t_complex	mouse;
-	
-	x++;
-	y++;
+
 	if (button == MOUSE_SCROLL_UP)
-	{
-		generate_mandelbrot(window);
-	}
+		zoom = 0.9;
 	else if (button == MOUSE_SCROLL_DOWN)
-	{
-		generate_mandelbrot(window);
-	}
+		zoom = 1.1;
+	else
+		return (1);
+	mouse.real = win->bounds.x_min + (win->bounds.x_max - win->bounds.x_min) * ((double)x / WIDTH);
+	mouse.imag = win->bounds.y_min + (win->bounds.y_max - win->bounds.y_min) * ((double)y / HEIGHT);
+	win->bounds.x_min = mouse.real - (mouse.real - win->bounds.x_min) * zoom;
+	win->bounds.x_max = mouse.real + (win->bounds.x_max - mouse.real) * zoom;
+	win->bounds.y_min = mouse.imag - (mouse.imag - win->bounds.y_min) * zoom;
+	win->bounds.y_max = mouse.imag + (win->bounds.y_max - mouse.imag) * zoom;
+	generate_mandelbrot(win);
+	draw_to_window(win);
 	return (0);
 }
-*/

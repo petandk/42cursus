@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 22:44:56 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/15 21:22:26 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/17 00:18:14 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@
 
 # define WIDTH				800
 # define HEIGHT				600
-# define IN_COLOR			0x005500
-# define OUT_COLOR			0xADD8E6
 
 # define MANDELBROT			1
 # define JULIA				2
 
-# define MAX_ITERATIONS		1000
+# define MAX_ITERATIONS		100
 
 typedef struct s_boundaries
 {
@@ -61,10 +59,13 @@ typedef struct s_complex
 
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				key_handler(int key, t_window *window);
+int				mouse_handler(int button, int x, int y, t_window *win);
 int				click_x(t_window *window);
 double			ft_sqare(double num);
 void			paint_pixel(t_window *window, int x, int y, int color);
+int				*precompute_colors(void);
 t_boundaries	mandelbrot_boundaries(void);
 void			generate_mandelbrot(t_window *window);
+void			draw_to_window(t_window *win);
 
 #endif

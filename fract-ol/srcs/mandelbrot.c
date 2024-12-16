@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:30:35 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/15 21:21:00 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/17 00:24:38 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,39 @@ static int	is_mandelbrot(t_complex c)
 	return (iterations);
 }
 
+static void	mandelbrot_help(t_window *window, int x, int y, t_boundaries b, int *palette)
+{
+	t_complex	point;
+	int			iter;
+
+	point.real = b.x_min + (b.x_max - b.x_min) * (double)x / WIDTH;
+	point.imag = b.y_min + (b.y_max - b.y_min) * (double)y / HEIGHT;
+	iter = is_mandelbrot(point);
+	if (iter == MAX_ITERATIONS)
+		paint_pixel(window, x, y, 0x000000);
+	else
+		paint_pixel(window, x, y, palette[iter]);
+}
+
 void	generate_mandelbrot(t_window *window)
 {
 	int				x;
 	int				y;
 	t_boundaries	b;
-	t_complex		point;
-	int				iter;
+	int				*palette;
 
 	b = window->bounds;
+	palette = precompute_colors();
 	y = 0;
 	while (y < HEIGHT)
 	{
-		x = 0;
+			x = 0;
 		while (x < WIDTH)
 		{
-			point.real = b.x_min + (b.x_max - b.x_min) * (double)x / WIDTH;
-			point.imag = b.y_min + (b.y_max - b.y_min) * (double)y / HEIGHT;
-			iter = is_mandelbrot(point);
-			if (iter == MAX_ITERATIONS)
-				paint_pixel(window, x, y, IN_COLOR);
-			else
-			{
-				paint_pixel(window, x, y, iter * OUT_COLOR);
-			}
+			mandelbrot_help(window, x, y, b, palette);
 			x++;
 		}
 		y++;
 	}
+	free(palette);
 }
