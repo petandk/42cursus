@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 22:44:56 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/17 00:18:14 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/18 22:23:00 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <unistd.h>
+# include <math.h>
 
 # define KEY_ESC			65307
 # define MOUSE_SCROLL_UP	4
@@ -24,7 +25,7 @@
 # define DESTROY_WINDOW		17
 
 # define WIDTH				800
-# define HEIGHT				600
+# define HEIGHT				800
 
 # define MANDELBROT			1
 # define JULIA				2
