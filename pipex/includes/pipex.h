@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 22:10:44 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/13 20:42:45 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/18 19:32:43 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ t_command	*ft_check_args(int argc, char **argv);
 void		free_commands(t_command *comm);
 void		free_array(char **arr);
 char		*get_path(char *command);
+void		exec_first(t_command *comm, int pipefd[2]);
+void		exec_second(t_command *comm, int pipefd[2]);
 int			exec_comms(t_command *comm);
-void		print_error(char *error_type);
+void		print_error(char *error_type, char *file);
 
 #endif
