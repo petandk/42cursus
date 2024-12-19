@@ -6,12 +6,11 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:00:23 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/16 22:28:39 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:00:09 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 int	key_handler(int key, t_window *window)
 {
@@ -19,6 +18,11 @@ int	key_handler(int key, t_window *window)
 	{
 		mlx_destroy_window(window->mlx, window->win);
 		exit (0);
+	}else if(key == KEY_R && ft_strncmp("mandelbrot", window->fractal_type, sizeof(window->fractal_type)) == 0)
+	{
+		window->bounds = mandelbrot_boundaries();
+		generate_mandelbrot(window);
+		draw_to_window(window);
 	}
 	return (0);
 }

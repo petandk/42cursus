@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:38:58 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/17 00:17:32 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/19 12:57:08 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int *precompute_colors(void)
 	}
 	i = 0;
 	while (i <= MAX_ITERATIONS)
-	{		
-		r = 0;
+	{
+		r = (i * 2) % 255;
 		g = (i * 15) % 255;
-		b = (i * 5) % 255;
+		b = (i * 6) % 255;
 		palette[i] = (r << 16) | (g << 8) | b;
 		i++;
 	}

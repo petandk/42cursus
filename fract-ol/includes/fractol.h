@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 22:44:56 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/18 22:23:00 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:58:52 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <math.h>
 
 # define KEY_ESC			65307
+# define KEY_R				114
 # define MOUSE_SCROLL_UP	4
 # define MOUSE_SCROLL_DOWN	5
 # define DESTROY_WINDOW		17
@@ -50,6 +51,7 @@ typedef struct s_window
 	int				line_length;
 	int				endian;
 	t_boundaries	bounds;
+	char			*fractal_type;
 }	t_window;
 
 typedef struct s_complex
@@ -68,5 +70,6 @@ int				*precompute_colors(void);
 t_boundaries	mandelbrot_boundaries(void);
 void			generate_mandelbrot(t_window *window);
 void			draw_to_window(t_window *win);
+void			generate_julia(t_window *window);
 
 #endif

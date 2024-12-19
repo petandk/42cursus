@@ -6,17 +6,17 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:04:58 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/16 22:29:40 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:58:25 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 static void	print_menu(void)
 {
 	write(2, "Please run ./fractol followed by:\n", 34);
 	write(2, "\"mandelbrot\" to view the mandelbrot fractal\n", 44);
+	write(2, "\"julia\" to view the julia fractal\n", 35);
 }
 
 static int	init_window(t_window *win)
@@ -50,10 +50,15 @@ int	main(int argc, char *argv[])
 		return (print_menu(), 1);
 	if (!init_window(&win))
 		return (1);
+	win.fractal_type = argv[1];
 	if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
 	{
 		win.bounds = mandelbrot_boundaries();
 		generate_mandelbrot(&win);
+	}
+	else if (ft_strncmp(argv[1], "julia", 5) == 0)
+	{
+		generate_julia(&win);
 	}
 	draw_to_window(&win);
 	mlx_hooks(&win);

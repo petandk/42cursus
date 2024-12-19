@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:30:35 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/19 12:27:01 by rmanzana         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:09:55 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_boundaries	mandelbrot_boundaries(void)
+t_boundaries	julia_boundaries(void)
 {
-	t_boundaries	mandel;
+	t_boundaries	julia;
 
-	mandel.x_min = -2;
-	mandel.x_max = 1;
-	mandel.y_min = -1.5;
-	mandel.y_max = 1.5;
-	return (mandel);
+	julia.x_min = -2;
+	julia.x_max = 1;
+	julia.y_min = -1.5;
+	julia.y_max = 1.5;
+	return (julia);
 }
 
-static int	is_mandelbrot(t_complex c)
+static int	is_julia(t_complex c)
 {
 	int			iterations;
 	t_complex	z;
@@ -54,7 +54,7 @@ static int	is_mandelbrot(t_complex c)
 	return (iterations);
 }
 
-static void	mandelbrot_help(t_window *window, int x, int y, t_boundaries b, int *palette)
+static void	julia_help(t_window *window, int x, int y, t_boundaries b, int *palette)
 {
 	t_complex	point;
 	int			iter;
