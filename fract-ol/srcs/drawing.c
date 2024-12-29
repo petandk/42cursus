@@ -25,7 +25,7 @@ void	draw_to_window(t_window *win)
 	mlx_put_image_to_window(win->mlx, win->win, win->frame, 0, 0);
 }
 
-int *precompute_colors(void)
+int	*precompute_colors(void)
 {
 	int				i;
 	unsigned char	r;
@@ -50,4 +50,3 @@ int *precompute_colors(void)
 	}
 	return (palette);
 }
-

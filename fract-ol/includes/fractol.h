@@ -21,6 +21,17 @@
 
 # define KEY_ESC			65307
 # define KEY_R				114
+/*
+# define KEY_LEFT			123
+# define KEY_RIGHT			124
+# define KEY_DOWN			125
+# define KEY_UP				126
+*/
+# define KEY_LEFT			97
+# define KEY_RIGHT			100
+# define KEY_DOWN			115
+# define KEY_UP				119
+
 # define MOUSE_SCROLL_UP	4
 # define MOUSE_SCROLL_DOWN	5
 # define DESTROY_WINDOW		17
@@ -41,6 +52,12 @@ typedef struct s_boundaries
 	double	y_max;
 }	t_boundaries;
 
+typedef struct s_complex
+{
+	double	real;
+	double	imag;
+}	t_complex;
+
 typedef struct s_window
 {
 	void			*mlx;
@@ -52,15 +69,12 @@ typedef struct s_window
 	int				endian;
 	t_boundaries	bounds;
 	char			*fractal_type;
+	t_complex		julia_constant;
 }	t_window;
 
-typedef struct s_complex
-{
-	double	real;
-	double	imag;
-}	t_complex;
-
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t			ft_strlen(const char *s);
+double			ft_atof(const char *str);
 int				key_handler(int key, t_window *window);
 int				mouse_handler(int button, int x, int y, t_window *win);
 int				click_x(t_window *window);
@@ -70,6 +84,7 @@ int				*precompute_colors(void);
 t_boundaries	mandelbrot_boundaries(void);
 void			generate_mandelbrot(t_window *window);
 void			draw_to_window(t_window *win);
+t_boundaries	julia_boundaries(void);
 void			generate_julia(t_window *window);
 
 #endif

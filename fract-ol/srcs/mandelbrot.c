@@ -32,21 +32,19 @@ static int	is_mandelbrot(t_complex c)
 	double		p;
 
 	iterations = 0;
-	z.real = 0;
-	z.imag = 0;
+	z = (t_complex){0, 0};
 	p = sqrt((c.real - 0.25) * (c.real - 0.25) + c.imag * c.imag);
-	if (c.real < p - 2 * (p * p) + 0.25)
-		return (MAX_ITERATIONS);
-	if ((c.real + 1) * (c.real + 1) + (c.imag * c.imag) < 0.0625)
+	if ((c.real < p - 2 * (p * p) + 0.25)
+		|| ((c.real + 1) * (c.real + 1) + (c.imag * c.imag) < 0.0625))
 		return (MAX_ITERATIONS);
 	while (iterations < MAX_ITERATIONS)
 	{
-		if(iterations > 0 && z.real == old.real && z.imag == old.imag)
+		if (iterations > 0 && iterations % 10 == 0
+			&& z.real == old.real && z.imag == old.imag)
 			return (MAX_ITERATIONS);
 		old = z;
 		temp_real = (z.real * z.real) - (z.imag * z.imag) + c.real;
-		z.imag = 2 * z.real * z.imag + c.imag;
-		z.real = temp_real;
+		z = (t_complex){temp_real, 2 * z.real * z.imag + c.imag};
 		if ((z.real * z.real) + (z.imag * z.imag) > 4)
 			return (iterations);
 		iterations++;
@@ -54,12 +52,16 @@ static int	is_mandelbrot(t_complex c)
 	return (iterations);
 }
 
-static void	mandelbrot_help(t_window *window, int x, int y, t_boundaries b, int *palette)
+static void	mandel_help(t_window *win, t_complex xy, t_boundaries b, int *pal)
 {
 	t_complex	point;
 	int			iter;
 	double		radius;
+	int			x;
+	int			y;
 
+	x = xy.real;
+	y = xy.imag;
 	point.real = b.x_min + (b.x_max - b.x_min) * (double)x / WIDTH;
 	point.imag = b.y_min + (b.y_max - b.y_min) * (double)y / HEIGHT;
 	radius = sqrt(pow(point.real, 2) + pow(point.imag, 2));
@@ -67,9 +69,9 @@ static void	mandelbrot_help(t_window *window, int x, int y, t_boundaries b, int 
 	{
 		iter = is_mandelbrot(point);
 		if (iter == MAX_ITERATIONS)
-			paint_pixel(window, x, y, 0x000000);
+			paint_pixel(win, x, y, 0x000000);
 		else
-			paint_pixel(window, x, y, palette[iter]);
+			paint_pixel(win, x, y, pal[iter]);
 	}
 }
 
@@ -79,6 +81,7 @@ void	generate_mandelbrot(t_window *window)
 	int				y;
 	int				*palette;
 	t_boundaries	b;
+	t_complex		xy;
 
 	b = window->bounds;
 	palette = precompute_colors();
@@ -88,7 +91,9 @@ void	generate_mandelbrot(t_window *window)
 		x = 0;
 		while (x < WIDTH)
 		{
-			mandelbrot_help(window, x, y, b, palette);
+			xy.real = x;
+			xy.imag = y;
+			mandel_help(window, xy, b, palette);
 			x++;
 		}
 		y++;
