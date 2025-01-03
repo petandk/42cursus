@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:04:58 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 12:52:51 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/03 23:06:28 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static int	init_window(t_window *win)
 			&win->bits_per_px,
 			&win->line_length,
 			&win->endian);
+	win->palette = NULL;
+	precompute_colors(win);
 	return (1);
 }
 

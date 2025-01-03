@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:41:14 by rmanzana          #+#    #+#              #
-#    Updated: 2025/01/03 12:12:27 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/01/03 22:55:38 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ DEPFILES	:= $(addprefix $(DEPFOLDER)/, $(addsuffix .d, $(FILES)))
 #######################################
 
 CC			:= cc
-CFLAGS		:= -Wall -Werror -Wextra
+CFLAGS		:= -Wall -Werror -Wextra -Ofast -ffast-math -march=native
 MLX_FLAGS	:= -L./$(MINILIBX) -lmlx -lXext -lX11
 INCLUDES	:= -I $(HEADERFOLDER) -I $(MINILIBX)
 

@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:38:58 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 13:22:32 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/03 23:13:23 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,15 @@ void	draw_to_window(t_window *win)
 	mlx_put_image_to_window(win->mlx, win->win, win->frame, 0, 0);
 }
 
-int	*precompute_colors(t_window *win)
+void	precompute_colors(t_window *win)
 {
 	int				i;
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-	int				*palette;
 
-	palette = malloc((MAX_ITERATIONS + 1) * sizeof(int));
-	if (palette == NULL)
+	win->palette = malloc((MAX_ITERATIONS + 1) * sizeof(int));
+	if (win->palette == NULL)
 	{
 		write(2, "Failed to allocate memory for color palette\n", 44);
 		destroy_window(win);
@@ -48,26 +47,20 @@ int	*precompute_colors(t_window *win)
 		r = (i * 2) % 255;
 		g = (i * 15) % 255;
 		b = (i * 6) % 255;
-		palette[i] = (r << 16) | (g << 8) | b;
+		win->palette[i] = (r << 16) | (g << 8) | b;
 		i++;
 	}
-	return (palette);
 }
 
 void	clear_canvas(t_window *win)
 {
-	int	x;
-	int	y;
+	unsigned char	*ptr;
+	int				total_size;
+	int				i;
 
-	y = 0;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			paint_pixel(win, x, y, 0x000000);
-			x++;
-		}
-		y++;
-	}
+	ptr = (unsigned char *)win->image;
+	total_size = win->line_length * HEIGHT;
+	i = 0;
+	while (i < total_size)
+		ptr[i++] = 0;
 }

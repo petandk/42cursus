@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:25:42 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 11:28:54 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/03 23:06:59 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,6 @@ void	destroy_window(t_window *win)
 		mlx_destroy_display(win->mlx);
 		free(win->mlx);
 	}
+	if (win->palette)
+		free(win->palette);
 }

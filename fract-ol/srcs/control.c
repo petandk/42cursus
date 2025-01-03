@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:00:23 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 13:24:51 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/03 23:01:22 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	click_x(t_window *window)
 	return (0);
 }
 
-static	t_complex	get_mouse_position(int x, int y, t_window *win)
+static t_complex	get_mouse_position(int x, int y, t_window *win)
 {
 	t_complex	mouse;
 	double		aux_x;

@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 22:44:56 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 13:22:56 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/03 23:08:27 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@
 
 # define WIDTH				800
 # define HEIGHT				800
-
-# define MANDELBROT			1
-# define JULIA				2
 
 # define JULIA_MAX_REAL			2.0
 # define JULIA_MAX_IMAG			2.0
@@ -79,6 +76,7 @@ typedef struct s_window
 	t_boundaries	bounds;
 	char			*fractal_type;
 	t_complex		julia_constant;
+	int				*palette;
 }	t_window;
 
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -87,9 +85,8 @@ double			ft_atof(const char *str);
 int				key_handler(int key, t_window *window);
 int				mouse_handler(int button, int x, int y, t_window *win);
 int				click_x(t_window *window);
-double			ft_sqare(double num);
 void			paint_pixel(t_window *window, int x, int y, int color);
-int				*precompute_colors(t_window *win);
+void			precompute_colors(t_window *win);
 void			clear_canvas(t_window *win);
 t_boundaries	mandelbrot_boundaries(void);
 void			generate_mandelbrot(t_window *window);

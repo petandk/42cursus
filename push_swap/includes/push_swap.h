@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:30:39 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 15:46:44 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/03 21:27:49 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,4 @@ void	order_3(t_stack *stack);
 void	order_4(t_stack *stack);
 void	check_args(int args, char **argv);
 void	turk(t_stack *stack);
-t_move	find_best_move(t_stack *a, t_stack *b);
-void	execute_rotations(t_stack **a, t_stack **b, t_move move);
-void	finish_rotation(t_stack **a, int len);
-void	print_lists(t_stack *a, t_stack *b);
-void	print_single(t_stack *stack);
 #endif

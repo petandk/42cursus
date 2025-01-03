@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:30:35 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 13:15:12 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/03 23:08:01 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,10 @@ void	generate_mandelbrot(t_window *window)
 {
 	int				x;
 	int				y;
-	int				*palette;
 	t_boundaries	b;
 	t_complex		xy;
 
 	b = window->bounds;
-	palette = precompute_colors(window);
 	y = 0;
 	while (y < HEIGHT)
 	{
@@ -81,10 +79,9 @@ void	generate_mandelbrot(t_window *window)
 		{
 			xy.real = x;
 			xy.imag = y;
-			mandel_help(window, xy, b, palette);
+			mandel_help(window, xy, b, window->palette);
 			x++;
 		}
 		y++;
 	}
-	free(palette);
 }

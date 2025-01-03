@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:30:35 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 13:16:14 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/03 23:07:52 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,10 @@ void	generate_julia(t_window *window)
 {
 	int				x;
 	int				y;
-	int				*palette;
 	t_boundaries	b;
 	t_complex		xy;
 
 	b = window->bounds;
-	palette = precompute_colors(window);
 	y = 0;
 	while (y < HEIGHT)
 	{
@@ -91,10 +89,9 @@ void	generate_julia(t_window *window)
 		while (x < WIDTH)
 		{
 			xy = (t_complex){x, y};
-			julia_help(window, xy, b, palette);
+			julia_help(window, xy, b, window->palette);
 			x++;
 		}
 		y++;
 	}
-	free(palette);
 }
