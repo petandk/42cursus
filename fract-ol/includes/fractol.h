@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 22:44:56 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/19 15:58:52 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/03 13:22:56 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@
 # define MANDELBROT			1
 # define JULIA				2
 
+# define JULIA_MAX_REAL			2.0
+# define JULIA_MAX_IMAG			2.0
+
 # define MAX_ITERATIONS		100
 
 typedef struct s_boundaries
@@ -57,6 +60,12 @@ typedef struct s_complex
 	double	real;
 	double	imag;
 }	t_complex;
+
+typedef struct s_px_data
+{
+	t_complex	xy;
+	t_complex	point;
+}	t_px_data;
 
 typedef struct s_window
 {
@@ -80,11 +89,18 @@ int				mouse_handler(int button, int x, int y, t_window *win);
 int				click_x(t_window *window);
 double			ft_sqare(double num);
 void			paint_pixel(t_window *window, int x, int y, int color);
-int				*precompute_colors(void);
+int				*precompute_colors(t_window *win);
+void			clear_canvas(t_window *win);
 t_boundaries	mandelbrot_boundaries(void);
 void			generate_mandelbrot(t_window *window);
 void			draw_to_window(t_window *win);
 t_boundaries	julia_boundaries(void);
 void			generate_julia(t_window *window);
+void			destroy_window(t_window *win);
+int				is_float(const char *str);
+void			calculate_point(t_complex *point, t_complex xy, t_boundaries b);
+void			handle_pixel(t_window *win, t_px_data data, int iter, int *pal);
+int				check_fractal_type(t_window *win, const char *type);
+int				julia_pars(const char *r_str, const char *i_str, t_complex *c);
 
 #endif
