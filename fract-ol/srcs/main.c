@@ -81,7 +81,7 @@ int	main(int argc, char *argv[])
 		generate_julia(&win);
 	}
 	else
-		return (write(2, "Invalid fractal type\n", 21), 1);
+		return (write(2, "Invalid fractal or parameters\n", 30), 1);
 	main_help(&win);
 	return (0);
 }
