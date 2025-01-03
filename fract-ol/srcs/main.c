@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:04:58 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/19 15:58:25 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/03 12:52:51 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int argc, char *argv[])
 	if (argc == 1 || (argc > 1 && argv[1][0] == '\0'))
 		return (print_menu(), 1);
 	if (!init_window(&win))
-		return (1);
+		return (destroy_window(&win), 1);
 	win.fractal_type = argv[1];
 	if ((ft_strncmp(argv[1], "mandelbrot", 10) == 0) && argc == 2)
 	{
@@ -73,8 +73,8 @@ int	main(int argc, char *argv[])
 	{
 		if (argc != 4)
 			return (write(2, "\"julia\" set needs 2 more parameters\n", 36), 1);
-		win.julia_constant.real = ft_atof(argv[2]);
-		win.julia_constant.imag = ft_atof(argv[3]);
+		if (!julia_pars(argv[2], argv[3], &win.julia_constant))
+			return (destroy_window(&win), 1);
 		win.bounds = julia_boundaries();
 		generate_julia(&win);
 	}

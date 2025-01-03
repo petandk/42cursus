@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:00:23 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/19 16:00:09 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/03 13:24:51 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,26 @@ static void	move_view(int key, t_window *win)
 
 int	key_handler(int key, t_window *win)
 {
-	int		size;
-
-	size = ft_strlen(win->fractal_type);
 	if (key == KEY_ESC)
 	{
-		mlx_destroy_window(win->mlx, win->win);
+		destroy_window(win);
 		exit (0);
 	}
 	if (key == KEY_R || (key >= KEY_LEFT && key <= KEY_UP))
 	{
-		if (key == KEY_R
-			&& ft_strncmp("mandelbrot", win->fractal_type, size) == 0)
-			win->bounds = mandelbrot_boundaries();
-		else if (key == KEY_R
-			&& ft_strncmp("julia", win->fractal_type, size) == 0)
-			win->bounds = julia_boundaries();
+		if (key == KEY_R)
+		{
+			clear_canvas(win);
+			if (check_fractal_type(win, "mandelbrot"))
+				win->bounds = mandelbrot_boundaries();
+			else if (check_fractal_type(win, "julia"))
+				win->bounds = julia_boundaries();
+		}
 		else if (key >= KEY_LEFT && key <= KEY_UP)
 			move_view(key, win);
-		if (ft_strncmp("mandelbrot", win->fractal_type, size) == 0)
+		if (check_fractal_type(win, "mandelbrot"))
 			generate_mandelbrot(win);
-		else if (ft_strncmp("julia", win->fractal_type, size) == 0)
+		else if (check_fractal_type(win, "julia"))
 			generate_julia(win);
 		draw_to_window(win);
 	}
@@ -72,7 +71,7 @@ int	key_handler(int key, t_window *win)
 
 int	click_x(t_window *window)
 {
-	mlx_destroy_window(window->mlx, window->win);
+	destroy_window(window);
 	exit(0);
 	return (0);
 }
@@ -94,7 +93,6 @@ int	mouse_handler(int button, int x, int y, t_window *win)
 {
 	double		zoom;
 	t_complex	mouse;
-	int			size;
 
 	if (button == MOUSE_SCROLL_UP)
 		zoom = 0.9;
@@ -107,10 +105,9 @@ int	mouse_handler(int button, int x, int y, t_window *win)
 	win->bounds.x_max = mouse.real + (win->bounds.x_max - mouse.real) * zoom;
 	win->bounds.y_min = mouse.imag - (mouse.imag - win->bounds.y_min) * zoom;
 	win->bounds.y_max = mouse.imag + (win->bounds.y_max - mouse.imag) * zoom;
-	size = ft_strlen(win->fractal_type);
-	if (ft_strncmp("mandelbrot", win->fractal_type, size) == 0)
+	if (check_fractal_type(win, "mandelbrot"))
 		generate_mandelbrot(win);
-	else if (ft_strncmp("julia", win->fractal_type, size) == 0)
+	else if (check_fractal_type(win, "julia"))
 		generate_julia(win);
 	draw_to_window(win);
 	return (0);

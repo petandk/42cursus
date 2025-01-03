@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:30:35 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/19 12:27:01 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/03 13:15:12 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,13 @@ static int	is_mandelbrot(t_complex c)
 
 static void	mandel_help(t_window *win, t_complex xy, t_boundaries b, int *pal)
 {
-	t_complex	point;
+	t_px_data	data;
 	int			iter;
-	double		radius;
-	int			x;
-	int			y;
 
-	x = xy.real;
-	y = xy.imag;
-	point.real = b.x_min + (b.x_max - b.x_min) * (double)x / WIDTH;
-	point.imag = b.y_min + (b.y_max - b.y_min) * (double)y / HEIGHT;
-	radius = sqrt(pow(point.real, 2) + pow(point.imag, 2));
-	if (radius <= 2.5)
-	{
-		iter = is_mandelbrot(point);
-		if (iter == MAX_ITERATIONS)
-			paint_pixel(win, x, y, 0x000000);
-		else
-			paint_pixel(win, x, y, pal[iter]);
-	}
+	data.xy = xy;
+	calculate_point(&data.point, xy, b);
+	iter = is_mandelbrot(data.point);
+	handle_pixel(win, data, iter, pal);
 }
 
 void	generate_mandelbrot(t_window *window)
@@ -84,7 +72,7 @@ void	generate_mandelbrot(t_window *window)
 	t_complex		xy;
 
 	b = window->bounds;
-	palette = precompute_colors();
+	palette = precompute_colors(window);
 	y = 0;
 	while (y < HEIGHT)
 	{

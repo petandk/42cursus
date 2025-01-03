@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:30:35 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/12/19 17:09:55 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/03 13:16:14 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,27 +48,30 @@ static int	is_julia(t_complex z, t_complex c)
 	return (iterations);
 }
 
+int	julia_pars(const char *r_str, const char *i_str, t_complex *c)
+{
+	if (!is_float(r_str) || !is_float(i_str))
+		return (write(2, "Julia parameters should be valid numbers\n", 41), 0);
+	c->real = ft_atof(r_str);
+	c->imag = ft_atof(i_str);
+	if (c->real > JULIA_MAX_REAL || c->real < -JULIA_MAX_REAL
+		|| c->imag > JULIA_MAX_IMAG || c->imag < -JULIA_MAX_IMAG)
+	{
+		write(2, "Julia parameters should be between -2 and 2\n", 44);
+		return (0);
+	}
+	return (1);
+}
+
 static void	julia_help(t_window *window, t_complex xy, t_boundaries b, int *pal)
 {
-	t_complex	point;
+	t_px_data	data;
 	int			iter;
-	double		radius;
-	int			x;
-	int			y;
 
-	x = xy.real;
-	y = xy.imag;
-	point.real = b.x_min + (b.x_max - b.x_min) * (double)x / WIDTH;
-	point.imag = b.y_min + (b.y_max - b.y_min) * (double)y / HEIGHT;
-	radius = sqrt(pow(point.real, 2) + pow(point.imag, 2));
-	if (radius <= 2.5)
-	{
-		iter = is_julia(point, window->julia_constant);
-		if (iter == MAX_ITERATIONS)
-			paint_pixel(window, x, y, 0x000000);
-		else
-			paint_pixel(window, x, y, pal[iter]);
-	}
+	data.xy = xy;
+	calculate_point(&data.point, xy, b);
+	iter = is_julia(data.point, window->julia_constant);
+	handle_pixel(window, data, iter, pal);
 }
 
 void	generate_julia(t_window *window)
@@ -80,7 +83,7 @@ void	generate_julia(t_window *window)
 	t_complex		xy;
 
 	b = window->bounds;
-	palette = precompute_colors();
+	palette = precompute_colors(window);
 	y = 0;
 	while (y < HEIGHT)
 	{
