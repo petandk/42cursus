@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:30:39 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/11/14 17:25:18 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/03 15:46:44 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,16 @@
 typedef struct s_stack
 {
 	int				value;
-	//int				cost;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }	t_stack;
+
+typedef struct s_move
+{
+	int	pos_a;
+	int	pos_b;
+	int	cost;
+} t_move;
 
 t_stack	*ft_lstnewnode(int value);
 t_stack	*ft_lstlastnode(t_stack *lst);
@@ -43,12 +49,17 @@ void	pa(t_stack **a, t_stack **b);
 void	pb(t_stack **a, t_stack **b);
 void	free_stack(t_stack *stack);
 t_stack	*find_biggest(t_stack *stack);
+int	find_smallest(t_stack *stack);
 void	process_args(int argc, char **argv);
 int		is_sorted(t_stack *stack);
+void	clean_stacks(t_stack **a, t_stack **b);
 void	order_3(t_stack *stack);
 void	order_4(t_stack *stack);
 void	check_args(int args, char **argv);
-//void	turk(t_stack *stack);
+void	turk(t_stack *stack);
+t_move	find_best_move(t_stack *a, t_stack *b);
+void	execute_rotations(t_stack **a, t_stack **b, t_move move);
+void	finish_rotation(t_stack **a, int len);
 void	print_lists(t_stack *a, t_stack *b);
 void	print_single(t_stack *stack);
 #endif
