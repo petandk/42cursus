@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:30:35 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 23:07:52 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/04 16:56:41 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_boundaries	julia_boundaries(void)
 {
 	t_boundaries	julia;
 
-	julia.x_min = -2.0;
-	julia.x_max = 2.0;
+	julia.x_min = 2.0;
+	julia.x_max = -2.0;
 	julia.y_min = -2.0;
 	julia.y_max = 2.0;
 	return (julia);

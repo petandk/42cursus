@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 22:44:56 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 23:08:27 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/04 17:29:16 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@
 # define KEY_ESC			65307
 # define KEY_R				114
 /*
-# define KEY_LEFT			123
-# define KEY_RIGHT			124
-# define KEY_DOWN			125
-# define KEY_UP				126
-*/
 # define KEY_LEFT			97
 # define KEY_RIGHT			100
 # define KEY_DOWN			115
 # define KEY_UP				119
+*/
+# define KEY_LEFT			65361
+# define KEY_RIGHT			65363
+# define KEY_DOWN			65364
+# define KEY_UP				65362
 
 # define MOUSE_SCROLL_UP	4
 # define MOUSE_SCROLL_DOWN	5
@@ -79,6 +79,8 @@ typedef struct s_window
 	int				*palette;
 }	t_window;
 
+int				julia_pars(const char *r_str, const char *i_str, t_complex *c);
+int				check_args(int argc, char *argv[], t_complex *julia_const);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t			ft_strlen(const char *s);
 double			ft_atof(const char *str);

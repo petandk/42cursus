@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:41:14 by rmanzana          #+#    #+#              #
-#    Updated: 2025/01/03 22:55:38 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/01/04 16:50:32 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,9 @@ DEPFOLDER		:= dep
 HEADERFOLDER	:= includes
 MINILIBX		:= minilibx-linux
 
-FILES		:= main libft_str libft_num control drawing \
-			common_functions mandelbrot julia destroy
+FILES		:= main libft_str libft_num control drawing\
+			common_functions mandelbrot julia destroy\
+			check_args
 
 SOURCEFILES := $(addprefix $(SOURCEFOLDER)/, $(addsuffix .c, $(FILES)))
 OBJECTFILES	:= $(addprefix $(OBJECTFOLDER)/, $(addsuffix .o, $(FILES)))

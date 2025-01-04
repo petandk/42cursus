@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:00:23 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 23:01:22 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/04 17:34:08 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	key_handler(int key, t_window *win)
 		destroy_window(win);
 		exit (0);
 	}
-	if (key == KEY_R || (key >= KEY_LEFT && key <= KEY_UP))
+	if (key == KEY_R || (key >= KEY_LEFT && key <= KEY_DOWN))
 	{
 		if (key == KEY_R)
 		{
@@ -58,7 +58,7 @@ int	key_handler(int key, t_window *win)
 			else if (check_fractal_type(win, "julia"))
 				win->bounds = julia_boundaries();
 		}
-		else if (key >= KEY_LEFT && key <= KEY_UP)
+		else if (key >= KEY_LEFT && key <= KEY_DOWN)
 			move_view(key, win);
 		if (check_fractal_type(win, "mandelbrot"))
 			generate_mandelbrot(win);
