@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 00:02:13 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 15:45:26 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/06 21:37:13 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,39 @@ void	clean_stacks(t_stack **a, t_stack **b)
 		free_stack(*a);
 	if (b && *b)
 		free_stack(*b);
+}
+
+static t_stack	*create_node(int num, t_stack *nodes_a)
+{
+	t_stack	*newnode;
+
+	newnode = ft_lstnewnode(num);
+	if (!newnode)
+	{
+		free_stack(nodes_a);
+		ft_printf("Error\n");
+		exit (EXIT_FAILURE);
+	}
+	return (newnode);
+}
+
+static t_stack	*init_stack(int argc, char **argv)
+{
+	t_stack	*nodes_a;
+	t_stack	*newnode;
+	int		i;
+
+	nodes_a = NULL;
+	i = 1;
+	while (i < argc)
+	{
+		newnode = create_node(ft_atoi(argv[i]), nodes_a);
+		if (newnode == NULL)
+			return (NULL);
+		ft_lstadd_backnode(&nodes_a, newnode);
+		i++;
+	}
+	return (nodes_a);
 }
 
 static void	process_args_help(int argc, t_stack *nodes_a)
@@ -32,14 +65,9 @@ static void	process_args_help(int argc, t_stack *nodes_a)
 
 void	process_args(int argc, char **argv)
 {
-	int		i;
-	int		num;
 	t_stack	*nodes_a;
-	t_stack *newnode;
 
-	i = 1;
 	nodes_a = NULL;
-	newnode = NULL;
 	check_args(argc, argv);
 	if (argc == 3)
 	{
@@ -49,19 +77,7 @@ void	process_args(int argc, char **argv)
 	}
 	if (argc >= 4)
 	{
-		while (i < argc)
-		{
-			num = ft_atoi(argv[i]);
-			newnode = ft_lstnewnode(num);
-			if (!newnode)
-			{
-				free_stack(nodes_a);
-				ft_printf("Error\n");
-				exit(EXIT_FAILURE);
-			}
-			ft_lstadd_backnode(&nodes_a, newnode);
-			i++;
-		}
+		nodes_a = init_stack(argc, argv);
 		if (!is_sorted(nodes_a))
 			process_args_help(argc, nodes_a);
 	}

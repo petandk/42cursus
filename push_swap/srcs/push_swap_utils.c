@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:59:37 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 15:15:45 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/04 21:10:47 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,20 @@ t_stack	*find_biggest(t_stack *stack)
 	return (biggest);
 }
 
-void	order_3(t_stack *stack)
+int	find_smallest(t_stack *stack)
 {
-	t_stack	*biggest;
+	int	smallest;
 
-	biggest = find_biggest(stack);
-	if (biggest == stack)
-		ra(&stack);
-	else if (biggest == stack -> next)
-		rra(&stack);
-	if (stack -> value > stack -> next -> value)
-		sa(&stack);
+	if (stack == NULL)
+		return (0);
+	smallest = stack->value;
+	while (stack != NULL)
+	{
+		if (stack->value < smallest)
+			smallest = stack->value;
+		stack = stack->next;
+	}
+	return (smallest);
 }
 
 int	is_sorted(t_stack *stack)

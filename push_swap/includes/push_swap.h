@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:30:39 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 21:27:49 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/06 23:41:51 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,17 @@ typedef struct s_stack
 	int				value;
 	struct s_stack	*next;
 	struct s_stack	*prev;
+	struct s_stack	*target;
+	int				position;
+	int				cost_a;
+	int				cost_b;
 }	t_stack;
 
-typedef struct s_move
+typedef struct s_data
 {
-	int	pos_a;
-	int	pos_b;
-	int	cost;
-} t_move;
+	t_stack	*a;
+	t_stack	*b;
+}	t_data;
 
 t_stack	*ft_lstnewnode(int value);
 t_stack	*ft_lstlastnode(t_stack *lst);
@@ -49,12 +52,26 @@ void	pa(t_stack **a, t_stack **b);
 void	pb(t_stack **a, t_stack **b);
 void	free_stack(t_stack *stack);
 t_stack	*find_biggest(t_stack *stack);
-int	find_smallest(t_stack *stack);
+int		find_smallest(t_stack *stack);
 void	process_args(int argc, char **argv);
 int		is_sorted(t_stack *stack);
 void	clean_stacks(t_stack **a, t_stack **b);
 void	order_3(t_stack *stack);
 void	order_4(t_stack *stack);
 void	check_args(int args, char **argv);
+void	find_b_targets(t_data *data);
+void	find_a_targets(t_data *data);
+void	get_position(t_stack *stack);
+void	get_cost(t_data *data);
+t_stack	*find_smallest_node(t_stack *stack);
+t_stack	*find_cheapest(t_data *data);
+void	turk_r_both(t_data *data, t_stack *cheapest);
+void	turk_r_a(t_data *data, t_stack *cheapest);
+void	turk_r_b(t_data *data, t_stack *cheapest);
+void	turk_to_b(t_data *data, t_stack *cheapest);
+void	turk_to_a(t_data *data);
 void	turk(t_stack *stack);
+void	final_sort(t_stack **a);
+int		get_mid(int mid);
+void	get_cost_returning(t_data *data);
 #endif

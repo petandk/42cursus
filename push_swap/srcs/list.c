@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:14:05 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/03 15:37:57 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/06 19:15:47 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ t_stack	*ft_lstnewnode(int value)
 	newnode -> value = value;
 	newnode -> next = NULL;
 	newnode -> prev = NULL;
+	newnode -> target = NULL;
+	newnode -> position = 0;
+	newnode -> cost_a = 0;
+	newnode -> cost_b = 0;
 	return (newnode);
 }
 

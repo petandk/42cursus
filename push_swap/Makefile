@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:41:14 by rmanzana          #+#    #+#              #
-#    Updated: 2025/01/03 21:27:35 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/01/06 23:04:37 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ PRINTF			:= printf
 
 FILES		:=	push_swap push_swap_utils\
 				list swap push rotate reverse\
-				errors args turk
+				errors args sort\
+				turk turk_utils turk_help turk_rotate
 
 SOURCEFILES := $(addprefix $(SOURCEFOLDER)/, $(addsuffix .c, $(FILES)))
 OBJECTFILES	:= $(addprefix $(OBJECTFOLDER)/, $(addsuffix .o, $(FILES)))
@@ -38,7 +39,7 @@ DEPFILES	:= $(addprefix $(DEPFOLDER)/, $(addsuffix .d, $(FILES)))
 #######################################
 
 CC		:= cc
-CFLAGS	:= -Wall -Werror -Wextra
+CFLAGS	:= -Wall -Werror -Wextra -g
 INCLUDES:= -I $(HEADERFOLDER) -I $(LIBFT) -I $(PRINTF)
 
 #######################################
@@ -104,6 +105,11 @@ test:
 
 re: fclean all
 
-.PHONY: all clean fclean re libft printf test
+normi norminette check:
+	@clear
+	@echo "Running Norminette for $(NAME) $(SOURCEFOLDER) and $(HEADERFOLDER) files"
+	norminette $(SOURCEFOLDER) $(HEADERFOLDER)
+
+.PHONY: all clean fclean re libft printf test normi norminette check
 
 -include $(DEPFILES)
