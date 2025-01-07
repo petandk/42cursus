@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 00:02:13 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/06 21:37:13 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/07 19:19:58 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ void	process_args(int argc, char **argv)
 		nodes_a = init_stack(argc, argv);
 		if (!is_sorted(nodes_a))
 			process_args_help(argc, nodes_a);
+		clean_stacks(&nodes_a, NULL);
 	}
 }

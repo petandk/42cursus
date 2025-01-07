@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 00:00:26 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/06 23:38:46 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/07 22:49:43 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	get_cost(t_data *data)
 	}
 }
 
-static int	total_cost(t_stack *node)
+int	total_cost(t_stack *node)
 {
 	int	cost;
 
@@ -116,13 +116,16 @@ void	turk(t_stack *stack)
 		get_cost(&data);
 		cheapest = find_cheapest(&data);
 		turk_to_b(&data, cheapest);
-		print_stack(data.a, "a");
-		print_stack(data.b, "b");
+	//	print_stack(data.a, "a");
+	//	print_stack(data.b, "b");
 	}
+	//print_stack(data.a, "a bef");
 	order_3(data.a);
-	print_stack(data.a, "a");
-	print_stack(data.b, "b");
+	//print_stack(data.a, "a");
+	//print_stack(data.b, "b");
 	turk_to_a(&data);
+	//print_stack(data.a, "turka");
+	//print_stack(data.b, "turkb");
 	if (!is_sorted(data.a))
 		final_sort(&data.a);
 	print_stack(data.a, "A");

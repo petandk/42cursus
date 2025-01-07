@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 20:03:40 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/06 22:57:28 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/07 22:47:49 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static t_stack	*find_a_target(t_stack *b_node, t_stack *stack_a)
 		target = find_smallest_node(stack_a);
 	return (target);
 }
+
 
 void	find_a_targets(t_data *data)
 {

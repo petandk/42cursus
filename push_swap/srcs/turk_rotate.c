@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 20:10:02 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/06 23:41:19 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/07 22:41:20 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	turk_to_a(t_data *data)
 		get_position(data->a);
 		get_position(data->b);
 		get_cost_returning(data);
-		cheapest = find_cheapest(data);
+		cheapest = find_cheapest_back(data);
 		turk_r_both(data, cheapest);
 		turk_r_a(data, cheapest);
 		turk_r_b(data, cheapest);

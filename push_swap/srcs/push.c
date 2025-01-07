@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:15:17 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/11/14 15:47:26 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/07 22:54:29 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ static void	ft_push(t_stack **src, t_stack **dest)
 	if (src_head == NULL)
 		return ;
 	new_head = src_head -> next;
-	if (new_head != NULL)
-		new_head -> prev = NULL;
-	src_head -> next = dest_head;
-	if (dest_head != NULL)
-		dest_head -> prev = src_head;
+	if (new_head)
+		new_head->prev = NULL;
+	src_head->next = dest_head;
+	src_head->prev = NULL;
+	if (dest_head)
+		dest_head->prev = src_head;
 	*src = new_head;
 	*dest = src_head;
-	src_head -> prev = NULL;
 }
 
 void	pa(t_stack **a, t_stack **b)

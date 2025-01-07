@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:59:37 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/04 21:10:47 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/07 19:23:08 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,19 @@ void	free_stack(t_stack *stack)
 {
 	t_stack	*temp;
 
+	while (stack && stack->prev)
+		stack = stack->prev;
 	while (stack != NULL)
 	{
 		temp = stack;
 		stack = stack-> next;
+		if (temp->prev)
+			temp->prev->next = NULL;
+		if (temp->next)
+			temp->next->prev = NULL;
+		temp->next = NULL;
+		temp->prev = NULL;
+		temp->target = NULL;
 		free(temp);
 	}
 }

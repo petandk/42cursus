@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:41:14 by rmanzana          #+#    #+#              #
-#    Updated: 2025/01/06 23:04:37 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/01/07 22:44:26 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ PRINTF			:= printf
 FILES		:=	push_swap push_swap_utils\
 				list swap push rotate reverse\
 				errors args sort\
-				turk turk_utils turk_help turk_rotate
+				turk turk_utils turk_help turk_rotate\
+				turk_fixes
 
 SOURCEFILES := $(addprefix $(SOURCEFOLDER)/, $(addsuffix .c, $(FILES)))
 OBJECTFILES	:= $(addprefix $(OBJECTFOLDER)/, $(addsuffix .o, $(FILES)))
