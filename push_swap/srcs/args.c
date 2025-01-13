@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 00:02:13 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/07 19:19:58 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:29:03 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static t_stack	*create_node(int num, t_stack *nodes_a)
 	if (!newnode)
 	{
 		free_stack(nodes_a);
-		ft_printf("Error\n");
-		exit (EXIT_FAILURE);
+		write(2, "Error\n", 6);
+		exit(EXIT_FAILURE);
 	}
 	return (newnode);
 }

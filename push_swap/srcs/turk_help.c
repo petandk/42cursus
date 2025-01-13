@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:06:18 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/06 23:43:02 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:59:14 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	final_sort(t_stack **a)
 	}
 }
 
-int		get_mid(int mid)
+int	get_mid(int mid)
 {
 	if (mid % 2 == 1)
 		mid--;
@@ -65,7 +65,7 @@ void	get_cost_returning(t_data *data)
 	size_a = ft_countnodes(data->a);
 	size_b = ft_countnodes(data->b);
 	current = data->b;
-	while(current)
+	while (current)
 	{
 		if (current->target)
 		{
@@ -76,7 +76,6 @@ void	get_cost_returning(t_data *data)
 				current->cost_a = -(size_a - current->target->position);
 			else
 				current->cost_a = current->target->position;
-
 		}
 		current = current->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 23:25:35 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/11/14 17:25:45 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:42:32 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@ static int	str_onlydigits(char *str)
 	int	i;
 
 	i = 0;
+	if (str[i] == '-' && str[i + 1] == '\0')
+		return (0);
+	if (str[i] == '-')
+		i++;
 	while (str[i] != '\0')
 	{
-		if ((str[i] != '-') && !(ft_isdigit(str[i])))
+		if (!ft_isdigit(str[i]))
 			return (0);
 		i++;
 	}
@@ -101,7 +105,7 @@ void	check_args(int args, char **argv)
 		result = 0;
 	if (!result)
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		exit(EXIT_FAILURE);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 20:10:02 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/07 22:41:20 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:53:54 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	turk_r_both(t_data *data, t_stack *cheapest)
 		cheapest->cost_a--;
 		cheapest->cost_b--;
 	}
-	while (cheapest->cost_a < 0 && cheapest->cost_b > 0)
+	while (cheapest->cost_a < 0 && cheapest->cost_b < 0)
 	{
 		rrr(&data->a, &data->b);
 		cheapest->cost_a++;
@@ -72,6 +72,8 @@ void	turk_to_a(t_data *data)
 {
 	t_stack	*cheapest;
 
+	data->a = ft_lstfirstnode(data->a);
+	data->b = ft_lstfirstnode(data->b);
 	while (data->b)
 	{
 		find_a_targets(data);

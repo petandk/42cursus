@@ -6,16 +6,17 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:30:39 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/07 22:43:49 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/08 21:00:04 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
 # include "../libft/libft.h"
 # include "../printf/ft_printf.h"
+# include <unistd.h>
+# include <stdlib.h>
 
 typedef struct s_stack
 {
@@ -76,4 +77,5 @@ int		get_mid(int mid);
 void	get_cost_returning(t_data *data);
 int		total_cost(t_stack *node);
 t_stack	*find_cheapest_back(t_data *data);
+
 #endif

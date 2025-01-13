@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 00:00:26 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/07 22:49:43 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:59:39 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,20 +86,6 @@ static void	move_2(t_data *data)
 		sb(&data->b);
 }
 
-void print_stack(t_stack *stack, char *name)
-{
-	t_stack	*head;
-
-	head = ft_lstfirstnode(stack);
-    ft_printf("%s stack: ", name);
-    while (head)
-    {
-        ft_printf("%d ", head->value);
-        head = head->next;
-    }
-    ft_printf("\n");
-}
-
 void	turk(t_stack *stack)
 {
 	t_data	data;
@@ -116,17 +102,9 @@ void	turk(t_stack *stack)
 		get_cost(&data);
 		cheapest = find_cheapest(&data);
 		turk_to_b(&data, cheapest);
-	//	print_stack(data.a, "a");
-	//	print_stack(data.b, "b");
 	}
-	//print_stack(data.a, "a bef");
 	order_3(data.a);
-	//print_stack(data.a, "a");
-	//print_stack(data.b, "b");
 	turk_to_a(&data);
-	//print_stack(data.a, "turka");
-	//print_stack(data.b, "turkb");
 	if (!is_sorted(data.a))
 		final_sort(&data.a);
-	print_stack(data.a, "A");
 }
