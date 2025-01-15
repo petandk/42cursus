@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/15 15:26:46 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/06/28 15:54:49 by rmanzana         ###   ########.fr       */
+/*   Created: 2025/01/15 20:31:08 by rmanzana          #+#    #+#             */
+/*   Updated: 2025/01/15 20:40:10 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "philo.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	print_times(t_times	*times)
 {
-	size_t			index;
-	unsigned char	*str;
-
-	index = 0;
-	str = (unsigned char *)s;
-	while (index < n)
-	{
-		str[index] = c;
-		index++;
-	}
-	return (s);
+	printf("Number of philosophers: %d\n", times->num_p);
+	printf("Time to die: %d\n", times->die_t);
+	printf("Time to eat: %d\n", times->eat_t);
+	printf("Time to sleep: %d\n", times->sleep_t);
+	if (times->must_eat != -1)
+		printf("Every philosopher must eat %d times\n", times->must_eat);
+	else
+		printf("No limit to eat\n");
 }
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	char str[] = "hola que tal";
-	char *str_ptr = str;
-	ft_memset(str_ptr, 'a', 4);
-	printf("%s\n",str);
-	return (0);
-}
-*/

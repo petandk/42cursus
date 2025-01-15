@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 10:04:01 by rmanzana          #+#    #+#             */
-/*   Updated: 2024/07/01 10:04:17 by rmanzana         ###   ########.fr       */
+/*   Created: 2025/01/15 19:37:42 by rmanzana          #+#    #+#             */
+/*   Updated: 2025/01/15 20:39:45 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	main(int argc, char *argv[])
 {
-	int	index;
+	t_times	times;
 
-	index = 0;
-	while (s[index])
+	if (argc == 5 || argc == 6)
 	{
-		ft_putchar_fd(s[index], fd);
-		index++;
+		times.num_p = ft_atoi(argv[1]);
+		times.die_t = ft_atoi(argv[2]);
+		times.eat_t = ft_atoi(argv[3]);
+		times.sleep_t = ft_atoi(argv[4]);
+		if (argc == 6)
+			times.must_eat = ft_atoi(argv[5]);
+		else
+			times.must_eat = -1;
 	}
-}
-/*
-int	main(void)
-{
-	char	*str = "Hello, World!";
-	ft_putstr_fd(str, 1);
+	print_times(&times);
 	return (0);
 }
-*/
