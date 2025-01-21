@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:36:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/18 20:32:24 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:47:38 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@
 
 typedef struct s_philo
 {
-	int	id;
-	int	l_fork;
-	int	r_fork;
+	int				id;
+	pthread_t		thread;
+	pthread_mutex_t	fork;
+	struct timeval	eat;
+	struct timeval	sleep;
 }	t_philo;
 
 typedef struct s_times
