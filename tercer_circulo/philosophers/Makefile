@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:41:14 by rmanzana          #+#    #+#              #
-#    Updated: 2025/01/18 20:29:11 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/05/07 22:18:05 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJECTFOLDER	:= obj
 DEPFOLDER		:= dep
 HEADERFOLDER	:= includes
 
-FILES		:= philo maths strings error\
+FILES		:= philo inits inits2 maths strings error\
 
 SOURCEFILES := $(addprefix $(SOURCEFOLDER)/, $(addsuffix .c, $(FILES)))
 OBJECTFILES	:= $(addprefix $(OBJECTFOLDER)/, $(addsuffix .o, $(FILES)))
