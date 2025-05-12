@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:36:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/07 22:24:24 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/12 21:41:37 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ typedef struct s_shared
 	t_times			times;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
-	struct timeval	start_time;
+	long long		start_time;
 	int				philo_died;
 	pthread_mutex_t	death_mutex;
+	pthread_mutex_t	ready;
 }	t_shared;
 
 typedef struct s_philo
 {
 	int				id;
-	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
-	struct timeval	last_meal;
+	pthread_mutex_t	right_fork;
+	long long		last_meal;
 	int				meals;
 	t_shared		*shared;
 }	t_philo;
@@ -53,33 +53,43 @@ typedef struct s_table
 {
 	t_shared	shared_data;
 	t_philo		*philos;
+	pthread_t	*threads;
 }	t_table;
 
-//inits.c
+// inits.c
 
-int		init_times(t_times *times, int argc, char **argv);
-int		init_shared(t_shared *shared, t_times times);
-int		init_philosophers(t_table *table);
+int			init_times(t_times *times, int argc, char **argv);
+int			init_shared(t_shared *shared, t_times times);
+int			init_philosophers(t_table *table);
 
-//inits2.c
+// inits2.c
 
-int		init_table(t_table *table, int argc, char **argv);
-void	wipe_table(t_table *table);
+int			init_table(t_table *table, int argc, char **argv);
+int			init_threads(t_table *table);
+void		wipe_table(t_table *table);
+void		join_threads(t_table *table);
 
-//maths.c
+// maths.c
 
-int		ft_notatoi(const char *str);
+int			ft_notatoi(const char *str, int *error);
+long long	ft_gettime_ms(void);
 
-//test.c
+// test.c
 
-void	print_times(t_times *times);
+void		print_times(t_times *times);
 
-//error.c
+// error.c
 
-void	print_error(char*type);
+void		print_error(char*type);
 
-//strings.c
+// strings.c
 
-int		ft_notstrncmp(const char *s1, const char *s2, size_t n);
+int			ft_notstrncmp(const char *s1, const char *s2, size_t n);
+void		ft_logging(int id, int action);
+
+// lunchtime.c
+
+void	*get_fat(void *arg);
+//void		lunchtime(t_table *table);
 
 #endif

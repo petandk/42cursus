@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
+/*   By: rmanzana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/15 19:37:42 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/07 22:18:45 by rmanzana         ###   ########.fr       */
+/*   Created: 2025/05/12 21:39:42 by rmanzana          #+#    #+#             */
+/*   Updated: 2025/05/12 21:44:24 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ int	main(int argc, char *argv[])
 		return (print_error("invalid_args"), 1);
 	if (!init_table(&table, argc, argv))
 		return (1);
+	if (!init_threads(&table))
+		return (1);
+	table.shared_data.start_time = ft_gettime_ms();
+	pthread_mutex_unlock(&table.shared_data.ready);
+//	funcion observador VA AQUI;
+	join_threads(&table);
 	wipe_table(&table);
 	return (0);
 }

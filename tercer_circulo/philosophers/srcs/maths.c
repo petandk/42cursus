@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:56:34 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/01/18 19:17:36 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/10 20:39:09 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,17 @@ static const char	*notatoi_help(const char *str, int	*error)
 	return (str);
 }
 
-int	ft_notatoi(const char *str)
+int	ft_notatoi(const char *str, int *error)
 {
 	long long	result;
-	int			error;
 	int			max_int;
 
-	error = 0;
 	result = 0;
 	max_int = 2147483647;
-	str = notatoi_help(str, &error);
-	if (error)
+	if (*error != 0)
 		return (-1);
-	while (*str)
+	str = notatoi_help(str, error);
+		while (*str)
 	{
 		if (*str >= '0' && *str <= '9')
 		{
@@ -52,4 +50,12 @@ int	ft_notatoi(const char *str)
 		str++;
 	}
 	return (result);
+}
+
+long long	ft_gettime_ms(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (((long long)tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }

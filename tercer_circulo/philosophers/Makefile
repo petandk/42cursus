@@ -6,12 +6,11 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:41:14 by rmanzana          #+#    #+#              #
-#    Updated: 2025/05/07 22:18:05 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/05/10 20:11:02 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .SILENT:
-.DELETE_ON_ERROR:
 
 #######################################
 ## APP INFO
@@ -23,7 +22,7 @@ OBJECTFOLDER	:= obj
 DEPFOLDER		:= dep
 HEADERFOLDER	:= includes
 
-FILES		:= philo inits inits2 maths strings error\
+FILES		:= philo inits inits2 lunchtime maths strings error\
 
 SOURCEFILES := $(addprefix $(SOURCEFOLDER)/, $(addsuffix .c, $(FILES)))
 OBJECTFILES	:= $(addprefix $(OBJECTFOLDER)/, $(addsuffix .o, $(FILES)))
@@ -52,7 +51,7 @@ $(NAME): $(OBJECTFILES)
 	@echo "Linking $(NAME)"
 	$(CC) $(CFLAGS) $(OBJECTFILES) -o $(NAME)
 
-$(OBJECTFOLDER)/%.o : $(SOURCEFOLDER)/%.c Makefile
+$(OBJECTFOLDER)/%.o : $(SOURCEFOLDER)/%.c
 	@mkdir -p $(OBJECTFOLDER) $(DEPFOLDER)
 	@echo "Compiling $<"
 	$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -MF $(DEPFOLDER)/$*.d -c $< -o $@

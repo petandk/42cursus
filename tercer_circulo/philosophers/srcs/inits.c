@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inits.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmanzana <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 21:33:55 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/07 22:35:56 by rmanzana         ###   ########.fr       */
+/*   Created: 2025/05/12 22:02:09 by rmanzana          #+#    #+#             */
+/*   Updated: 2025/05/12 22:02:13 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 int	init_times(t_times *times, int argc, char **argv)
 {
-	times->num_philos = ft_notatoi(argv[1]);
-	times->die_t = ft_notatoi(argv[2]);
-	times->eat_t = ft_notatoi(argv[3]);
-	times->sleep_t = ft_notatoi(argv[4]);
+	int error;
+
+	error = 0;
+	times->num_philos = ft_notatoi(argv[1], &error);
+	times->die_t = ft_notatoi(argv[2], &error);
+	times->eat_t = ft_notatoi(argv[3], &error);
+	times->sleep_t = ft_notatoi(argv[4], &error);
 	if (argc == 6)
-		times->must_eat = ft_notatoi(argv[5]);
+		times->must_eat = ft_notatoi(argv[5], &error);
 	else
 		times->must_eat = -2;
-	if (times->num_philos == -1 || times->die_t == -1
-			|| times->eat_t == -1 || times->sleep_t == -1
-			|| (argc == 6 && times->must_eat == -1))
+	if (error == -1)
 		return (0);
 	return (1);
 }
@@ -66,7 +67,7 @@ static int	init_global_mutex(t_shared *shared)
 int	init_shared(t_shared *shared, t_times times)
 {
 	shared->times = times;
-	gettimeofday(&shared->start_time, NULL);
+	shared->start_time = 0;
 	shared->philo_died = 0;
 	if (!init_global_mutex(shared))
 		return (0);
@@ -94,10 +95,10 @@ int	init_philosophers(t_table *table)
 	{
 		table->philos[i].id = i + 1;
 		table->philos[i].meals = 0;
-		gettimeofday(&table->philos[i].last_meal, NULL);
-		table->philos[i].left_fork = &table->shared_data.forks[i];
+		table->philos[i].last_meal = 0;
+		table->philos[i].right_fork = table->shared_data.forks[i];
 		index = (i + 1) % num_philos;
-		table->philos[i].right_fork = &table->shared_data.forks[index];
+		table->philos[i].left_fork = &table->shared_data.forks[index];
 		table->philos[i].shared = &table->shared_data;
 		i++;
 	}
