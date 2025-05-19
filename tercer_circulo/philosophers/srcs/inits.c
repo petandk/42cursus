@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:02:09 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/12 22:02:13 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:23:10 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	init_philosophers(t_table *table)
 		table->philos[i].id = i + 1;
 		table->philos[i].meals = 0;
 		table->philos[i].last_meal = 0;
-		table->philos[i].right_fork = table->shared_data.forks[i];
+		table->philos[i].right_fork = &table->shared_data.forks[i];
 		index = (i + 1) % num_philos;
 		table->philos[i].left_fork = &table->shared_data.forks[index];
 		table->philos[i].shared = &table->shared_data;

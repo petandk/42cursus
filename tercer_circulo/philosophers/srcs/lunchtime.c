@@ -6,7 +6,7 @@
 /*   By: rmanzana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 17:20:15 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/12 21:50:33 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/17 15:25:44 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void *get_fat(void *arg)
 	long long	time_passed;
 
 	philo = (t_philo *)arg;
-	pthread_mutex_lock(&philo->shared->ready);
 	current_time = ft_gettime_ms();
 	time_passed = current_time - philo->shared->start_time;
 	pthread_mutex_lock(&philo->shared->print_mutex);

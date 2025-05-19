@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:36:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/12 21:41:37 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:22:36 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,15 @@ typedef struct s_shared
 	long long		start_time;
 	int				philo_died;
 	pthread_mutex_t	death_mutex;
-	pthread_mutex_t	ready;
+	pthread_mutex_t	ready_mutex;
+	int				ready;
 }	t_shared;
 
 typedef struct s_philo
 {
 	int				id;
 	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	right_fork;
+	pthread_mutex_t	*right_fork;
 	long long		last_meal;
 	int				meals;
 	t_shared		*shared;

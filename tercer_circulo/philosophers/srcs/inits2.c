@@ -6,7 +6,7 @@
 /*   By: rmanzana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 22:11:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/12 21:50:22 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/17 15:25:27 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	init_threads(t_table *table)
 			return (0);
 		i++;
 	}
-	pthread_mutex_lock(&table->shared_data.ready);
 	return (1);
 }
 
