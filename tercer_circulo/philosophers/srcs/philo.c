@@ -6,7 +6,7 @@
 /*   By: rmanzana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 21:39:42 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/17 15:27:46 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/21 18:24:09 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	if (!init_threads(&table))
 		return (1);
-	table.shared_data.start_time = ft_gettime_ms();
-	printf("Start time: %lld\n", table.shared_data.start_time);
-//	funcion observador VA AQUI;
+	croupier(&table);
 	join_threads(&table);
 	wipe_table(&table);
 	return (0);

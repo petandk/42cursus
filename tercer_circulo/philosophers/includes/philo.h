@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:36:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/19 19:22:36 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/21 18:23:23 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct s_philo
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	long long		last_meal;
-	int				meals;
 	t_shared		*shared;
 }	t_philo;
 
@@ -81,16 +80,15 @@ void		print_times(t_times *times);
 
 // error.c
 
-void		print_error(char*type);
+void		print_error(char *type);
 
 // strings.c
 
 int			ft_notstrncmp(const char *s1, const char *s2, size_t n);
-void		ft_logging(int id, int action);
+void		ft_logging(char *action, t_philo *philo);
 
 // lunchtime.c
 
 void	*get_fat(void *arg);
-//void		lunchtime(t_table *table);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 18:41:42 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/10 20:09:40 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/21 17:56:45 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,17 @@ int	ft_notstrncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-void ft_logging(int id, int action)
+void ft_logging(char *action, t_philo *philo)
 {
-	long long now;
+	long long	now;
+	long long	timestamp;
 
-	now = ft_gettime_ms();
-	if (action == 0)
-		printf("%lld %d has taken a fork", now, id);
-	else if (action == 1)
-		printf("%lld %d is eating", now, id);
-	else if (action == 2)
-		printf("%lld %d is sleeping", now, id);
-	else if (action == 3)
-		printf("%lld %d is thinking", now, id);
-	else if (action == 4)
-		printf("%lld %d died", now, id);
+	if (philo->shared_data.philo_died != 1)
+	{
+		pthread_mutex_lock(&philo->shared->print_mutex);
+		now = ft_gettime_ms();
+		timestamp = now - philo->shared->start_time;
+		printf("%lld %d %s\n", timestamp, philo->id, action);
+		pthread_mutex_unlock(&philo->shared->print_mutex);
+	}
 }

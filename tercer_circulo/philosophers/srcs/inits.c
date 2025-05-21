@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:02:09 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/19 19:23:10 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/21 17:21:24 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ static int	init_global_mutex(t_shared *shared)
 		pthread_mutex_destroy(&shared->print_mutex);
 		return (0);
 	}
+	if (pthread_mutex_init(&shared->ready_mutex, NULL) != 0)
+	{
+		pthread_mutex_destroy(&shared->print_mutex);
+		pthread_mutex_destroy(&shared->death_mutex);
+		return (0);
+	}
+	shared->ready = 0;
 	return (1);
 }
 
@@ -69,12 +76,14 @@ int	init_shared(t_shared *shared, t_times times)
 	shared->times = times;
 	shared->start_time = 0;
 	shared->philo_died = 0;
+	shared->ready =0;
 	if (!init_global_mutex(shared))
 		return (0);
 	if (!init_forks(shared, times.num_philos))
 	{
 		pthread_mutex_destroy(&shared->print_mutex);
 		pthread_mutex_destroy(&shared->death_mutex);
+		pthread_mutex_destroy(&shared->ready_mutex);
 		return (0);
 	}
 	return (1);
@@ -94,7 +103,6 @@ int	init_philosophers(t_table *table)
 	while (i < num_philos)
 	{
 		table->philos[i].id = i + 1;
-		table->philos[i].meals = 0;
 		table->philos[i].last_meal = 0;
 		table->philos[i].right_fork = &table->shared_data.forks[i];
 		index = (i + 1) % num_philos;
