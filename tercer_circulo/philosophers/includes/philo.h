@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:36:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/21 18:23:23 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/22 21:57:49 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_shared
 	pthread_mutex_t	death_mutex;
 	pthread_mutex_t	ready_mutex;
 	int				ready;
+	int				keep_eating;
+	pthread_mutex_t	keep_eating_mutex;
 }	t_shared;
 
 typedef struct s_philo
@@ -46,6 +48,7 @@ typedef struct s_philo
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	long long		last_meal;
+	int				meals;
 	t_shared		*shared;
 }	t_philo;
 
@@ -89,6 +92,7 @@ void		ft_logging(char *action, t_philo *philo);
 
 // lunchtime.c
 
-void	*get_fat(void *arg);
+void		croupier(t_table *table);
+void		*get_fat(void *arg);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rmanzana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 22:11:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/21 18:22:54 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/22 21:59:53 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	init_threads(t_table *table)
 {
 	int			num_th;
 	int			i;
-	
+
 	num_th = table->shared_data.times.num_philos;
 	table->threads = (pthread_t *)malloc(sizeof(pthread_t) * num_th);
 	if (!table->threads)
@@ -46,7 +46,8 @@ int	init_threads(t_table *table)
 	i = 0;
 	while (i < num_th)
 	{
-		if (pthread_create(&table->threads[i], NULL, &get_fat, &table->philos[i]) != 0)
+		if (pthread_create(&table->threads[i], NULL, \
+					&get_fat, &table->philos[i]) != 0)
 			return (0);
 		i++;
 	}
@@ -80,6 +81,7 @@ void	wipe_table(t_table *table)
 	pthread_mutex_destroy(&table->shared_data.print_mutex);
 	pthread_mutex_destroy(&table->shared_data.death_mutex);
 	pthread_mutex_destroy(&table->shared_data.ready_mutex);
+	pthread_mutex_destroy(&table->shared_data.keep_eating_mutex);
 }
 
 void	join_threads(t_table *table)

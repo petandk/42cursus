@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:56:34 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/10 20:39:09 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/22 19:44:06 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_notatoi(const char *str, int *error)
 	if (*error != 0)
 		return (-1);
 	str = notatoi_help(str, error);
-		while (*str)
+	while (*str)
 	{
 		if (*str >= '0' && *str <= '9')
 		{
