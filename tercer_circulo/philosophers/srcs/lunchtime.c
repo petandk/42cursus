@@ -6,7 +6,7 @@
 /*   By: rmanzana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 17:20:15 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/22 22:10:18 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:01:13 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@ static void	ft_eat(t_philo *philo)
 	pthread_mutex_t	*first_fork;
 	pthread_mutex_t	*second_fork;
 
+	if (philo->shared->times.num_philos == 1)
+	{
+		pthread_mutex_lock (philo->left_fork);
+		ft_logging("has taken a fork", philo);
+		usleep(philo->shared->times.die_t * 1000);
+		pthread_mutex_unlock(philo->left_fork);
+		return ;
+	}
 	if (philo->id % 2 == 0)
 	{
 		first_fork = philo->left_fork;
@@ -31,9 +39,9 @@ static void	ft_eat(t_philo *philo)
 	ft_logging("has taken a fork", philo);
 	pthread_mutex_lock(second_fork);
 	ft_logging("has taken a fork", philo);
+	philo->last_meal = ft_gettime_ms();
 	philo->meals++;
 	ft_logging("is eating", philo);
-	philo->last_meal = ft_gettime_ms();
 	usleep(philo->shared->times.eat_t * 1000);
 	pthread_mutex_unlock(first_fork);
 	pthread_mutex_unlock(second_fork);
@@ -54,6 +62,7 @@ void	croupier(t_table *table)
 
 	num_ph = table->shared_data.times.num_philos;
 	must_eat = table->shared_data.times.must_eat;
+	usleep(1000);
 	while (table->shared_data.keep_eating)
 	{
 		i = 0;
@@ -79,7 +88,7 @@ void	croupier(t_table *table)
 			}
 			i++;
 		}
-		usleep(10);
+		usleep(100);
 	}
 }
 
@@ -99,6 +108,7 @@ void	*get_fat(void *arg)
 		if (!is_ready)
 			usleep(10);
 	}
+	philo->last_meal = philo->shared->start_time;
 	pthread_mutex_lock(&philo->shared->keep_eating_mutex);
 	keep_going = philo->shared->keep_eating;
 	pthread_mutex_unlock(&philo->shared->keep_eating_mutex);
