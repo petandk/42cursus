@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:36:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/26 18:08:39 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/27 18:59:05 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,6 @@ void		join_threads(t_table *table);
 int			ft_notatoi(const char *str, int *error);
 long long	ft_gettime_ms(void);
 
-// test.c
-
-void		print_times(t_times *times);
-
 // error.c
 
 void		print_error(char *type);
@@ -95,5 +91,10 @@ void		ft_logging(char *action, t_philo *philo);
 
 void		croupier(t_table *table);
 void		*get_fat(void *arg);
+
+// lunchtime_utils.c
+
+int			still_hungry(t_shared *shared);
+void		fat_enough(t_shared *shared);
 
 #endif

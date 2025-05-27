@@ -6,7 +6,7 @@
 /*   By: rmanzana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 22:11:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/22 21:59:53 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:36:29 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ void	wipe_table(t_table *table)
 
 	if (table->philos)
 	{
+		i = 0;
+		while (i < table->shared_data.times.num_philos)
+		{
+			pthread_mutex_destroy(&table->philos[i].last_meal_mutex);
+			i++;
+		}
 		free(table->philos);
 		table->philos = NULL;
 	}

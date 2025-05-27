@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:56:34 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/22 19:44:06 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/27 18:40:03 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static const char	*notatoi_help(const char *str, int	*error)
 		str++;
 	if (*str == '-')
 	{
-		*error = 1;
+		*error = -1;
 		print_error("neg_val");
 		return (str);
 	}

@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:02:09 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/26 17:52:17 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/27 18:38:28 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,9 @@ int	init_philosophers(t_table *table)
 	while (i < num_philos)
 	{
 		table->philos[i].id = i + 1;
-		table->philos[i].last_meal = 0; //or ft_gettime_ms();
+		table->philos[i].last_meal = ft_gettime_ms();
+		if (pthread_mutex_init(&table->philos[i].last_meal_mutex, NULL) != 0)
+			return (0);
 		table->philos[i].left_fork = &table->shared_data.forks[i];
 		index = (i + 1) % num_philos;
 		table->philos[i].right_fork = &table->shared_data.forks[index];

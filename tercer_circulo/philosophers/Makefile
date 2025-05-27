@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:41:14 by rmanzana          #+#    #+#              #
-#    Updated: 2025/05/26 12:52:09 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/05/27 18:59:40 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJECTFOLDER	:= obj
 DEPFOLDER		:= dep
 HEADERFOLDER	:= includes
 
-FILES		:= philo inits inits2 lunchtime maths strings error\
+FILES		:= philo inits inits2 lunchtime lunchtime_utils maths strings error\
 
 SOURCEFILES := $(addprefix $(SOURCEFOLDER)/, $(addsuffix .c, $(FILES)))
 OBJECTFILES	:= $(addprefix $(OBJECTFOLDER)/, $(addsuffix .o, $(FILES)))
@@ -32,7 +32,7 @@ DEPFILES	:= $(addprefix $(DEPFOLDER)/, $(addsuffix .d, $(FILES)))
 ## COMPILER 
 #######################################
 
-CC		:= cc
+CC		:= gcc
 CFLAGS	:= -Wall -Werror -Wextra
 INCLUDES:= -I $(HEADERFOLDER)
 
@@ -59,7 +59,7 @@ $(OBJECTFOLDER)/%.o : $(SOURCEFOLDER)/%.c
 $(OBJECTFOLDER) $(DEPFOLDER):
 	@mkdir -p $@
 
-debug: CFLAGS += -g
+debug: CFLAGS += -g -fsanitize=address,thread -lpthread 
 debug: all
 
 clean:
