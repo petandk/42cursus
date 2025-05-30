@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:16:17 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/27 19:08:25 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/30 18:49:42 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_eat(t_philo *philo)
 		pthread_mutex_unlock(philo->left_fork);
 		return ;
 	}
-	if (philo->id %2 == 1)
+	if (philo->id % 2 != 0)
 	{
 		fork_one = philo->left_fork;
 		fork_two = philo->right_fork;
@@ -35,9 +35,7 @@ static void	ft_eat(t_philo *philo)
 		fork_one = philo->right_fork;
 		fork_two = philo->left_fork;
 	}
-	/*if (philo->id % 2 == 0)
-		usleep(500);
-*/	pthread_mutex_lock(fork_one);
+	pthread_mutex_lock(fork_one);
 	ft_logging("has taken a fork", philo);
 	pthread_mutex_lock(fork_two);
 	ft_logging("has taken a fork", philo);
@@ -128,6 +126,7 @@ void	*get_fat(void *arg)
 		ft_eat(philo);
 		ft_sleep(philo);
 		ft_logging("is thinking", philo);
+		usleep(500);
 		keep_going = still_hungry(philo->shared);
 	}
 	return (NULL);

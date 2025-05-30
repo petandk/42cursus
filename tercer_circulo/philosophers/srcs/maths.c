@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:56:34 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/27 18:40:03 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/30 19:10:42 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int	ft_notatoi(const char *str, int *error)
 				return (max_int);
 		}
 		else
+		{
+			*error = -1;
 			return (print_error("no_num"), -1);
+		}
 		str++;
 	}
 	return (result);
