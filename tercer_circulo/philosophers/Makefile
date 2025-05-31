@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:41:14 by rmanzana          #+#    #+#              #
-#    Updated: 2025/05/27 18:59:40 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/05/31 18:17:06 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ OBJECTFOLDER	:= obj
 DEPFOLDER		:= dep
 HEADERFOLDER	:= includes
 
-FILES		:= philo inits inits2 lunchtime lunchtime_utils maths strings error\
+FILES		:= philo inits inits2 eat croupier\
+			   lunchtime lunchtime_utils\
+			   maths strings error
 
 SOURCEFILES := $(addprefix $(SOURCEFOLDER)/, $(addsuffix .c, $(FILES)))
 OBJECTFILES	:= $(addprefix $(OBJECTFOLDER)/, $(addsuffix .o, $(FILES)))

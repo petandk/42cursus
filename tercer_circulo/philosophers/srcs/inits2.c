@@ -6,7 +6,7 @@
 /*   By: rmanzana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 22:11:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/27 13:36:29 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/30 19:16:06 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,14 @@ int	init_threads(t_table *table)
 	return (1);
 }
 
+static void	mutex_destroyer(t_table *table)
+{
+	pthread_mutex_destroy(&table->shared_data.print_mutex);
+	pthread_mutex_destroy(&table->shared_data.death_mutex);
+	pthread_mutex_destroy(&table->shared_data.ready_mutex);
+	pthread_mutex_destroy(&table->shared_data.keep_eating_mutex);
+}
+
 void	wipe_table(t_table *table)
 {
 	int	i;
@@ -84,10 +92,7 @@ void	wipe_table(t_table *table)
 		free(table->shared_data.forks);
 		table->shared_data.forks = NULL;
 	}
-	pthread_mutex_destroy(&table->shared_data.print_mutex);
-	pthread_mutex_destroy(&table->shared_data.death_mutex);
-	pthread_mutex_destroy(&table->shared_data.ready_mutex);
-	pthread_mutex_destroy(&table->shared_data.keep_eating_mutex);
+	mutex_destroyer(table);
 }
 
 void	join_threads(t_table *table)

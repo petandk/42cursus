@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:36:45 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/27 18:59:05 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/31 18:07:39 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,16 @@ void		print_error(char *type);
 int			ft_notstrncmp(const char *s1, const char *s2, size_t n);
 void		ft_logging(char *action, t_philo *philo);
 
-// lunchtime.c
+// eat.c
+
+void		ft_eat(t_philo *philo);
+
+// croupier.c
 
 void		croupier(t_table *table);
+
+// lunchtime.c
+
 void		*get_fat(void *arg);
 
 // lunchtime_utils.c

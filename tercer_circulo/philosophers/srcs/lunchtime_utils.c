@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 18:50:06 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/27 18:54:12 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/05/31 17:38:47 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ void	fat_enough(t_shared *shared)
 	shared->keep_eating = 0;
 	pthread_mutex_unlock(&shared->keep_eating_mutex);
 }
-
