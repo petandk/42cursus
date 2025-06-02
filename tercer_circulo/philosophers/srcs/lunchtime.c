@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:16:17 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/31 18:27:08 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/06/02 18:51:01 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,8 @@ static void	ft_sleep(t_philo *philo)
 
 static void	wait_for_it(t_philo *philo)
 {
-	int	is_ready;
-
-	is_ready = 0;
-	while (!is_ready)
-	{
 		pthread_mutex_lock(&philo->shared->ready_mutex);
-		is_ready = philo->shared->ready;
 		pthread_mutex_unlock(&philo->shared->ready_mutex);
-		if (!is_ready)
-			usleep(10);
-	}
 }
 
 static void	cycle_of_life(t_philo *philo)

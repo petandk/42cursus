@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 18:41:42 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/27 11:35:42 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/06/02 18:43:41 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,13 @@ void	ft_logging(char *action, t_philo *philo)
 {
 	long long	now;
 	long long	timestamp;
+	int eating;
 
+	pthread_mutex_lock(&philo->shared->keep_eating_mutex);
+	eating = philo->shared->keep_eating;
+	pthread_mutex_unlock(&philo->shared->keep_eating_mutex);
 	pthread_mutex_lock(&philo->shared->print_mutex);
-	if (philo->shared->keep_eating != 0)
+	if (eating != 0)
 	{
 		now = ft_gettime_ms();
 		timestamp = now - philo->shared->start_time;

@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:56:34 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/30 19:10:42 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:35:46 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,13 @@ static const char	*notatoi_help(const char *str, int	*error)
 	return (str);
 }
 
-int	ft_notatoi(const char *str, int *error)
+static int	convert_digits(const char *str, int *error)
 {
 	long long	result;
 	int			max_int;
 
 	result = 0;
 	max_int = 2147483647;
-	if (*error != 0)
-		return (-1);
-	str = notatoi_help(str, error);
 	while (*str)
 	{
 		if (*str >= '0' && *str <= '9')
@@ -48,11 +45,23 @@ int	ft_notatoi(const char *str, int *error)
 		else
 		{
 			*error = -1;
-			return (print_error("no_num"), -1);
+			if (*str != '-')
+				print_error("no_num");
+			return (-1);
 		}
 		str++;
 	}
 	return (result);
+}
+
+int	ft_notatoi(const char *str, int *error)
+{
+	if (*error != 0)
+		return (-1);
+	str = notatoi_help(str, error);
+	if (*error != 0)
+		return (-1);
+	return (convert_digits(str, error));
 }
 
 long long	ft_gettime_ms(void)

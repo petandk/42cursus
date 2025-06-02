@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:41:14 by rmanzana          #+#    #+#              #
-#    Updated: 2025/05/31 18:17:06 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/06/02 18:12:59 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,11 @@ DEPFILES	:= $(addprefix $(DEPFOLDER)/, $(addsuffix .d, $(FILES)))
 #######################################
 
 CC		:= gcc
-CFLAGS	:= -Wall -Werror -Wextra
+CFLAGS	:= -Wall -Werror -Wextra -g -fsanitize=thread  
+
+# -g -fsanitize=thread
+# -g -fsanitize=address -lpthread 
+
 INCLUDES:= -I $(HEADERFOLDER)
 
 #######################################
@@ -61,9 +65,6 @@ $(OBJECTFOLDER)/%.o : $(SOURCEFOLDER)/%.c
 $(OBJECTFOLDER) $(DEPFOLDER):
 	@mkdir -p $@
 
-debug: CFLAGS += -g -fsanitize=address,thread -lpthread 
-debug: all
-
 clean:
 	@clear
 	@echo "Cleaning object files"
@@ -88,6 +89,6 @@ normi norminette check:
 leak: $(NAME)
 	valgrind --leak-check=full ./$(NAME) $(ARGS)
 
-.PHONY: all clean fclean re debug normi norminette check leak
+.PHONY: all clean fclean re normi norminette check leak
 
 -include $(DEPFILES)

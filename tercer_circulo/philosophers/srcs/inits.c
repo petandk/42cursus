@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:02:09 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/27 18:38:28 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/06/02 18:34:23 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static int	init_global_mutex(t_shared *shared)
 		pthread_mutex_destroy(&shared->ready_mutex);
 		return (0);
 	}
+	pthread_mutex_lock(&shared->ready_mutex);
 	shared->ready = 0;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 18:06:29 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/05/31 18:18:32 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/06/02 18:26:25 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,21 @@
 
 static int	check_for_death(t_table *table, int i)
 {
+	long long	current_t;
+	long long	last_meal_t;
+	int			keep_flag;
+
 	pthread_mutex_lock(&table->philos[i].last_meal_mutex);
-	if ((ft_gettime_ms() - table->philos[i].last_meal > \
+	last_meal_t = table->philos[i].last_meal;
+	pthread_mutex_unlock(&table->philos[i].last_meal_mutex);
+	pthread_mutex_lock(&table->shared_data.keep_eating_mutex);
+	keep_flag = table->shared_data.keep_eating;
+	pthread_mutex_unlock(&table->shared_data.keep_eating_mutex);
+	current_t = ft_gettime_ms();
+	if ((current_t - last_meal_t > \
 		(long long)table->philos[i].shared->times.die_t)
-		&& table->shared_data.keep_eating == 1)
+		&& keep_flag == 1)
 	{
-		pthread_mutex_unlock(&table->philos[i].last_meal_mutex);
 		pthread_mutex_lock(&table->shared_data.death_mutex);
 		table->shared_data.philo_died = 1;
 		pthread_mutex_unlock(&table->shared_data.death_mutex);
@@ -27,7 +36,6 @@ static int	check_for_death(t_table *table, int i)
 		fat_enough(&table->shared_data);
 		return (1);
 	}
-	pthread_mutex_unlock(&table->philos[i].last_meal_mutex);
 	return (0);
 }
 
