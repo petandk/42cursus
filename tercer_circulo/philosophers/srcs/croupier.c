@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   croupier.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
+/*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 18:06:29 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/06/02 18:26:25 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/06/20 21:33:54 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ static int	monitor_philos(t_table *table)
 	{
 		if (check_for_death(table, i))
 			return (1);
+		pthread_mutex_lock(&table->philos[i].last_meal_mutex);
 		if (must_eat != -2 && table->philos[i].meals >= must_eat)
 			fat_boys++;
+		pthread_mutex_unlock(&table->philos[i].last_meal_mutex);
 		pthread_mutex_lock(&table->shared_data.death_mutex);
 		if (fat_boys == num_ph
 			|| table->shared_data.philo_died == 1)

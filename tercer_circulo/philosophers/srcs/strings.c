@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strings.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
+/*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 18:41:42 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/06/02 18:43:41 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:17:55 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_logging(char *action, t_philo *philo)
 {
 	long long	now;
 	long long	timestamp;
-	int eating;
+	int			eating;
 
 	pthread_mutex_lock(&philo->shared->keep_eating_mutex);
 	eating = philo->shared->keep_eating;

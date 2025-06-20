@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lunchtime.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmanzana <rmanzana@student.42barcelon      +#+  +:+       +#+        */
+/*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:16:17 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/06/02 18:51:01 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/06/20 21:27:24 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,17 @@ static void	ft_sleep(t_philo *philo)
 
 static void	wait_for_it(t_philo *philo)
 {
-		pthread_mutex_lock(&philo->shared->ready_mutex);
-		pthread_mutex_unlock(&philo->shared->ready_mutex);
+	pthread_mutex_lock(&philo->shared->ready_mutex);
+	pthread_mutex_unlock(&philo->shared->ready_mutex);
 }
 
 static void	cycle_of_life(t_philo *philo)
 {
 	int	keep_going;
 
+	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->last_meal = philo->shared->start_time;
+	pthread_mutex_unlock(&philo->last_meal_mutex);
 	pthread_mutex_lock(&philo->shared->keep_eating_mutex);
 	keep_going = philo->shared->keep_eating;
 	pthread_mutex_unlock(&philo->shared->keep_eating_mutex);
