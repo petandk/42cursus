@@ -1,0 +1,6 @@
+{
+   mlx_leaks
+   Memcheck:Leak
+   fun:*
+   obj:libmlx*
+}

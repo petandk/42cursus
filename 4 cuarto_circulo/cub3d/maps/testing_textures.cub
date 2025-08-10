@@ -1,0 +1,22 @@
+NO                                                   maps/textures/testingB/North.xpm
+SO                       maps/textures/testingB/South.xpm               
+WE maps/textures/testingB/West.xpm                     
+            EA maps/textures/testingB/East.xpm
+
+F 237,158,84 #brown-ish floor
+C 167,243,255 #blu-ish sky/ceiling
+
+1111111111111111111
+1000000000000000001
+1000000000000000001
+1000000000000000001
+1000000000001000001
+1000000000000100001
+100000000W000000001
+1000000001000000001
+1000100000000000001
+1000100000000000001
+1000111100000100001
+1000000000000000001
+1000000000000000001
+1111111111111111111

@@ -1,0 +1,14 @@
+NO wrongmaps/testing/North.xpm
+SO wrongmaps/testing/South.xpm
+WE wrongmaps/testing/West.xpm
+EA wrongmaps/testing/East.xpm
+
+F 237,158,84
+C 167,243,255
+
+1111111111111111111
+1000000000000000001
+1000000000000000000
+1000000000000000001
+100000000W000000001
+1111111111111111111
