@@ -1,4 +1,16 @@
-NAME        = phonebook
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/08/10 20:46:57 by rmanzana          #+#    #+#              #
+#    Updated: 2025/08/10 20:46:57 by rmanzana         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME        = name
 
 COMPILER    = c++
 
@@ -8,9 +20,7 @@ SRC_DIR     = src/
 OBJ_DIR     = obj/
 INCLUDE_DIR = inc/
 
-SOURCE_FILES =	main.cpp \
-				Contact.cpp \
-				PhoneBook.cpp \
+SOURCE_FILES = main.cpp \
 
 SRCS		= $(addprefix $(SRC_DIR), $(SOURCE_FILES))
 OBJS		= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRCS))
