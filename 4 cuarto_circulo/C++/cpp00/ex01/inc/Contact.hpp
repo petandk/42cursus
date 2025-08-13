@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 21:55:07 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/08/12 22:35:13 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/08/13 18:47:00 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ class Contact
 	std::string _phoneNumber;
 	std::string _darkestSecret;
 
+	std::string readField(const std::string &prompt);
+
   public:
 	Contact();
 	~Contact();
 	std::string getInfo(std::string option);
+	void inputFields();
 };

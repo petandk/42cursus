@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:47:24 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/08/12 22:29:54 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/08/13 18:57:55 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,29 @@ int	main(void)
 {
 	std::string option;
 	std::string dummy;
+	PhoneBook phonebook;
 
 	clear_console();
 	print_menu();
-	while (getline(std::cin, option))
+	while (std::getline(std::cin, option))
 	{
 		ft_upper(option);
 		if (option == "3" || option == "EXIT")
 		{
 			std::cout << "See you soon!" << std::endl;
-			getline(std::cin, dummy);
+			std::getline(std::cin, dummy);
 			clear_console();
 			return (0);
 		}
 		else if (option == "2" || option == "SEARCH")
-			std::cout << "SEARCH selected" << std::endl;
+			phonebook.searchContact();
 		else if (option == "1" || option == "ADD")
-			std::cout << "ADD selected" << std::endl;
+			phonebook.addContact();
 		else
 			std::cout << "\e[31mInvalid selection\e[0m" << std::endl;
 		std::cout << "Press \e[31mENTER\e[0m to continue..." << std::endl;
 
-		getline(std::cin, dummy);
+		std::getline(std::cin, dummy);
 		clear_console();
 		print_menu();
 	}
