@@ -11,6 +11,7 @@ INCLUDE_DIR = inc/
 SOURCE_FILES =	main.cpp \
 				Contact.cpp \
 				PhoneBook.cpp \
+				Utils.cpp
 
 SRCS		= $(addprefix $(SRC_DIR), $(SOURCE_FILES))
 OBJS		= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRCS))

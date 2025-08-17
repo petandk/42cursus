@@ -12,26 +12,8 @@
 
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
+#include "Utils.hpp"
 
-/*
-	ANSI chars to clear console
-	\e		= ESC  (tells the terminal that what comes next is a escape sequence)
-	[2J		= "clear screen"
-	[x;yH	= does the magic, moves all to position x:y (top left corner is 1,1)
-*/
-static void	clear_console(void)
-{
-	std::cout << "\e[2J\e[1;1H";
-}
-/*
-	changes option value to uppercase
-	numbers and simbols stay unchanged
-*/
-static void	ft_upper(std::string &option)
-{
-	for (int i = 0; option[i]; i++)
-		option[i] = std::toupper(option[i]);
-}
 /*
 	formats and prints the menu using the same ANSI "trick"
 */
@@ -62,7 +44,8 @@ int	main(void)
 		ft_upper(option);
 		if (option == "3" || option == "EXIT")
 		{
-			std::cout << "See you soon!" << std::endl;
+			clear_console();
+			std::cout << "\e[3:5H" << "See you soon!" << std::endl;
 			std::getline(std::cin, dummy);
 			clear_console();
 			return (0);
@@ -73,7 +56,7 @@ int	main(void)
 			phonebook.addContact();
 		else
 			std::cout << "\e[31mInvalid selection\e[0m" << std::endl;
-		std::cout << "Press \e[31mENTER\e[0m to continue..." << std::endl;
+		std::cout << "\nPress \e[31mENTER\e[0m to continue..." << std::endl;
 
 		std::getline(std::cin, dummy);
 		clear_console();

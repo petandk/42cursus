@@ -1,35 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*  Utils.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/12 18:34:35 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/08/13 20:35:11 by rmanzana         ###   ########.fr       */
+/*   Created: 2025/08/10 20:47:24 by rmanzana          #+#    #+#             */
+/*   Updated: 2025/08/13 18:57:55 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include <iostream>
 
-#include "Contact.hpp"
-#include <iomanip>
-
-class PhoneBook
-{
-  private:
-	Contact _contacts[8];
-	int _index;
-	bool _isFull;
-	void showContacts(int &index);
-	void showHeader();
-	void showRow(int index);
-	void showCell(std::string &text);
-	void showInfo(int &index);
-
-  public:
-	PhoneBook();
-	~PhoneBook();
-	void addContact();
-	void searchContact();
-};
+void	clear_console(void);
+void	ft_upper(std::string &option);
