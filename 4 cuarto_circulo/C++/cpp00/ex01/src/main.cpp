@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:47:24 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/08/13 18:57:55 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:12:01 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	main(void)
 		else
 			std::cout << "\e[31mInvalid selection\e[0m" << std::endl;
 		std::cout << "\nPress \e[31mENTER\e[0m to continue..." << std::endl;
-
 		std::getline(std::cin, dummy);
 		clear_console();
 		print_menu();

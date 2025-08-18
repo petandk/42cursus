@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 21:47:25 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/08/13 19:26:15 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:07:06 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,28 +58,22 @@ std::string Contact::getInfo(std::string option)
  * Handles EOF conditions and empty inputs by reprompting
  * until valid input is received
  */
-std::string Contact::readField(const std::string &prompt)
+std::string Contact::readField(const std::string &prompt, bool &isEOF)
 {
 	std::string userInput;
-	std::string dummy;
-	while (true)
+	std::cout << prompt;
+	if (!std::getline(std::cin, userInput) || userInput.empty())
 	{
-		std::cout << prompt;
-		if (!std::getline(std::cin, userInput) || userInput.empty())
+		if (std::cin.eof())
 		{
-			if (std::cin.eof())
-			{
-				std::cout << "\nYou wanted EOF, here it is!" << std::endl;
-				
-				return ("");
-			}
-			std::cin.clear();
-			std::getline(std::cin, dummy);
-			std::cout << "\nInput cannot be empty. Please try again." << std::endl;
-			continue;
+			isEOF = true;
+			return ("");
 		}
-		return (userInput);
+		std::cin.clear();
+		std::cout << "\nInput cannot be empty. Please try again." << std::endl;
+		return (readField(prompt, isEOF));
 	}
+	return (userInput);
 }
 
 /**
@@ -88,12 +82,23 @@ std::string Contact::readField(const std::string &prompt)
  *
  * Uses readField to get and validate each piece of contact information
  */
-void Contact::inputFields()
+bool Contact::inputFields()
 {
+	bool isEOF = false;
+
 	clear_console();
-	this->_firstName = this->readField("First Name: ");
-	this->_lastName = this->readField("Last Name: ");
-	this->_nickname = this->readField("Nickname: ");
-	this->_phoneNumber = this->readField("Phone number: ");
-	this->_darkestSecret = this->readField("Darkest secret: ");
+	this->_firstName = this->readField("First Name: ", isEOF);
+	if (isEOF)
+		return (false);
+	this->_lastName = this->readField("Last Name: ", isEOF);
+	if (isEOF)
+		return (false);
+	this->_nickname = this->readField("Nickname: ", isEOF);
+	if (isEOF)
+		return (false);
+	this->_phoneNumber = this->readField("Phone number: ", isEOF);
+	if (isEOF)
+		return (false);
+	this->_darkestSecret = this->readField("Darkest secret: ", isEOF);
+	return (!isEOF);
 }

@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 18:22:07 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/08/13 20:34:51 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:13:17 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /**
  * Default constructor
  * Initializes an empty PhoneBook object
- * Also initializes the index to 0 and sets the isFull flag to false. 
+ * Also initializes the index to 0 and sets the isFull flag to false.
  */
 PhoneBook::PhoneBook() : _index(0), _isFull(false)
 {
@@ -37,9 +37,16 @@ void PhoneBook::addContact()
 		_index = 0;
 		_isFull = true;
 	}
-	_contacts[_index].inputFields();
-	_index++;
-	std::cout << "\nContact added successfully!" << std::endl;
+	if (_contacts[_index].inputFields())
+	{
+		_index++;
+		std::cout << "\nContact added successfully!" << std::endl;
+	}
+	else
+	{
+		std::cout << "\nYou wanted EOF, here it is!" << std::endl;
+		std::cin.clear();
+	}
 }
 
 void PhoneBook::showHeader()
@@ -63,7 +70,7 @@ void PhoneBook::showCell(std::string &text)
 
 void PhoneBook::showRow(int index)
 {
-	std::cout << std::setw(10) << std::right<< index + 1;
+	std::cout << std::setw(10) << std::right << index + 1;
 	std::string firstname = _contacts[index].getInfo("firstName");
 	std::string lastname = _contacts[index].getInfo("lastName");
 	std::string nickname = _contacts[index].getInfo("nickname");
@@ -78,8 +85,10 @@ void PhoneBook::showRow(int index)
 
 void PhoneBook::showContacts(int &index)
 {
+	int	toShow;
+
 	clear_console();
-	int toShow = _isFull ? 8 : _index;
+	toShow = _isFull ? 8 : _index;
 	showHeader();
 	for (int i = 0; i < toShow; i++)
 		showRow(i);
@@ -92,7 +101,7 @@ void PhoneBook::showContacts(int &index)
 			if (index >= 1 && index <= toShow)
 				break ;
 			else
-				std::cout << "\nIndex must be between 1 and " << toShow<< std::endl;
+				std::cout << "\nIndex must be between 1 and " << toShow << std::endl;
 		}
 		else
 		{
@@ -107,21 +116,26 @@ void PhoneBook::showInfo(int &index)
 {
 	clear_console();
 	std::cout << std::endl;
-	std::cout << "First name: " << _contacts[index - 1].getInfo("firstName") << std::endl;
-	std::cout << "Last name: " << _contacts[index - 1].getInfo("lastName") << std::endl;
-	std::cout << "nickname: " << _contacts[index - 1].getInfo("nickname") << std::endl;
-	std::cout << "Phone number: " << _contacts[index - 1].getInfo("phoneNumber") << std::endl;
-	std::cout << "Darkest secret: " << _contacts[index - 1].getInfo("darkestSecret") << std::endl;
+	std::cout << "First name: " << _contacts[index
+		- 1].getInfo("firstName") << std::endl;
+	std::cout << "Last name: " << _contacts[index
+		- 1].getInfo("lastName") << std::endl;
+	std::cout << "nickname: " << _contacts[index
+		- 1].getInfo("nickname") << std::endl;
+	std::cout << "Phone number: " << _contacts[index
+		- 1].getInfo("phoneNumber") << std::endl;
+	std::cout << "Darkest secret: " << _contacts[index
+		- 1].getInfo("darkestSecret") << std::endl;
 }
 
 void PhoneBook::searchContact()
 {
 	int selected;
-	
+
 	if (_index == 0)
 	{
-		std::cout << "Phonebook is still empty! Please, add contacts first!" << std::endl;
-		return;
+		std::cout << "Phonebook is still empty! Please, add contacts first !" << std::endl;
+		return ;
 	}
 	this->showContacts(selected);
 	this->showInfo(selected);
