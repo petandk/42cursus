@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "Contact.hpp"
+#include "Utils.hpp"
 
 /**
  * Default constructor
@@ -66,13 +67,16 @@ std::string Contact::readField(const std::string &prompt)
 		std::cout << prompt;
 		if (!std::getline(std::cin, userInput) || userInput.empty())
 		{
-			if (std::cin.eof() || std::cin.fail())
+			if (std::cin.eof())
 			{
-				std::cin.clear();
-				std::getline(std::cin, dummy);
+				std::cout << "\nYou wanted EOF, here it is!" << std::endl;
+				
+				return ("");
 			}
+			std::cin.clear();
+			std::getline(std::cin, dummy);
 			std::cout << "\nInput cannot be empty. Please try again." << std::endl;
-			continue ;
+			continue;
 		}
 		return (userInput);
 	}
@@ -86,6 +90,7 @@ std::string Contact::readField(const std::string &prompt)
  */
 void Contact::inputFields()
 {
+	clear_console();
 	this->_firstName = this->readField("First Name: ");
 	this->_lastName = this->readField("Last Name: ");
 	this->_nickname = this->readField("Nickname: ");
