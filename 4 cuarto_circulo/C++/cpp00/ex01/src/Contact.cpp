@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 21:47:25 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/08/18 18:07:06 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/12 20:04:31 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ Contact::~Contact()
 
 /**
  * Returns the requested field from the contact
- * @param option The field name to retrieve ("firstName", "lastName", etc.)
- * @return The value of the requested field as a string
+ *  option - The field name to retrieve ("firstName", "lastName", etc.)
+ * return - The value of the requested field as a string
  */
 std::string Contact::getInfo(std::string option)
 {
@@ -52,8 +52,8 @@ std::string Contact::getInfo(std::string option)
 
 /**
  * Prompts the user for input and validates it
- * @param prompt The message to display when requesting input
- * @return A non-empty string entered by the user
+ * prompt - The message to display when requesting input
+ * A non-empty string entered by the user
  *
  * Handles EOF conditions and empty inputs by reprompting
  * until valid input is received
@@ -61,24 +61,27 @@ std::string Contact::getInfo(std::string option)
 std::string Contact::readField(const std::string &prompt, bool &isEOF)
 {
 	std::string userInput;
-	std::cout << prompt;
-	if (!std::getline(std::cin, userInput) || userInput.empty())
+	while (true)
 	{
-		if (std::cin.eof())
+		std::cout << prompt;
+		if (!std::getline(std::cin, userInput))
 		{
-			isEOF = true;
-			return ("");
+			if (std::cin.eof())
+			{
+				isEOF = true;
+				return ("");
+			}
+			std::cin.clear();
 		}
-		std::cin.clear();
+		else if (!userInput.empty())
+			return (userInput);
 		std::cout << "\nInput cannot be empty. Please try again." << std::endl;
-		return (readField(prompt, isEOF));
 	}
-	return (userInput);
 }
 
 /**
  * Populates a contact with user input for all fields
- * @param contact The Contact object to fill with information
+ * contact - The Contact object to fill with information
  *
  * Uses readField to get and validate each piece of contact information
  */

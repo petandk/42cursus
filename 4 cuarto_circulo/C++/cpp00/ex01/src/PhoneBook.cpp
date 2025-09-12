@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 18:22:07 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/08/18 18:13:17 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/12 20:14:54 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,16 +116,11 @@ void PhoneBook::showInfo(int &index)
 {
 	clear_console();
 	std::cout << std::endl;
-	std::cout << "First name: " << _contacts[index
-		- 1].getInfo("firstName") << std::endl;
-	std::cout << "Last name: " << _contacts[index
-		- 1].getInfo("lastName") << std::endl;
-	std::cout << "nickname: " << _contacts[index
-		- 1].getInfo("nickname") << std::endl;
-	std::cout << "Phone number: " << _contacts[index
-		- 1].getInfo("phoneNumber") << std::endl;
-	std::cout << "Darkest secret: " << _contacts[index
-		- 1].getInfo("darkestSecret") << std::endl;
+	std::cout << "First name: " << _contacts[index - 1].getInfo("firstName") << std::endl;
+	std::cout << "Last name: " << _contacts[index - 1].getInfo("lastName") << std::endl;
+	std::cout << "nickname: " << _contacts[index - 1].getInfo("nickname") << std::endl;
+	std::cout << "Phone number: " << _contacts[index - 1].getInfo("phoneNumber") << std::endl;
+	std::cout << "Darkest secret: " << _contacts[index - 1].getInfo("darkestSecret") << std::endl;
 }
 
 void PhoneBook::searchContact()

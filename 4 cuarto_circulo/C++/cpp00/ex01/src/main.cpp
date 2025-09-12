@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:47:24 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/08/18 18:12:01 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/12 20:00:34 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(void)
 		if (option == "3" || option == "EXIT")
 		{
 			clear_console();
-			std::cout << "\e[3:5H" << "See you soon!" << std::endl;
+			std::cout << "\e[3;5H" << "See you soon!" << std::endl;
 			std::getline(std::cin, dummy);
 			clear_console();
 			return (0);
