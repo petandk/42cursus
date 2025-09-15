@@ -1,4 +1,16 @@
-NAME        = bank
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/08/10 20:46:57 by rmanzana          #+#    #+#              #
+#    Updated: 2025/09/15 20:23:16 by rmanzana         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME        = zombie
 
 COMPILER    = c++
 
@@ -8,8 +20,9 @@ SRC_DIR     = src/
 OBJ_DIR     = obj/
 INCLUDE_DIR = inc/
 
-SOURCE_FILES =	Account.cpp \
-				tests.cpp
+SOURCE_FILES = main.cpp \
+				Zombie.cpp \
+				zombieHorde.cpp
 
 SRCS		= $(addprefix $(SRC_DIR), $(SOURCE_FILES))
 OBJS		= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRCS))
