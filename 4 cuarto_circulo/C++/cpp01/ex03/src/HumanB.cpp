@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/16 18:15:49 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/16 19:42:37 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
-#include <iostream>
+#include "../inc/HumanB.hpp"
 
-int main(void)
+HumanB::HumanB(std::string name)
 {
-    std::string brain = "HI THIS IS BRAIN";
-    std::string *stringPTR = &brain;
-    std::string &stringREF = brain;
-
-    std::cout << "Memory addresses:"
-    << "\nstring variable: " << &brain
-    << "\nstringPTR: " << stringPTR
-    << "\nstringREF: " << &stringREF
-    << std::endl;
-
-     std::cout << "Values:"
-    << "\nstring variable: " << brain
-    << "\nstringPTR: " << *stringPTR
-    << "\nstringREF: " << stringREF
-    << std::endl;
-    return (0);
+    this->_name = name;
+}
+HumanB::~HumanB()
+{
+}
+void    HumanB::setWeapon(Weapon &weapon)
+{
+    this->_weapon = &weapon;
+}
+void    HumanB::attack(void)
+{
+    std::cout << this->_name;
+    if (this->_weapon)
+        std::cout << " attacks with their " << this->_weapon->getType();
+    else
+        std::cout << " has no weapon";
+    std::cout << std::endl;
 }

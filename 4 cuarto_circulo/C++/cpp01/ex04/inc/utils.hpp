@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/15 17:48:27 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/15 20:43:40 by rmanzana         ###   ########.fr       */
+/*   Created: 2025/09/16 21:17:27 by rmanzana          #+#    #+#             */
+/*   Updated: 2025/09/16 22:23:06 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#include <string>
 #include <iostream>
+#include <fstream>
 
-class Zombie
-{    
-    public:
-        Zombie(void);
-        Zombie(std::string name);
-        ~Zombie();
-        void    announce(void);
-        void    setName(std::string name);
-    private:
-        std::string _name;
-};
-
-Zombie *zombieHorde(int N, std::string name);
+bool        parse(const std::string &filename, const std::string &s1, const std::string &s2);
+std::string ft_replace(const std::string &line, const std::string &s1, const std::string &s2);
+bool        playMagic(const std::string &filename, const std::string &s1, const std::string &s2);

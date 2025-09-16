@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/10 20:46:57 by rmanzana          #+#    #+#              #
-#    Updated: 2025/09/16 18:01:44 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/09/16 18:19:19 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,10 @@ SRC_DIR     = src/
 OBJ_DIR     = obj/
 INCLUDE_DIR = inc/
 
-SOURCE_FILES = main.cpp
+SOURCE_FILES = main.cpp \
+				Weapon.cpp \
+				HumanA.cpp \
+				HumanB.cpp
 
 SRCS		= $(addprefix $(SRC_DIR), $(SOURCE_FILES))
 OBJS		= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRCS))

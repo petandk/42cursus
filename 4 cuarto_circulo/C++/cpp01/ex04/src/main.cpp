@@ -6,29 +6,28 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/16 18:15:49 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/16 22:28:19 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
-#include <iostream>
+#include "../inc/utils.hpp"
 
-int main(void)
+int main (int argc, char **argv)
 {
-    std::string brain = "HI THIS IS BRAIN";
-    std::string *stringPTR = &brain;
-    std::string &stringREF = brain;
-
-    std::cout << "Memory addresses:"
-    << "\nstring variable: " << &brain
-    << "\nstringPTR: " << stringPTR
-    << "\nstringREF: " << &stringREF
-    << std::endl;
-
-     std::cout << "Values:"
-    << "\nstring variable: " << brain
-    << "\nstringPTR: " << *stringPTR
-    << "\nstringREF: " << stringREF
-    << std::endl;
+    if (argc != 4)
+    { 
+      std::cout << "Error: Not enough arguments." << std::endl;
+       return (1);
+    }
+    std::string filename(argv[1]);
+    std::string s1(argv[2]);
+    std::string s2(argv[3]);
+    if (!parse(filename, s1, s2))
+    { 
+      std::cout << "Error:Invalid arguments." << std::endl;
+       return (1);
+    }
+    playMagic(filename, s1, s2);
     return (0);
 }
+

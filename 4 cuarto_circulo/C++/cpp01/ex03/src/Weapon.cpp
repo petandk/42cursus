@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/16 18:15:49 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/16 19:31:21 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
-#include <iostream>
+#include "../inc/Weapon.hpp"
 
-int main(void)
+Weapon::Weapon()
 {
-    std::string brain = "HI THIS IS BRAIN";
-    std::string *stringPTR = &brain;
-    std::string &stringREF = brain;
+}
 
-    std::cout << "Memory addresses:"
-    << "\nstring variable: " << &brain
-    << "\nstringPTR: " << stringPTR
-    << "\nstringREF: " << &stringREF
-    << std::endl;
+Weapon::Weapon(const std::string &type)
+{
+    this->_type = type;
+}
+Weapon::~Weapon()
+{}
 
-     std::cout << "Values:"
-    << "\nstring variable: " << brain
-    << "\nstringPTR: " << *stringPTR
-    << "\nstringREF: " << stringREF
-    << std::endl;
-    return (0);
+const   std::string &Weapon::getType(void) const
+{
+    return (this->_type);
+}
+
+void	Weapon::setType(const std::string &type)
+{
+	this->_type = type;
 }

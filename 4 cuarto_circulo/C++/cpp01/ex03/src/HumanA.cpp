@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/16 18:15:49 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/16 20:07:12 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
-#include <iostream>
+#include "../inc/HumanA.hpp"
 
-int main(void)
+/*
+    Reference members should be initialized using an initializer list
+*/
+HumanA::HumanA(std::string name, Weapon &weapon)
+    :_name(name), _weapon(weapon)
 {
-    std::string brain = "HI THIS IS BRAIN";
-    std::string *stringPTR = &brain;
-    std::string &stringREF = brain;
+}
+HumanA::~HumanA()
+{
+}
 
-    std::cout << "Memory addresses:"
-    << "\nstring variable: " << &brain
-    << "\nstringPTR: " << stringPTR
-    << "\nstringREF: " << &stringREF
+void    HumanA::attack(void)
+{
+    std::cout << this->_name
+    << " attacks with their "
+    << this->_weapon.getType()
     << std::endl;
-
-     std::cout << "Values:"
-    << "\nstring variable: " << brain
-    << "\nstringPTR: " << *stringPTR
-    << "\nstringREF: " << stringREF
-    << std::endl;
-    return (0);
 }
