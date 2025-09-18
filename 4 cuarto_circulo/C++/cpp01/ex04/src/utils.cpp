@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 21:19:04 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/16 22:23:05 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/18 16:01:41 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ std::string ft_replace(const std::string &line, const std::string &s1, const std
         result += line.substr(last, pos - last);
         result += s2;
         last = pos + s1.length();
-        result += line.substr(last);
+        
     }
+    result += line.substr(last);
     return (result);
 }
 
