@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:47:24 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/12 20:00:34 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/23 21:56:19 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(void)
 		if (option == "3" || option == "EXIT")
 		{
 			clear_console();
-			std::cout << "\e[3;5H" << "See you soon!" << std::endl;
+			ft_cya();
 			std::getline(std::cin, dummy);
 			clear_console();
 			return (0);
@@ -56,11 +56,17 @@ int	main(void)
 			phonebook.addContact();
 		else
 			std::cout << "\e[31mInvalid selection\e[0m" << std::endl;
+		if (std::cin.eof())
+			break;
 		std::cout << "\nPress \e[31mENTER\e[0m to continue..." << std::endl;
 		std::getline(std::cin, dummy);
+		if (std::cin.eof())
+			break;
 		clear_console();
 		print_menu();
 	}
+	if (std::cin.eof())
+        return(ft_eof(), 0);
 	clear_console();
 	return (0);
 }

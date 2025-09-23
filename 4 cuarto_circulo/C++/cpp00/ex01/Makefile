@@ -2,7 +2,7 @@ NAME        = phonebook
 
 COMPILER    = c++
 
-CFLAGS      = -Wall -Werror -Wextra -std=c++98
+CFLAGS      = -g -Wall -Werror -Wextra -std=c++98
 
 SRC_DIR     = src/
 OBJ_DIR     = obj/

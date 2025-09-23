@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 21:47:25 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/12 20:04:31 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/23 21:47:49 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ std::string Contact::readField(const std::string &prompt, bool &isEOF)
 		}
 		else if (!userInput.empty())
 			return (userInput);
-		std::cout << "\nInput cannot be empty. Please try again." << std::endl;
+		clear_console();
+		std::cout << "Input cannot be empty. Please try again." << std::endl;
 	}
 }
 

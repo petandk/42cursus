@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 18:34:35 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/12 20:13:40 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/23 20:43:38 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class PhoneBook
 	Contact _contacts[8];
 	int _index;
 	bool _isFull;
-	void showContacts(int &index);
+	bool showContacts(int &index);
 	void showHeader();
 	void showRow(int index);
 	void showCell(std::string &text);

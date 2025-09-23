@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 18:22:07 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/12 20:14:54 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/23 22:16:50 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ void PhoneBook::addContact()
 		std::cout << "\nContact added successfully!" << std::endl;
 	}
 	else
-	{
-		std::cout << "\nYou wanted EOF, here it is!" << std::endl;
-		std::cin.clear();
-	}
+		return ;
 }
 
 void PhoneBook::showHeader()
@@ -63,9 +60,10 @@ void PhoneBook::showHeader()
 
 void PhoneBook::showCell(std::string &text)
 {
-	if (text.length() > 10)
-		text = text.substr(0, 9) + ".";
-	std::cout << std::setw(10) << std::right << text;
+	std:: string result = text;
+	if (result.length() > 10)
+		result = result.substr(0, 9) + ".";
+	std::cout << std::setw(10) << std::right << result;
 }
 
 void PhoneBook::showRow(int index)
@@ -83,33 +81,44 @@ void PhoneBook::showRow(int index)
 	std::cout << std::endl;
 }
 
-void PhoneBook::showContacts(int &index)
+bool PhoneBook::showContacts(int &index)
 {
-	int	toShow;
+    int		toShow = _isFull ? 8 : _index;
+	bool	badIndex = false;
+	bool	isChar = false;
 
-	clear_console();
-	toShow = _isFull ? 8 : _index;
-	showHeader();
-	for (int i = 0; i < toShow; i++)
-		showRow(i);
-	while (true)
-	{
-		std::cout << "\nPlease select a contact index" << std::endl;
-		if (std::cin >> index)
-		{
-			std::cin.ignore();
-			if (index >= 1 && index <= toShow)
-				break ;
-			else
-				std::cout << "\nIndex must be between 1 and " << toShow << std::endl;
-		}
-		else
-		{
-			std::cout << "\nPlease enter a valid number" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(10000, '\n');
-		}
-	}
+    while (true)
+    {
+        clear_console();
+        showHeader();
+        for (int i = 0; i < toShow; i++)
+            showRow(i);
+
+        if (badIndex) // index is set to an invalid value after first try
+            std::cout << "\n\e[31mIndex must be between 1 and " << toShow << "\e[0m" << std::endl;
+		else if (isChar)
+			std::cout << "\n\e[33mPlease enter a valid \e[1;33mNUMBER\e[0m\e[33m\e[0m" << std::endl;
+
+        std::cout << "\nPlease select a contact index:" << std::endl;
+        if (std::cin >> index)
+        {
+            std::cin.ignore();
+            if (index >= 1 && index <= toShow)
+                return true;
+			badIndex = true;
+			isChar = false;
+        }
+        else
+        {
+            if (std::cin.eof())
+                return false;
+            
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            badIndex = false;
+			isChar = true;
+        }
+    }
 }
 
 void PhoneBook::showInfo(int &index)
@@ -125,13 +134,13 @@ void PhoneBook::showInfo(int &index)
 
 void PhoneBook::searchContact()
 {
-	int selected;
+	int selected = 0;
 
 	if (_index == 0)
 	{
-		std::cout << "Phonebook is still empty! Please, add contacts first !" << std::endl;
+		std::cout << "Phonebook is still empty! Please, add contacts first!" << std::endl;
 		return ;
 	}
-	this->showContacts(selected);
-	this->showInfo(selected);
+	if (this->showContacts(selected))
+		this->showInfo(selected);
 }
