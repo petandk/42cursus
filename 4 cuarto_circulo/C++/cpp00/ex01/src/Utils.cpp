@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:47:24 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/23 21:53:05 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/25 19:38:05 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_upper(std::string &option)
 		option[i] = std::toupper(option[i]);
 }
 
+// EOF detected!!
 void	ft_eof(void)
 {
     std::cout << "\n\e[31m ___  __   ___     __   ___ ___  ___  __  ___  ___  __    /  /\e[0m\n"
@@ -39,10 +40,10 @@ void	ft_eof(void)
     << "\e[36m|___ \\__/ |       |__/ |___  |  |___ \\__,  |  |___ |__/ .  .  \e[0m\n" << std::endl;
 }
 
+//See you soon!
 void ft_cya(void)
 {
 std::cout << "\e[36m __   ___  ___         __           __   __   __         /\e[0m\n"
 	<< "\e[33m/__` |__  |__     \\ / /  \\ |  |    /__` /  \\ /  \\ |\\ |  / \e[0m\n"
 	<< "\e[31m.__/ |___ |___     |  \\__/ \\__/    .__/ \\__/ \\__/ | \\| .  \e[0m\n" << std::endl;
 }
-//See you soon!

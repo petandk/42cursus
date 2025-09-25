@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 20:48:37 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/15 16:22:50 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/25 19:54:28 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int Account::_totalNbWithdrawals = 0;
 
 Account::Account(int initial_deposit)
 {
+	if (initial_deposit < 0)
+		initial_deposit = 0;
 	_accountIndex = _nbAccounts;
 	_amount = initial_deposit;
 	_nbDeposits = 0;
@@ -64,22 +66,28 @@ void Account::_displayTimestamp(void)
 }*/
 /*
 	strftime()
-	%Y -> 4 digit year representation (2025)   |   %y
-		-> 2 digit year representation (25)
-	%d -> day of month with leading zero (01) |  
-		%e-> day of month with leading space ( 1)
+	%Y -> 4 digit year representation (2025)   |   %y -> 2 digit year representation (25)
+	%d -> day of month with leading zero (01) |  %e-> day of month with leading space ( 1)
 	%H -> 24h format    |   %I -> 12h format
 	buffer needs 19 chars:  Year, month, day, hour, minutes, seconds
-	because:                4   +   2  +  2 +   2 +    2   +    2   
-		+  4 (for the 4 simbols"[]_ ") + 1 (null terminator)
+	because:                4   +   2  +  2 +   2 +    2   +    2   +  4 (for the 4 simbols"[]_ ") + 1 (null terminator)
 */
 void Account::_displayTimestamp(void)
 {
+	char	buffer[19];
 	std::time_t now = std::time(NULL);
 	std::tm *ltm = std::localtime(&now);
-    char	buffer[19];
-    
-	std::strftime(buffer, sizeof(buffer), "[%Y%m%d_%H%M%S] ", ltm);
+
+    if (ltm == NULL)
+	{
+		std::cout << "[FAILED_RETRIEVING_LOCALTIME] ";
+		return ;
+	}
+	if (!std::strftime(buffer, sizeof(buffer), "[%Y%m%d_%H%M%S] ", ltm))
+	{
+		std::cout << "[FAILED_FORMATTING_TIMESTAMP] ";
+		return ;
+	}
 	std::cout << buffer;
 }
 
@@ -131,6 +139,12 @@ void Account::displayAccountsInfos(void)
 void    Account::makeDeposit(int deposit)
 {
     _displayTimestamp();
+	if (deposit < 0)
+	{
+		std::cout << "index:" << _accountIndex
+		<< ";deposit:refused" << std::endl;
+		return ;
+	}
     std::cout << "index:" << _accountIndex 
     << ";p_amount:" << checkAmount() 
     << ";deposit:" << deposit;
@@ -148,7 +162,7 @@ bool    Account::makeWithdrawal(int withdrawal)
     std::cout << "index:" << _accountIndex 
     << ";p_amount:" << checkAmount() 
     << ";withdrawal:";
-    if (withdrawal > this->_amount)
+    if (withdrawal < 0 || withdrawal > this->_amount)
     {
         std::cout << "refused" << std::endl;
         return (false);

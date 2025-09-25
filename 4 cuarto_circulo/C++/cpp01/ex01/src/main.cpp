@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/15 20:54:41 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/25 20:13:39 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int main(int argc, char **argv)
     {
         num = std::atoi(argv[1]);
         horde = zombieHorde(num, argv[2]);
-   
+		if (!horde)
+			return (1);
         for (int i = 0; i < num; i++)
         {
             horde[i].announce();
