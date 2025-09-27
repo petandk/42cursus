@@ -6,7 +6,9 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/27 21:21:52 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/09/27 22:20:36 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../inc/fixed.hpp"
 
