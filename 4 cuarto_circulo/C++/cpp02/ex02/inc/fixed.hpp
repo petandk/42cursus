@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/10/07 20:48:41 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/07 21:06:59 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,37 @@ class Fixed {
 		
 		Fixed(const Fixed &other);
 		
+		
 		Fixed(const int n);
 		Fixed(const float n);
 
 		Fixed &operator=(const Fixed &other);
+
+		/* Comparison operators */
+		Fixed &operator>(const Fixed &other);
+		Fixed &operator<(const Fixed &other);
+		Fixed &operator>=(const Fixed &other);
+		Fixed &operator<=(const Fixed &other);
+		Fixed &operator==(const Fixed &other);
+		Fixed &operator!=(const Fixed &other);
+		
+		/* Arithmetic operators */
+		Fixed &operator+(const Fixed &other);
+		Fixed &operator-(const Fixed &other);
+		Fixed &operator*(const Fixed &other);
+		Fixed &operator/(const Fixed &other);
+
+		/* Increment/Decrement operators */
+		Fixed &operator++(void);		// Pre-increment: ++obj
+		Fixed operator++(int);			// Post-increment: obj++
+		Fixed &operator--(void);		// Pre-decrement: --obj
+		Fixed operator--(int);			// Post-decrement: obj--
+
+		/* Static member functions (min/max) */
+		static Fixed &min(Fixed &num1, Fixed &num2);
+		static const Fixed &min(const Fixed &num1, const Fixed &num2);
+		static Fixed &max(Fixed &num1, Fixed &num2);
+		static const Fixed &max(const Fixed &num1, const Fixed &num2);
 
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
