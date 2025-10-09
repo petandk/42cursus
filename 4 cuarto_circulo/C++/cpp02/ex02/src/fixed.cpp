@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/10/02 21:54:56 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/09 20:50:16 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 */
 Fixed::Fixed(void)
 {
-    std::cout << "Default constructor called" << std::endl;
+    //std::cout << "Default constructor called" << std::endl;
     this->_value = 0;
 }
 
@@ -27,7 +27,7 @@ Fixed::Fixed(void)
 */
 Fixed::~Fixed(void)
 {
-    std::cout << "Destructor called" << std::endl;
+    //std::cout << "Destructor called" << std::endl;
 }
 
 /* 
@@ -36,7 +36,7 @@ Fixed::~Fixed(void)
 */
 Fixed::Fixed(const Fixed &other)
 {
-    std::cout << "Copy constructor called" << std::endl;
+    //std::cout << "Copy constructor called" << std::endl;
     this->_value = other._value;
 }
 
@@ -50,7 +50,7 @@ Fixed::Fixed(const Fixed &other)
 */
 Fixed::Fixed(const int n)
 {
-    std::cout << "Int constructor called" << std::endl;
+    //std::cout << "Int constructor called" << std::endl;
     this->_value = n << this->_fractionalBits;
 }
 
@@ -65,7 +65,7 @@ Fixed::Fixed(const int n)
 */
 Fixed::Fixed(const float n)
 {
-    std::cout << "Float constructor called" << std::endl;
+    //std::cout << "Float constructor called" << std::endl;
     this->_value = roundf(n * (1 << _fractionalBits));
 }
 
@@ -74,11 +74,143 @@ Fixed::Fixed(const float n)
 */
 Fixed &Fixed::operator=(const Fixed &other)
 {
-    std::cout << "Copy assignment operator called" << std::endl;
+    //std::cout << "Copy assignment operator called" << std::endl;
     if (this != &other)
         this->_value = other._value;
     return (*this);
 }
+
+/*
+	Comparison operators
+*/
+bool Fixed::operator>(const Fixed &other) const
+{
+	return (this->_value > other._value);
+}
+
+bool Fixed::operator<(const Fixed &other) const
+{
+	return (this->_value < other._value);
+}
+
+bool Fixed::operator>=(const Fixed &other) const
+{
+	return (this->_value >= other._value);
+}
+
+bool Fixed::operator<=(const Fixed &other) const
+{
+	return (this->_value <= other._value);
+}
+
+bool Fixed::operator==(const Fixed &other) const
+{
+	return (this->_value == other._value);
+}
+
+bool Fixed::operator!=(const Fixed &other) const
+{
+	return (this->_value != other._value);
+}
+
+/* 
+	Arithmetic operators 
+*/
+Fixed Fixed::operator+(const Fixed &other)
+{
+	Fixed result;
+	result._value = this->_value + other._value;
+	return (result);
+}
+Fixed Fixed::operator-(const Fixed &other)
+{
+	Fixed result;
+	result._value = this->_value - other._value;
+	return (result);
+}
+Fixed Fixed::operator*(const Fixed &other)
+{
+	Fixed result;
+	result._value = (this->_value * other._value) >> this->_fractionalBits;
+	return (result);
+}
+Fixed Fixed::operator/(const Fixed &other)
+{
+	Fixed result;
+		result._value = (this->_value << this->_fractionalBits ) / other._value;
+	return (result);
+}
+/* 
+	Pre-increment: ++obj 
+*/
+Fixed &Fixed::operator++(void)
+{
+	this->_value++;
+	return (*this);
+}
+/*
+	Post-increment: obj++
+*/
+Fixed Fixed::operator++(int)
+{
+	Fixed copy(*this);
+	this->_value++;
+	return (copy);
+}
+/*
+	Pre-decrement: --obj
+*/
+Fixed &Fixed::operator--(void)
+{
+	this->_value--;
+	return (*this);
+}
+/*
+	Post-decrement: obj--
+*/
+Fixed Fixed::operator--(int)
+{
+	Fixed copy(*this);
+	this->_value--;
+	return (copy);
+}
+
+/*
+	Static member functions (min/max)
+*/
+Fixed &Fixed::min(Fixed &num1, Fixed &num2)
+{
+	if (num1._value < num2._value)
+		return (num1);
+	else
+		return (num2);
+}
+
+const Fixed &Fixed::min(const Fixed &num1, const Fixed &num2)
+{
+	if (num1._value < num2._value)
+		return (num1);
+	else
+		return (num2);
+}
+
+Fixed &Fixed::max(Fixed &num1, Fixed &num2)
+{
+	if (num1._value > num2._value)
+		return (num1);
+	else
+		return (num2);
+}
+
+const Fixed &Fixed::max(const Fixed &num1, const Fixed &num2)
+{
+	if (num1._value > num2._value)
+		return (num1);
+	else
+		return (num2);
+}
+
+
 
 /*
 	Insertion operator
@@ -95,7 +227,7 @@ std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
 */
 int Fixed::getRawBits(void) const
 {
-    std::cout << "getRawBits member function called" << std::endl;
+    //std::cout << "getRawBits member function called" << std::endl;
     return (this->_value);
 }
 
@@ -104,7 +236,7 @@ int Fixed::getRawBits(void) const
 */
 void Fixed::setRawBits(int const raw)
 {
-    std::cout << "setRawBits member function called" << std::endl;
+    //std::cout << "setRawBits member function called" << std::endl;
     this->_value = raw;
 }
 

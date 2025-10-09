@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/10/07 21:06:59 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/09 19:54:40 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,18 @@ class Fixed {
 		Fixed &operator=(const Fixed &other);
 
 		/* Comparison operators */
-		Fixed &operator>(const Fixed &other);
-		Fixed &operator<(const Fixed &other);
-		Fixed &operator>=(const Fixed &other);
-		Fixed &operator<=(const Fixed &other);
-		Fixed &operator==(const Fixed &other);
-		Fixed &operator!=(const Fixed &other);
+		bool operator>(const Fixed &other) const;
+		bool operator<(const Fixed &other) const;
+		bool operator>=(const Fixed &other) const;
+		bool operator<=(const Fixed &other) const;
+		bool operator==(const Fixed &other) const;
+		bool operator!=(const Fixed &other) const;
 		
 		/* Arithmetic operators */
-		Fixed &operator+(const Fixed &other);
-		Fixed &operator-(const Fixed &other);
-		Fixed &operator*(const Fixed &other);
-		Fixed &operator/(const Fixed &other);
+		Fixed operator+(const Fixed &other);
+		Fixed operator-(const Fixed &other);
+		Fixed operator*(const Fixed &other);
+		Fixed operator/(const Fixed &other);
 
 		/* Increment/Decrement operators */
 		Fixed &operator++(void);		// Pre-increment: ++obj
