@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 21:33:56 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/10/13 21:48:34 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/16 17:57:08 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,5 @@ class Point{
 		Fixed const	_x;
 		Fixed const	_y;
 };
+
+bool bsp(Point const a, Point const b, Point const c, Point const point);
