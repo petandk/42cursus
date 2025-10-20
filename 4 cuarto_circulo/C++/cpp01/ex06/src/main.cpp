@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/18 17:55:55 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/20 20:09:35 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int main (int argc, char *argv[])
 {
 	Harl harl;
 	
+	std::cout << std::endl;
 	if (argc != 2)
 		harl.complain("NO");
 	else

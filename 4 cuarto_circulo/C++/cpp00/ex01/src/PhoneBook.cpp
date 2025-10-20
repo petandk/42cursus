@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 18:22:07 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/23 22:16:50 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/20 18:11:45 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void PhoneBook::showHeader()
 	std::cout << std::setw(10) << "NICKNAME" << std::endl;
 }
 
-void PhoneBook::showCell(std::string &text)
+void PhoneBook::showCell(const std::string &text)
 {
-	std:: string result = text;
+	std::string result = text;
 	if (result.length() > 10)
 		result = result.substr(0, 9) + ".";
 	std::cout << std::setw(10) << std::right << result;
@@ -121,7 +121,7 @@ bool PhoneBook::showContacts(int &index)
     }
 }
 
-void PhoneBook::showInfo(int &index)
+void PhoneBook::showInfo(int index)
 {
 	clear_console();
 	std::cout << std::endl;

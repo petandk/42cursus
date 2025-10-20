@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 20:48:37 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/29 17:42:02 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/20 18:26:06 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,17 +112,26 @@ int Account::getNbWithdrawals(void)
 }
 
 /*
-    I can't use _displayTimestamp without modifying the header file (Account.hpp), 
+    I can't use _displayTimestamp (because is private) without modifying the header file (Account.hpp), 
     which I think I am not allowed to do.
     So, copypaste al canto.
 */
 void Account::displayAccountsInfos(void)
 {
+	char	buffer[19];
 	std::time_t now = std::time(NULL);
 	std::tm *ltm = std::localtime(&now);
-    char	buffer[19];
-    
-	std::strftime(buffer, sizeof(buffer), "[%Y%m%d_%H%M%S] ", ltm);
+
+    if (ltm == NULL)
+	{
+		std::cout << "[FAILED_RETRIEVING_LOCALTIME] ";
+		return ;
+	}
+	if (!std::strftime(buffer, sizeof(buffer), "[%Y%m%d_%H%M%S] ", ltm))
+	{
+		std::cout << "[FAILED_FORMATTING_TIMESTAMP] ";
+		return ;
+	}
 	std::cout << buffer;
     
 	std::cout << "accounts:" 

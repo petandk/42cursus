@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 20:24:30 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/09/25 20:13:56 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/20 18:58:42 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    Zombie::setName(std::string name)
 Zombie *zombieHorde(int N, std::string name)
 {	if (N <= 0)
     {
-		std::cout << "Cannot have negative zombies!" << std::endl;
+		std::cout << "Cannot have negative or zero zombies!" << std::endl;
 		return (NULL);
 	}
     if (name.empty())
