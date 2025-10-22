@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 18:29:52 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/10/20 19:23:34 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/22 19:59:30 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class HumanB
         HumanB(std::string name);
         ~HumanB(void);
         void    attack(void);
-        void    setWeapon(Weapon &weapon);
+        void    setWeapon(Weapon *weapon);
     private:
         std::string _name;
         Weapon *_weapon;
