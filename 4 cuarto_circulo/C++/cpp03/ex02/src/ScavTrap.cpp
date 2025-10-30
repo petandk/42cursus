@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 20:23:16 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/10/30 18:50:01 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/30 19:19:18 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 ScavTrap::~ScavTrap(void)
 {
 	std::cout << "ScavTrap: Destructor for " << this->_name << " called" << std::endl;
-
 }
 
 void	ScavTrap::guardGate(void)

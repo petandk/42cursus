@@ -1,41 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 20:23:16 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/10/30 18:50:01 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/30 19:30:26 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ScavTrap.hpp"
+#include "../inc/FragTrap.hpp"
 
+/*
+		FragTrap is just a copy of ScavTrap just changing a couple
+		of things like class name and "special ability"
+*/
 /*
 	Default constructor
 */
-ScavTrap::ScavTrap(void)
-	:ClapTrap("Nobody")
+FragTrap::FragTrap(void)
+	:ClapTrap("Nothing")
 {
 	this->_health = 100;
-	this->_energy = 50;
-	this->_damage = 20;
+	this->_energy = 100;
+	this->_damage = 30;
 	std::cout <<
-	"Default Constructor: ScavTrap <Nobody> created" <<
+	"Default Constructor: FragTrap <Nothing> created" <<
 	std::endl;
 }
 /*
 	Constructor with name
 */
-ScavTrap::ScavTrap(const std::string &name)
+FragTrap::FragTrap(const std::string &name)
 	:ClapTrap(name)
 {
 	this->_health = 100;
-	this->_energy = 50;
-	this->_damage = 20;
+	this->_energy = 100;
+	this->_damage = 30;
 	std::cout <<
-	"Constructor: ScavTrap <"<< name <<"> created" <<
+	"Constructor: FragTrap <"<< name <<"> created" <<
 	std::endl;
 }
 /*
@@ -44,17 +48,17 @@ ScavTrap::ScavTrap(const std::string &name)
 	will call the ClapTrap copy constructor
 	and copy the values, so not too much to do
 */
-ScavTrap::ScavTrap(const ScavTrap &other)
+FragTrap::FragTrap(const FragTrap &other)
 	:ClapTrap(other)
 {
 	std::cout <<
-	"Constructor: ScavTrap <" << this->_name << "> copied" <<
+	"Constructor: FragTrap <" << this->_name << "> copied" <<
 	std::endl;
 }
 /*
 	Copy assignment
 */
-ScavTrap &ScavTrap::operator=(const ScavTrap &other)
+FragTrap &FragTrap::operator=(const FragTrap &other)
 {
 	if (this != &other)
 	{
@@ -69,13 +73,12 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 /*
 	Destructor
 */
-ScavTrap::~ScavTrap(void)
+FragTrap::~FragTrap(void)
 {
-	std::cout << "ScavTrap: Destructor for " << this->_name << " called" << std::endl;
-
+	std::cout << "FragTrap: Destructor for " << this->_name << " called" << std::endl;
 }
 
-void	ScavTrap::guardGate(void)
+void	FragTrap::highFivesGuys(void)
 {
-	std::cout  << "ScavTrap: Gatekeeper mode = \033[1;32mtrue\033[0m" << std::endl;
+	std::cout << "FragTrap: can " << this->_name << " get those five? 🫸 💥🫷" << std::endl;
 }

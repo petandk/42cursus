@@ -6,11 +6,11 @@
 #    By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/10 20:46:57 by rmanzana          #+#    #+#              #
-#    Updated: 2025/10/30 18:23:31 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/10/30 19:29:21 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = ScavTrap
+NAME        = FragTrap
 
 COMPILER    = c++
 
@@ -22,7 +22,8 @@ INCLUDE_DIR = inc/
 
 SOURCE_FILES = main.cpp \
 				ClapTrap.cpp \
-				ScavTrap.cpp
+				ScavTrap.cpp \
+				FragTrap.cpp
 
 SRCS		= $(addprefix $(SRC_DIR), $(SOURCE_FILES))
 OBJS		= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRCS))

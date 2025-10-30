@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 20:23:16 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/10/29 20:17:51 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/30 18:51:12 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ ClapTrap::ClapTrap(void)
 	:_name("Anon"), _health(10), _energy(10), _damage(0)
 {
 	std::cout <<
-	"Default Constructor: Claptrap <Anon> created" <<
+	"Default Constructor: ClapTrap <Anon> created" <<
 	std::endl;
 }
 
@@ -30,7 +30,7 @@ ClapTrap::ClapTrap(const std::string &name)
 	:_name(name), _health(10), _energy(10), _damage(0)
 {
 	std::cout <<
-	"Constructor: Claptrap <" << name <<
+	"Constructor: ClapTrap <" << name <<
 	"> created" <<
 	std::endl;
 }
@@ -42,7 +42,7 @@ ClapTrap::ClapTrap(const ClapTrap &other)
 	:_name(other._name), _health(other._health), _energy(other._energy), _damage(other._damage)
 {
 	std::cout <<
-	"Constructor: Claptrap <" << this->_name <<
+	"Constructor: ClapTrap <" << this->_name <<
 	"> copied" <<
 	std::endl;
 }
@@ -52,8 +52,7 @@ ClapTrap::ClapTrap(const ClapTrap &other)
 */
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "Destructor called" << std::endl;
-
+	std::cout << "ClapTrap: Destructor for " << this->_name << " called" << std::endl;
 }
 
 /*
@@ -87,7 +86,7 @@ void	ClapTrap::attack(const std::string &target)
 		this->_energy--;
 	}
 	else
-		std::cout << "This ClapTrap cannot attack!" << std::endl;
+		std::cout << "ClapTrap: " << this->_name << " cannot attack!" << std::endl;
 }
 
 /*
@@ -129,5 +128,5 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		this->_energy--;
 	}
 	else
-		std::cout << "This ClapTrap cannot be repaired!" << std::endl;
+		std::cout << "ClapTrap: " << this->_name << " cannot be repaired!" << std::endl;
 }

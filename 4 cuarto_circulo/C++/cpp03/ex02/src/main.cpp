@@ -6,12 +6,13 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/10/30 18:48:57 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/30 19:32:04 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ClapTrap.hpp"
 #include "../inc/ScavTrap.hpp"
+#include "../inc/FragTrap.hpp"
 
 int	main(void)
 {
@@ -46,6 +47,27 @@ int	main(void)
 		sheep.takeDamage(20);
 	sheep.beRepaired(5);
 	wolf.guardGate();
+
+	std::cout << std::endl
+	<< "\033[1;34m=================================================="
+	<< std::endl
+	<< "\033[35m		now with FragTrap"
+	<< std::endl
+	<< "\033[34m==================================================\033[0m"
+	<< std::endl << std::endl;
+
+	FragTrap god("god");
+	FragTrap devil("devil");
+	FragTrap nothing;
+
+	god.attack("devil");
+	devil.takeDamage(30);
+	devil.beRepaired(15);
+	devil.attack("god");
+	for (int i = 0; i < 5; i++)
+		god.takeDamage(30);
+	god.beRepaired(5);
+	devil.highFivesGuys();
 
 	return (0);
 }
