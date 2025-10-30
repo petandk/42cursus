@@ -6,6 +6,20 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/08/10 20:46:54 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/29 20:28:14 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+/*
+	Default constructor
+*/
+/*
+	Copy constructor
+*/
+/*
+	Copy assignment
+*/
+/*
+	Destructor
+*/

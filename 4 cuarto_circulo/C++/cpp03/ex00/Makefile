@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/10 20:46:57 by rmanzana          #+#    #+#              #
-#    Updated: 2025/10/29 19:52:30 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/10/30 20:04:12 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME        = ClapTrap
 
 COMPILER    = c++
 
-CFLAGS      = -Wall -Werror -Wextra -std=c++98
+CFLAGS      = -Wall -Werror -Wextra -std=c++98 -Wshadow
 
 SRC_DIR     = src/
 OBJ_DIR     = obj/
