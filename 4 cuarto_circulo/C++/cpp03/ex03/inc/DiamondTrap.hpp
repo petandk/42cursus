@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 20:10:33 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/10/30 21:11:39 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:19:42 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class DiamondTrap : public FragTrap, public ScavTrap
 		DiamondTrap &operator=(const DiamondTrap &other);
 		~DiamondTrap(void);
 
-		void	attack(const std::string &target);
+		using 	ScavTrap::attack;
 		void	whoAmI(void);
 	
 	private:
