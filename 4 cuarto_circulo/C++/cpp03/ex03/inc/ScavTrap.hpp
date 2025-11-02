@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 20:10:33 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/10/30 20:09:46 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/11/02 17:56:59 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ class ScavTrap : virtual public ClapTrap
 		ScavTrap &operator=(const ScavTrap &other);
 		~ScavTrap(void);
 
+		void	attack(const std::string &target);
+		
 		void	guardGate(void);
 };

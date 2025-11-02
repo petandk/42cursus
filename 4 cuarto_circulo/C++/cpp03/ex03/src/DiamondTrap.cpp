@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 20:23:16 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/10/30 21:17:51 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/11/02 17:37:53 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,14 @@ DiamondTrap::DiamondTrap(void)
 }
 /*
 	Constructor with name
+	Even if the output is the same, the "right" way for multiple inheritance
+	is calling ALL the constructors
+	DiamondTrap::DiamondTrap(const std::string &name)
+		:ClapTrap(name + "_clap_name")
+		
 */
 DiamondTrap::DiamondTrap(const std::string &name)
-	:ClapTrap(name + "_clap_name")
+	:ClapTrap(name + "_clap_name"), FragTrap(name + "_frag_name"), ScavTrap(name + "_scav_name")
 {
 	this->_name = name;
 	this->_health = 100;

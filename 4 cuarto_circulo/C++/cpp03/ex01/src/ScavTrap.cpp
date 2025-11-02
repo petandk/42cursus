@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 20:23:16 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/10/30 18:50:01 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/11/02 17:46:16 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,20 @@ ScavTrap::~ScavTrap(void)
 {
 	std::cout << "ScavTrap: Destructor for " << this->_name << " called" << std::endl;
 
+}
+
+void	ScavTrap::attack(const std::string &target)
+{
+	if (this->_energy > 0 && this->_health > 0)
+	{
+		std::cout << "ScavTrap: " << this->_name << 
+		" attacks " << target << " causing "
+		<< this->_damage << " points of damage, lol!" << 
+		std::endl;
+		this->_energy--;
+	}
+	else
+		std::cout << "ScavTrap: " << this->_name << " cannot attack, lol!" << std::endl;
 }
 
 void	ScavTrap::guardGate(void)
