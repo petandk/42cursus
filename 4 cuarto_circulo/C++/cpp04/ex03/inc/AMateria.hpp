@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 18:52:33 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/11/05 20:14:46 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/11/06 19:17:26 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 class ICharacter;
 
-class AMateria{
+class AMateria
+{
 	public:
 		AMateria(void);
 		AMateria(std::string const &type);

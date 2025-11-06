@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/10 20:46:57 by rmanzana          #+#    #+#              #
-#    Updated: 2025/11/05 19:48:49 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/11/06 19:24:44 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SOURCE_FILES = main.cpp \
 				AMateria.cpp \
 				Ice.cpp \
 				Cure.cpp \
-				ICharacter.cpp
+				Character.cpp \
+				MateriaSource.cpp
 
 SRCS		= $(addprefix $(SRC_DIR), $(SOURCE_FILES))
 OBJS		= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRCS))
