@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 18:52:33 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/11/10 18:51:22 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/11/12 16:01:11 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class AMateria
 		AMateria(std::string const &type);
 		AMateria(const AMateria &other);
 		AMateria &operator=(const AMateria &other);
-		~AMateria(void);
+		virtual ~AMateria(void);
 
 		std::string const &getType(void) const;
 

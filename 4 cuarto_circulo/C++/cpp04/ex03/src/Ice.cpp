@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:33:06 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/11/05 20:39:31 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/11/12 17:45:33 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ Ice::Ice(const Ice &other)
 }
 /*
 	Copy assignment
+	Since subject asks for DEEP copy, the type is also copied.
 */
 Ice &Ice::operator=(const Ice &other)
 {
-	(void)other;
+	if (this != &other)
+		this->type = other.type;
 	return (*this);
 }
 /*

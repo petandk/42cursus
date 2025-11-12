@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 16:33:11 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/11/06 18:51:13 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/11/12 17:43:45 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ Character::Character(const Character &other):_name(other._name)
 	}
 }
 /*
-	Copy assignment
+	Copy assignment operator
+	Since subject asks for DEEP copy, the name is also copied.
+	So on the output of a copied Character, the original name
+	should appear.
+	Remove 	this->_name = other._name; to prevent that.
 */
 Character &Character::operator=(const Character &other)
 {
@@ -50,7 +54,7 @@ Character &Character::operator=(const Character &other)
 		this->_name = other._name;
 		for(int i = 0; i < 4; i ++)
 		{
-			if (other._inventory[i] != NULL)
+			if (this->_inventory[i] != NULL)
 			{
 				delete this->_inventory[i];
 				this->_inventory[i] = NULL;
@@ -61,7 +65,7 @@ Character &Character::operator=(const Character &other)
 			if (other._inventory[i] != NULL)
 				this->_inventory[i] = other._inventory[i]->clone();
 			else
-				this->_inventory[i] == NULL;
+				this->_inventory[i] = NULL;
 		}
 	}
 	return(*this);

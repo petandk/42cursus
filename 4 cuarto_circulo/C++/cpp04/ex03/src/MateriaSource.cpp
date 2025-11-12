@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 19:24:34 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/11/10 18:40:53 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/11/12 17:36:29 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 	{
 		for(int i = 0; i < 4; i ++)
 		{
-			if (other._inventory[i] != NULL)
+			if (this->_inventory[i] != NULL)
 			{
 				delete this->_inventory[i];
 				this->_inventory[i] = NULL;
@@ -53,7 +53,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 			if (other._inventory[i] != NULL)
 				this->_inventory[i] = other._inventory[i]->clone();
 			else
-				this->_inventory[i] == NULL;
+				this->_inventory[i] = NULL;
 		}
 	}
 	return(*this);
@@ -68,6 +68,8 @@ MateriaSource::~MateriaSource(void)
 }
 void	MateriaSource::learnMateria(AMateria *materia)
 {
+	if (!materia)
+		return ;
 	int i = 0;
 
 	while (i < 4 && this->_inventory[i] != NULL)
