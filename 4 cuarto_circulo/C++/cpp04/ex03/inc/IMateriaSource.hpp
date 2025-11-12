@@ -6,13 +6,13 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 18:54:30 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/11/06 19:16:47 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/11/10 18:51:36 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include <string>
 #include "AMateria.hpp"
+#include "iostream"
 
 class IMateriaSource
 {

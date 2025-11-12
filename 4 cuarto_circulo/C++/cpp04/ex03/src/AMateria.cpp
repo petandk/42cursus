@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 18:51:58 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/11/05 19:28:03 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/11/10 18:30:07 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,9 @@ AMateria::~AMateria(void)
 std::string const &AMateria::getType(void) const
 {
 	return (this->type);
+}
+
+void AMateria::use(ICharacter &target)
+{
+	(void)target;
 }

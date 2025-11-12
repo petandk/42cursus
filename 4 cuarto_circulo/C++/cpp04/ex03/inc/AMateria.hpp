@@ -6,12 +6,13 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 18:52:33 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/11/06 19:17:26 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/11/10 18:51:22 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include <string>
+#include <iostream>
+
 
 class ICharacter;
 
