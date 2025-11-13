@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/11/12 16:51:05 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/11/13 16:38:15 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(void)
 */
 
 /*
-	Main Tomas
+	Main AIded
 */
 
 int main( void )
@@ -76,9 +76,9 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	std::cout << "3. Creating Character \"vilma\" and \"oktorok\"" << std::endl;
-		Character* vilma = new Character("vilma");
-		std::cout << "Character " << vilma->getName() << " created (empty inventory)" << std::endl;
+	std::cout << "3. Creating Character \"bimba\" and \"oktorok\"" << std::endl;
+		Character* bimba = new Character("bimba");
+		std::cout << "Character " << bimba->getName() << " created (empty inventory)" << std::endl;
 		std::cout << std::endl;
 
 		Character* oktorok = new Character("oktorok");
@@ -87,8 +87,8 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	std::cout << "4. \"vilma\" trying to equip 5 materias and \"oktorok\" one materia" << std::endl;
-		vilma->equip(NULL);
+	std::cout << "4. \"bimba\" trying to equip 5 materias and \"oktorok\" one materia" << std::endl;
+		bimba->equip(NULL);
 		std::cout << "Tried to equip NULL (ignored)" << std::endl;
 		
 		AMateria* tmp;
@@ -101,29 +101,29 @@ int main( void )
 		
 		tmp = src->createMateria("ice");
 		if (tmp != NULL && tmp->getType() == "ice")
-			std::cout << "✓ Created ice materia and equipped to vilma [slot 0]" << std::endl;
-		vilma->equip(tmp);
+			std::cout << "✓ Created ice materia and equipped to bimba [slot 0]" << std::endl;
+		bimba->equip(tmp);
 		
 		tmp = src->createMateria("cure");
 		if (tmp != NULL && tmp->getType() == "cure")
-			std::cout << "✓ Created cure materia and equipped to vilma [slot 1]" << std::endl;
-		vilma->equip(tmp);
+			std::cout << "✓ Created cure materia and equipped to bimba [slot 1]" << std::endl;
+		bimba->equip(tmp);
 		
 		tmp = src->createMateria("cure");
 		if (tmp != NULL && tmp->getType() == "cure")
-			std::cout << "✓ Created cure materia and equipped to vilma [slot 2]" << std::endl;
-		vilma->equip(tmp);
+			std::cout << "✓ Created cure materia and equipped to bimba [slot 2]" << std::endl;
+		bimba->equip(tmp);
 		
 		tmp = src->createMateria("ice");
 		if (tmp != NULL && tmp->getType() == "ice")
-			std::cout << "✓ Created ice materia and equipped to vilma [slot 3]" << std::endl;
-		vilma->equip(tmp);
+			std::cout << "✓ Created ice materia and equipped to bimba [slot 3]" << std::endl;
+		bimba->equip(tmp);
 
 		std::cout << std::endl;
-		std::cout << vilma->getName() << " inventory is now full (4/4 materias)" << std::endl;
+		std::cout << bimba->getName() << " inventory is now full (4/4 materias)" << std::endl;
 		
 		tmp = src->createMateria("ice");
-		vilma->equip(tmp);
+		bimba->equip(tmp);
 		std::cout << "Tried to equip 5th materia (inventory full, should be ignored)" << std::endl;
 		delete tmp;
 
@@ -136,24 +136,24 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	std::cout << "5. Testing Character Assignation overload \"oktorok = vilma\" for deep copy" << std::endl;	
-		*oktorok = *vilma;
-		std::cout << "✓ Assigned vilma's inventory to oktorok (deep copy)" << std::endl;
+	std::cout << "5. Testing Character Assignation overload \"oktorok = bimba\" for deep copy" << std::endl;	
+		*oktorok = *bimba;
+		std::cout << "✓ Assigned bimba's inventory to oktorok (deep copy)" << std::endl;
 		
-		vilma->unequip(0);
-		std::cout << "Unequipped slot 0 from VILMA" << std::endl;
+		bimba->unequip(0);
+		std::cout << "Unequipped slot 0 from BIMBA" << std::endl;
 		std::cout << std::endl;
 
-		std::cout << "Testing VILMA materias (slot 0 should be empty, slots 1,2,3 should work):" << std::endl;
+		std::cout << "Testing BIMBA materias (slot 0 should be empty, slots 1,2,3 should work):" << std::endl;
 		std::cout << "  Slot 0: ";
-		vilma->use(0, *vilma);
+		bimba->use(0, *bimba);
 		std::cout << "(empty)" << std::endl;
 		std::cout << "  Slot 1: ";
-		vilma->use(1, *vilma);
+		bimba->use(1, *bimba);
 		std::cout << "  Slot 2: ";
-		vilma->use(2, *vilma);
+		bimba->use(2, *bimba);
 		std::cout << "  Slot 3: ";
-		vilma->use(3, *vilma);
+		bimba->use(3, *bimba);
 		std::cout << std::endl;
 
 		std::cout << "Testing OKTOROK materias (all 4 slots should work - proves deep copy):" << std::endl;
@@ -165,31 +165,31 @@ int main( void )
 		oktorok->use(2, *oktorok);
 		std::cout << "  Slot 3: ";
 		oktorok->use(3, *oktorok);
-		std::cout << "✓ Deep copy verified: oktorok still has slot 0 after vilma unequipped it" << std::endl;
+		std::cout << "✓ Deep copy verified: oktorok still has slot 0 after bimba unequipped it" << std::endl;
 	std::cout  << std::endl;
 
 // ------------------------------------------------------------------------------------ //
 
-	std::cout << "6. Testing character copy constructor for deep copy \"stardust = Character(vilma)\"" << std::endl;
+	std::cout << "6. Testing character copy constructor for deep copy \"stardust = Character(bimba)\"" << std::endl;
 		
-		std::cout << "Creating stardust as copy of vilma (vilma has slots 1,2,3 filled)" << std::endl;
-		Character* stardust = new Character(*vilma);
+		std::cout << "Creating stardust as copy of bimba (bimba has slots 1,2,3 filled)" << std::endl;
+		Character* stardust = new Character(*bimba);
 		std::cout << "✓ Stardust created with name: " << stardust->getName() << std::endl;
 
 		tmp = src->createMateria("ice");
-		vilma->equip(tmp);
-		std::cout << "✓ Equipped Ice to vilma in slot 0 (after copy)" << std::endl;
+		bimba->equip(tmp);
+		std::cout << "✓ Equipped Ice to bimba in slot 0 (after copy)" << std::endl;
 		
 		std::cout << std::endl;
-		std::cout << "Testing VILMA materias (all 4 slots should be filled now):" << std::endl;
+		std::cout << "Testing BIMBA materias (all 4 slots should be filled now):" << std::endl;
 		std::cout << "  Slot 0: ";
-		vilma->use(0, *vilma);
+		bimba->use(0, *bimba);
 		std::cout << "  Slot 1: ";
-		vilma->use(1, *vilma);
+		bimba->use(1, *bimba);
 		std::cout << "  Slot 2: ";
-		vilma->use(2, *vilma);
+		bimba->use(2, *bimba);
 		std::cout << "  Slot 3: ";
-		vilma->use(3, *vilma);
+		bimba->use(3, *bimba);
 		std::cout << std::endl;
 
 		std::cout << "Testing STARDUST materias (slot 0 empty, slots 1,2,3 filled - proves deep copy):" << std::endl;
@@ -202,7 +202,7 @@ int main( void )
 		stardust->use(2, *stardust);
 		std::cout << "  Slot 3: ";
 		stardust->use(3, *stardust);
-		std::cout << "✓ Deep copy verified: stardust's slot 0 is empty while vilma's is filled" << std::endl;
+		std::cout << "✓ Deep copy verified: stardust's slot 0 is empty while bimba's is filled" << std::endl;
 
 
 	std::cout << std::endl;
@@ -212,20 +212,20 @@ int main( void )
 	std::cout << "7. Testing valid and invalid slot indices" << std::endl;
 		std::cout << "Valid slots (0-3):" << std::endl;
 		std::cout << "  Slot 0: ";
-		vilma->use(0, *stardust);
+		bimba->use(0, *stardust);
 		std::cout << "  Slot 1: ";
-		vilma->use(1, *stardust);
+		bimba->use(1, *stardust);
 		std::cout << "  Slot 2: ";
-		vilma->use(2, *stardust);
+		bimba->use(2, *stardust);
 		std::cout << "  Slot 3: ";
-		vilma->use(3, *stardust);
+		bimba->use(3, *stardust);
 		std::cout << std::endl;
 		std::cout << "Invalid slots (should do nothing):" << std::endl;
 		std::cout << "  Slot 10: ";
-		vilma->use(10, *stardust);
+		bimba->use(10, *stardust);
 		std::cout << "(no output = correct)" << std::endl;
 		std::cout << "  Slot -1: ";
-		vilma->use(-1, *stardust);
+		bimba->use(-1, *stardust);
 		std::cout << "(no output = correct)" << std::endl;
 	std::cout << std::endl;
 
@@ -233,11 +233,11 @@ int main( void )
 
 	std::cout << "8. Testing unequip functionality" << std::endl;
 		std::cout << "Before unequip - Slot 0: ";
-		vilma->use(0, *oktorok);
-		vilma->unequip(0);
-		std::cout << "✓ Unequipped slot 0 from vilma" << std::endl;
+		bimba->use(0, *oktorok);
+		bimba->unequip(0);
+		std::cout << "✓ Unequipped slot 0 from bimba" << std::endl;
 		std::cout << "After unequip - Slot 0: ";
-		vilma->use(0, *oktorok);
+		bimba->use(0, *oktorok);
 		std::cout << "(no output = correct, slot is empty)" << std::endl;
 
 	std::cout << std::endl;
@@ -458,7 +458,7 @@ int main( void )
 	delete lucifer;
 	delete stardust;
 	delete oktorok;
-	delete vilma;
+	delete bimba;
 	delete src;
 	
 	std::cout << "✓ All objects deleted successfully - No memory leaks detected by destructors" << std::endl;

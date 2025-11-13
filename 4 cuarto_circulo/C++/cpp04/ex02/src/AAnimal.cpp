@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/11/05 17:44:39 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/11/13 16:14:03 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,15 @@ AAnimal::~AAnimal(void)
 {
 	std::cout << "Destructor: AAnimal sacrified" << std::endl;
 }
+/*
+	the whole point of making a abstract class and making a abstract function
+	means that the Abstract class doesn't have to implement that function
+	so... no makeSound here!!!
 
 void	AAnimal::makeSound(void) const
 {
 	std::cout << "No sound for you" << std::endl;
-}
+}*/
 
 std::string	AAnimal::getType(void) const
 {
