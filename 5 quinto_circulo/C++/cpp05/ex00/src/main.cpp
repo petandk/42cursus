@@ -6,16 +6,22 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/12/01 19:20:21 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/12/04 19:48:01 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Bureaucrat.hpp"
 
+#define RED "\033[31m"
+#define YELLOW "\033[33m"
+#define CYAN "\033[36m"
+#define RESET "\033[0m"
+
 int	main(void)
 {
+	std::cout << YELLOW << std::endl;
 	std::cout << "	✅ Constructors" << std::endl;
-	std::cout << "------------------" << std::endl << std::endl;
+	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	Bureaucrat def;
 	Bureaucrat name("Ellon");
@@ -31,29 +37,33 @@ int	main(void)
 	std::cout << "Expected: Muks, grade 150" << std::endl;
 	std::cout << full << std::endl;
 
+	std::cout << YELLOW << std::endl;
 	std::cout << "	⚠️ Constructors" << std::endl;
-	std::cout << "------------------" << std::endl << std::endl;
+	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	try
 	{
+		std::cout << "[TEST] grade -5 Bureaucrat, error expected." << std::endl;
 		Bureaucrat invalid(-5);
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "🆘 Error: " << e.what() << std::endl;
+		std::cout << RED << "🆘 Error: " << e.what() << RESET << std::endl;
 	}
 
 	try
 	{
+		std::cout << "[TEST] grade 200 Bureaucrat, error expected." << std::endl;
 		Bureaucrat novalid(200);
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "🆘 Error: " << e.what() << std::endl;
+		std::cout << RED << "🆘 Error: " << e.what() << RESET << std::endl;
 	}
 
+	std::cout << YELLOW << std::endl;
 	std::cout << "	©️ Copy Constructor" << std::endl;
-	std::cout << "------------------" << std::endl << std::endl;
+	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	try
 	{
@@ -63,11 +73,12 @@ int	main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "🆘 Unexpected error: " << e.what() << std::endl;
+		std::cout << RED << "🆘 Unexpected error: " << e.what() << RESET << std::endl;
 	}
 
+	std::cout << YELLOW << std::endl;
 	std::cout << "	🔁 Assignation operator" << std::endl;
-	std::cout << "------------------" << std::endl << std::endl;
+	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	Bureaucrat assign("Lenon");
 	try
@@ -78,11 +89,12 @@ int	main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "🆘 Unexpected error: " << e.what() << std::endl;
+		std::cout << RED << "🆘 Unexpected error: " << e.what() << RESET << std::endl;
 	}
 
+	std::cout << YELLOW << std::endl;
 	std::cout << "	♻️ Getters" << std::endl;
-	std::cout << "------------------" << std::endl << std::endl;
+	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	try
 	{
@@ -93,11 +105,12 @@ int	main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "🆘 Unexpected error: " << e.what() << std::endl;
+		std::cout << RED << "🆘 Unexpected error: " << e.what() << RESET << std::endl;
 	}
 
+	std::cout << YELLOW << std::endl;
 	std::cout << "	⏪ << operator" << std::endl;
-	std::cout << "------------------" << std::endl << std::endl;
+	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	try
 	{
@@ -105,11 +118,12 @@ int	main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "🆘 Unexpected error: " << e.what() << std::endl;
+		std::cout << RED << "🆘 Unexpected error: " << e.what() << RESET << std::endl;
 	}
 
+	std::cout << YELLOW << std::endl;
 	std::cout << "	⤴️ upgrade" << std::endl;
-	std::cout << "------------------" << std::endl << std::endl;
+	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	Bureaucrat top(1);
 	std::cout << "Expected: Bureaucrat Doe, grade 1" << std::endl;
@@ -121,7 +135,7 @@ int	main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "🆘 Error: " << e.what() << std::endl;
+		std::cout << RED << "🆘 Error: " << e.what() << RESET << std::endl;
 	}
 
 	Bureaucrat bottom(150);
@@ -137,11 +151,12 @@ int	main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "🆘 Unexpected error: " << e.what() << std::endl;
+		std::cout << RED << "🆘 Unexpected error: " << e.what() << RESET << std::endl;
 	}
 	
+	std::cout << YELLOW << std::endl;
 	std::cout << "	⤵️ downgrade" << std::endl;
-	std::cout << "------------------" << std::endl << std::endl;
+	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	try
 	{
@@ -156,7 +171,7 @@ int	main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "🆘 Unexpected error: " << e.what() << std::endl;
+		std::cout << RED << "🆘 Unexpected error: " << e.what() << RESET << std::endl;
 	}
 
 	Bureaucrat bottom2(150);
@@ -169,8 +184,9 @@ int	main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "🆘 Error: " << e.what() << std::endl;
+		std::cout << RED << "🆘 Error: " << e.what() << RESET << std::endl;
 	}
-
+	std::cout << std::endl;
+	
 	return (0);
 }
