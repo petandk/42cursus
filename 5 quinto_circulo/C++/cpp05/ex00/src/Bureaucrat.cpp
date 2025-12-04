@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:20:46 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/12/04 16:08:33 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/12/04 19:50:30 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,6 @@ void Bureaucrat::_checkGrade(int grade)
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat)
 {
-	out << bureaucrat.getName() << ", grade " << bureaucrat.getGrade();
+	out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
 	return (out);
 }

@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/12/04 19:48:01 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/12/04 20:01:29 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,22 @@ int	main(void)
 	Bureaucrat grade(1);
 	Bureaucrat full("Muks", 150);
 
-	std::cout << "Expected: Bureaucrat Doe, grade 1" << std::endl;
+	std::cout << CYAN << "Expected: Bureaucrat Doe, bureaucrat grade 1" << RESET << std::endl;
 	std::cout << def << std::endl;
-	std::cout << "Expected: Ellon, grade 1" << std::endl;
+	std::cout << CYAN << "Expected: Ellon, bureaucrat grade 1" << RESET << std::endl;
 	std::cout << name << std::endl;
-	std::cout << "Expected: Bureaucrat Doe, grade 1" << std::endl;
+	std::cout << CYAN << "Expected: Bureaucrat Doe, bureaucrat grade 1" << RESET << std::endl;
 	std::cout << grade << std::endl;
-	std::cout << "Expected: Muks, grade 150" << std::endl;
+	std::cout << CYAN << "Expected: Muks, bureaucrat grade 150" << RESET << std::endl;
 	std::cout << full << std::endl;
 
 	std::cout << YELLOW << std::endl;
-	std::cout << "	⚠️ Constructors" << std::endl;
+	std::cout << "	⚠️  Constructors" << std::endl;
 	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	try
 	{
-		std::cout << "[TEST] grade -5 Bureaucrat, error expected." << std::endl;
+		std::cout << CYAN << "[TEST] grade -5 Bureaucrat, error expected." << RESET << std::endl;
 		Bureaucrat invalid(-5);
 	}
 	catch (std::exception &e)
@@ -53,7 +53,7 @@ int	main(void)
 
 	try
 	{
-		std::cout << "[TEST] grade 200 Bureaucrat, error expected." << std::endl;
+		std::cout << CYAN << "[TEST] grade 200 Bureaucrat, error expected." << RESET << std::endl;
 		Bureaucrat novalid(200);
 	}
 	catch (std::exception &e)
@@ -62,13 +62,13 @@ int	main(void)
 	}
 
 	std::cout << YELLOW << std::endl;
-	std::cout << "	©️ Copy Constructor" << std::endl;
+	std::cout << "	©️  Copy Constructor" << std::endl;
 	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	try
 	{
 		Bureaucrat copy(full);
-		std::cout << "Expected: Muks, grade 150" << std::endl;
+		std::cout << CYAN << "Expected: Muks, bureaucrat grade 150" << RESET << std::endl;
 		std::cout << copy << std::endl;
 	}
 	catch (std::exception &e)
@@ -84,7 +84,7 @@ int	main(void)
 	try
 	{
 		assign = grade;
-		std::cout << "Expected: Lenon, grade 1 (name doesn't change)" << std::endl;
+		std::cout << CYAN << "Expected: Lenon, bureaucrat grade 1 (name doesn't change)" << RESET << std::endl;
 		std::cout << assign << std::endl;
 	}
 	catch (std::exception &e)
@@ -93,14 +93,14 @@ int	main(void)
 	}
 
 	std::cout << YELLOW << std::endl;
-	std::cout << "	♻️ Getters" << std::endl;
+	std::cout << "	♻️  Getters" << std::endl;
 	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	try
 	{
-		std::cout << "Expected: Lenon" << std::endl;
+		std::cout << CYAN << "Expected: Lenon" << RESET << std::endl;
 		std::cout << assign.getName() << std::endl;
-		std::cout << "Expected: 1" << std::endl;
+		std::cout << CYAN << "Expected: 1" << RESET << std::endl;
 		std::cout << assign.getGrade() << std::endl;
 	}
 	catch (std::exception &e)
@@ -109,11 +109,12 @@ int	main(void)
 	}
 
 	std::cout << YELLOW << std::endl;
-	std::cout << "	⏪ << operator" << std::endl;
+	std::cout << "	⏪ << Operator" << std::endl;
 	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	try
 	{
+		std::cout << CYAN << "Expected: Bureaucrat Doe, bureaucrat grade 1" << RESET << std::endl;
 		std::cout << def << std::endl;
 	}
 	catch (std::exception &e)
@@ -122,11 +123,11 @@ int	main(void)
 	}
 
 	std::cout << YELLOW << std::endl;
-	std::cout << "	⤴️ upgrade" << std::endl;
+	std::cout << "	⤴️  Upgrade" << std::endl;
 	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	Bureaucrat top(1);
-	std::cout << "Expected: Bureaucrat Doe, grade 1" << std::endl;
+	std::cout << CYAN << "Expected: Bureaucrat Doe, bureaucrat grade 1" << RESET << std::endl;
 	std::cout << top << std::endl;
 	try
 	{
@@ -139,14 +140,14 @@ int	main(void)
 	}
 
 	Bureaucrat bottom(150);
-	std::cout << "Expected: Bureaucrat Doe, grade 150" << std::endl;
+	std::cout << CYAN << "Expected: Bureaucrat Doe, bureaucrat grade 150" << RESET << std::endl;
 	std::cout << bottom << std::endl;
 	try
 	{
 		bottom.upgrade();
 		bottom.upgrade();
 		bottom.upgrade();
-		std::cout << "Expected: Bureaucrat Doe, grade 147" << std::endl;
+		std::cout << CYAN << "Expected: Bureaucrat Doe, bureaucrat grade 147" << RESET << std::endl;
 		std::cout << bottom << std::endl;
 	}
 	catch (std::exception &e)
@@ -155,18 +156,18 @@ int	main(void)
 	}
 	
 	std::cout << YELLOW << std::endl;
-	std::cout << "	⤵️ downgrade" << std::endl;
+	std::cout << "	⤵️  Downgrade" << std::endl;
 	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	try
 	{
 		Bureaucrat top2(1);
-		std::cout << "Expected: Bureaucrat Doe, grade 1" << std::endl;
+		std::cout << CYAN << "Expected: Bureaucrat Doe, bureaucrat grade 1" << RESET << std::endl;
 		std::cout << top2 << std::endl;
 		top2.downgrade();
 		top2.downgrade();
 		top2.downgrade();
-		std::cout << "Expected: Bureaucrat Doe, grade 4" << std::endl;
+		std::cout << CYAN << "Expected: Bureaucrat Doe, bureaucrat grade 4" << RESET << std::endl;
 		std::cout << top2 << std::endl;
 	}
 	catch (std::exception &e)
@@ -175,7 +176,7 @@ int	main(void)
 	}
 
 	Bureaucrat bottom2(150);
-	std::cout << "Expected: Bureaucrat Doe, grade 150" << std::endl;
+	std::cout << CYAN << "Expected: Bureaucrat Doe, bureaucrat grade 150" << RESET << std::endl;
 	std::cout << bottom2 << std::endl;
 	try
 	{
