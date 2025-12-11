@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:20:46 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/12/09 18:21:35 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:00:31 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 
 Bureaucrat::~Bureaucrat(void)
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "Destructor called." << std::endl;
 }
 
 const std::string Bureaucrat::getName(void) const
@@ -97,7 +97,7 @@ void	Bureaucrat::downgrade(void)
 	this->_grade++;
 }
 
-void Bureaucrat::_checkGrade(int grade)
+void	Bureaucrat::_checkGrade(int grade)
 {
 	if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
