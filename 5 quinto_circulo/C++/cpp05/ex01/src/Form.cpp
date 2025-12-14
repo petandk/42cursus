@@ -6,11 +6,12 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:58:00 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/12/09 18:19:31 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/12/14 16:20:53 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/Form.hpp"
+#include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form(void)
 : _name("unnamed"), _signed(false), _signGrade(1), _executeGrade(1)
@@ -70,6 +71,15 @@ int	Form::requiredExecuteGrade(void) const
 	return (this->_executeGrade);
 }
 
+void	Form::beSigned(const Bureaucrat &bureaucrat)
+{
+	if (this->_signed)
+		throw Form::AlreadySignedForm();	
+	if (this->requiredSignGrade() < bureaucrat.getGrade())
+		throw Form::GradeTooLowException();
+	this->_signed = true;
+}
+
 void	Form::_checkGrade(int grade, const std::string &gradeType)
 {
 	if (grade > 150 || grade < 1)
@@ -90,6 +100,11 @@ const char *Form::GradeTooLowException::what() const throw()
 	return ("Form: Grade is too low!");
 }
 
+const char *Form::AlreadySignedForm::what() const throw()
+{
+	return ("Form: This form was already signed!");
+}
+
 std::ostream &operator<<(std::ostream &out, const Form &form)
 {
 	out << "Form: " << form.getName() 
@@ -98,3 +113,4 @@ std::ostream &operator<<(std::ostream &out, const Form &form)
 		<< "\nExecute grade required: " << form.requiredExecuteGrade();
 	return (out);
 }
+

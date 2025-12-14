@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/12/04 20:01:29 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/12/14 16:55:10 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	main(void)
 	Bureaucrat name("Ellon");
 	Bureaucrat grade(1);
 	Bureaucrat full("Muks", 150);
+	
+	std::cout << std::endl;
 
 	std::cout << CYAN << "Expected: Bureaucrat Doe, bureaucrat grade 1" << RESET << std::endl;
 	std::cout << def << std::endl;

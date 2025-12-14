@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 19:51:01 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/12/09 18:21:20 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/12/14 15:58:24 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Bureaucrat{
 		
 		~Bureaucrat(void);
 
-		const std::string getName(void) const;
+		const std::string &getName(void) const;
 		int			getGrade(void) const;
 
 		class GradeTooHighException: public std::exception{

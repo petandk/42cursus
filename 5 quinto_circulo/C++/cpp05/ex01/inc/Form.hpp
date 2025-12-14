@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:14:49 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/12/09 17:36:53 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/12/14 16:20:54 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <string>
 # include <exception>
 
+class Bureaucrat;
+
 class Form{
 	public:
 		Form(void);
@@ -26,16 +28,21 @@ class Form{
 		
 		~Form(void);
 
-		const std::string &getName(void) const;
-		bool		isSigned(void) const;
-		int			requiredSignGrade(void) const;
-		int			requiredExecuteGrade(void) const;
-		
+		const std::string	&getName(void) const;
+		bool				isSigned(void) const;
+		int					requiredSignGrade(void) const;
+		int					requiredExecuteGrade(void) const;
+		void				beSigned(const Bureaucrat &bureaucrat);
+
 		class GradeTooHighException:public std::exception{
 			public:
 				virtual const char *what() const throw();
 		};
 		class GradeTooLowException:public std::exception{
+			public:
+				virtual const char *what() const throw();
+		};
+		class AlreadySignedForm:public std::exception{
 			public:
 				virtual const char *what() const throw();
 		};
