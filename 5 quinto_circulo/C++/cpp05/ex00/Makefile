@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/10 20:46:57 by rmanzana          #+#    #+#              #
-#    Updated: 2025/11/19 19:50:36 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/12/15 19:32:06 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,5 +59,13 @@ fclean: clean
 
 re:	fclean all
 
+run: all
+	@echo "\033[1;32m"
+	@echo "==================================================="
+	@echo " ⚰️​  Executing $(NAME)... ⚰️​​​​"
+	@echo "==================================================="
+	@echo "\033[0m"
+	./$(NAME)
+
 -include $(DEPS)
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re run

@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 19:51:01 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/12/15 19:38:58 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/12/16 18:50:02 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <string>
 # include <exception>
 
-class Form;
+class AForm;
 
 class Bureaucrat{
 	public:
@@ -32,7 +32,7 @@ class Bureaucrat{
 
 		const  std::string	&getName(void) const;
 		int					getGrade(void) const;
-		void				signForm(Form &form);
+		void				signForm(AForm &form);
 
 		class GradeTooHighException: public std::exception{
 			public:
@@ -45,6 +45,8 @@ class Bureaucrat{
 
 		void	upgrade(void);
 		void	downgrade(void);
+
+		void	executeForm(AForm const &form) const;
 	
 	private:
 		const std::string	_name;

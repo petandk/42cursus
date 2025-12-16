@@ -6,11 +6,11 @@
 #    By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/10 20:46:57 by rmanzana          #+#    #+#              #
-#    Updated: 2025/12/15 19:32:12 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/12/16 20:37:08 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = Maggots
+NAME        = Harbor
 
 COMPILER    = c++
 
@@ -22,7 +22,10 @@ INCLUDE_DIR = inc/
 
 SOURCE_FILES = main.cpp \
 				Bureaucrat.cpp \
-				Form.cpp
+				AForm.cpp \
+				ShrubberyCreationForm.cpp \
+				RobotomyRequestForm.cpp \
+				PresidentialPardonForm.cpp
 
 SRCS		= $(addprefix $(SRC_DIR), $(SOURCE_FILES))
 OBJS		= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRCS))

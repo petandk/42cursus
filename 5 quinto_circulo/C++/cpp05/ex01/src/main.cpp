@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/12/14 17:17:06 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/12/15 19:52:19 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "Form.hpp"
 
 #define RED "\033[31m"
+#define GREEN "\033[32m"
 #define YELLOW "\033[33m"
 #define CYAN "\033[36m"
 #define RESET "\033[0m"
@@ -124,7 +125,6 @@ int	main(void)
 		
 		std::cout << CYAN << "[TEST] Boss (grade 1) signs Contract (required grade < 10)" << RESET << std::endl;
 		std::cout << CYAN << "Before:\n" << RESET << contract << std::endl;
-		std::cout << RED << std::endl;
 		boss.signForm(contract);
 		std::cout << CYAN << "\nAfter:\n" << RESET << contract << std::endl;
 	}
@@ -144,7 +144,6 @@ int	main(void)
 		
 		std::cout << CYAN << "[TEST] Intern (grade 150) tries to sign Top Secret (required grade 1)" << RESET << std::endl;
 		std::cout << CYAN << "Before:\n" << RESET << topSecret << std::endl;
-		std::cout << RED << std::endl;
 		intern.signForm(topSecret);
 		std::cout << CYAN << "\nAfter:\n" << RESET << topSecret << std::endl;
 	}
