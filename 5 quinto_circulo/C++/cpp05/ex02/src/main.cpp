@@ -6,7 +6,7 @@
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:46:53 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/12/16 20:31:09 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/12/19 19:05:14 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
-#include <cstdlib>
-#include <ctime>
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
@@ -26,8 +24,6 @@
 
 int	main(void)
 {
-	srand(time(NULL));
-	
 	std::cout << YELLOW << std::endl;
 	std::cout << "	🤵 Bureaucrat Constructors" << std::endl;
 	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
@@ -48,7 +44,7 @@ int	main(void)
 	std::cout << "------------------------------------" << RESET << std::endl << std::endl;
 
 	ShrubberyCreationForm shrubbery("tree");
-	RobotomyRequestForm robotomy("Bender");
+	RobotomyRequestForm robotomy("Tamagochi");
 	PresidentialPardonForm pardon("Puigdemont");
 
 	std::cout << shrubbery << std::endl;
@@ -71,7 +67,7 @@ int	main(void)
 
 	try
 	{
-		std::cout << std::endl << CYAN << "[TEST] God (1) signs successfully" << RESET << std::endl;
+		std::cout << CYAN << "[TEST] God (1) signs successfully" << RESET << std::endl;
 		god.signForm(shrubbery);
 	}
 	catch (std::exception &e)
@@ -81,7 +77,7 @@ int	main(void)
 
 	try
 	{
-		std::cout << std::endl << CYAN << "[TEST] Intern (150) tries to execute (needs 137)" << RESET << std::endl;
+		std::cout << CYAN << "[TEST] Intern (150) tries to execute (needs 137)" << RESET << std::endl;
 		intern.executeForm(shrubbery);
 	}
 	catch (std::exception &e)
@@ -91,7 +87,7 @@ int	main(void)
 
 	try
 	{
-		std::cout << std::endl << CYAN << "[TEST] God (1) executes successfully" << RESET << std::endl;
+		std::cout << CYAN << "[TEST] God (1) executes successfully" << RESET << std::endl;
 		god.executeForm(shrubbery);
 		std::cout << GREEN << "✓ Check if 'tree_shrubbery' file was created!" << RESET << std::endl;
 	}
@@ -116,7 +112,7 @@ int	main(void)
 
 	try
 	{
-		std::cout << std::endl << CYAN << "[TEST] Random (50) signs successfully" << RESET << std::endl;
+		std::cout << CYAN << "[TEST] Random (50) signs successfully" << RESET << std::endl;
 		middle.signForm(robotomy);
 	}
 	catch (std::exception &e)
@@ -126,7 +122,7 @@ int	main(void)
 
 	try
 	{
-		std::cout << std::endl << CYAN << "[TEST] Random (50) tries to execute (needs 45)" << RESET << std::endl;
+		std::cout << CYAN << "[TEST] Random (50) tries to execute (needs 45)" << RESET << std::endl;
 		middle.executeForm(robotomy);
 	}
 	catch (std::exception &e)
@@ -136,10 +132,10 @@ int	main(void)
 
 	try
 	{
-		std::cout << std::endl << CYAN << "[TEST] God (1) executes 5 times (testing 50% randomness)" << RESET << std::endl;
+		std::cout << CYAN << "[TEST] God (1) executes 5 times (testing 50% randomness)" << RESET << std::endl;
 		for (int i = 0; i < 5; i++)
 		{
-			std::cout << std::endl << CYAN << "Attempt " << i + 1 << ":" << RESET << std::endl;
+			std::cout << CYAN << "Attempt " << i + 1 << ":" << RESET << std::endl;
 			god.executeForm(robotomy);
 		}
 	}
@@ -164,7 +160,7 @@ int	main(void)
 
 	try
 	{
-		std::cout << std::endl << CYAN << "[TEST] God (1) signs successfully" << RESET << std::endl;
+		std::cout << CYAN << "[TEST] God (1) signs successfully" << RESET << std::endl;
 		god.signForm(pardon);
 	}
 	catch (std::exception &e)
@@ -174,7 +170,7 @@ int	main(void)
 
 	try
 	{
-		std::cout << std::endl << CYAN << "[TEST] Random (50) tries to execute (needs 5)" << RESET << std::endl;
+		std::cout << CYAN << "[TEST] Random (50) tries to execute (needs 5)" << RESET << std::endl;
 		middle.executeForm(pardon);
 	}
 	catch (std::exception &e)
@@ -184,7 +180,7 @@ int	main(void)
 
 	try
 	{
-		std::cout << std::endl << CYAN << "[TEST] God (1) executes successfully" << RESET << std::endl;
+		std::cout << CYAN << "[TEST] God (1) executes successfully" << RESET << std::endl;
 		god.executeForm(pardon);
 	}
 	catch (std::exception &e)

@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 12:35:17 by rmanzana          #+#    #+#             */
-/*   Updated: 2025/12/19 19:05:43 by rmanzana         ###   ########.fr       */
+/*   Updated: 2025/12/16 17:47:35 by rmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
+#ifndef SHRUBBERYCREATIONFROM_HPP
+# define SHRUBBERYCREATIONFROM_HPP
 
 # include "AForm.hpp"
+# include <fstream>
 
-class RobotomyRequestForm : public AForm{
+class ShrubberyCreationForm : public AForm{
 	public:
-		RobotomyRequestForm(void);
-		RobotomyRequestForm(const std::string &target);
-		RobotomyRequestForm(const RobotomyRequestForm &other);
-		RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
-		~RobotomyRequestForm(void);
+		ShrubberyCreationForm(void);
+		ShrubberyCreationForm(const std::string &target);
+		ShrubberyCreationForm(const ShrubberyCreationForm &other);
+		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
+		~ShrubberyCreationForm(void);
 
 		const std::string	&getTarget(void) const;
 		void				execute(Bureaucrat const &executor) const;
 
+		class FileCreationException:public std::exception{
+			public:
+				virtual const char *what() const throw();
+		};
+		
 	private:
-		const std::string	_target;
-		static void			_initRandom(void);
+		const std::string _target;
 };
 
 #endif
