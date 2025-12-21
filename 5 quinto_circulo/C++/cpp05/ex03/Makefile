@@ -6,7 +6,7 @@
 #    By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/10 20:46:57 by rmanzana          #+#    #+#              #
-#    Updated: 2025/12/18 16:31:02 by rmanzana         ###   ########.fr        #
+#    Updated: 2025/12/21 19:15:36 by rmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME        = Harbor
 
 COMPILER    = c++
 
-CFLAGS      = -Wall -Werror -Wextra -std=c++98 -Wshadow
+CFLAGS      = -Wall -Werror -Wextra -std=c++98-g -Wshadow
 
 SRC_DIR     = src/
 OBJ_DIR     = obj/
