@@ -1,32 +1,15 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: rmanzana <rmanzana@student.42barcelona.    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/08/10 20:46:57 by rmanzana          #+#    #+#              #
-#    Updated: 2025/12/21 19:15:36 by rmanzana         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME        = Harbor
+NAME        = convert
 
 COMPILER    = c++
 
-CFLAGS      = -Wall -Werror -Wextra -std=c++98 -g -Wshadow
+CFLAGS      = -Wall -Werror -Wextra -std=c++98 -Wshadow
+DEBUG_FLAGS = -DDEBUG -g
 
 SRC_DIR     = src/
 OBJ_DIR     = obj/
 INCLUDE_DIR = inc/
 
-SOURCE_FILES = main.cpp \
-				Bureaucrat.cpp \
-				AForm.cpp \
-				ShrubberyCreationForm.cpp \
-				RobotomyRequestForm.cpp \
-				PresidentialPardonForm.cpp \
-				Intern.cpp
+SOURCE_FILES =
 
 SRCS		= $(addprefix $(SRC_DIR), $(SOURCE_FILES))
 OBJS		= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRCS))
@@ -71,6 +54,14 @@ run: all
 	@echo "==================================================="
 	@echo "\033[0m"
 	./$(NAME)
+
+debug: CFLAGS += $(DEBUG_FLAGS)
+debug: fclean all
+	@echo "\033[1;31m"
+	@echo "==================================================="
+	@echo "	🐛 DEBUG MODE ENABLED 🐛"
+	@echo "==================================================="
+	@echo "\033[0m"
 
 -include $(DEPS)
 .PHONY: all clean fclean re run

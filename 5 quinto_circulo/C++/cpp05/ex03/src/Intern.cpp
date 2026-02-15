@@ -66,7 +66,7 @@ AForm	*Intern::makeForm(const std::string &formName, const std::string &formTarg
 		}
 		default:
 		{
-			std::cout << "Intern: " << formName << "doesn't exist." << std::endl;
+			std::cout << "Intern: " << formName << " doesn't exist." << std::endl;
 			return (NULL);
 		}
 	}
