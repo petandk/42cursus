@@ -62,6 +62,11 @@ debug: fclean all
 	@echo "	🐛 DEBUG MODE ENABLED 🐛"
 	@echo "==================================================="
 	@echo "\033[0m"
+ 
+ #		To show debug info you should do somenthing like this:
+ #				#ifdef DEBUG
+ #                   std::cout << "debug message" << std::endl;
+ #               #endif
 
 -include $(DEPS)
 .PHONY: all clean fclean re run
