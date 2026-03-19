@@ -11,7 +11,9 @@ class ScalarConverter
         ScalarConverter &operator=(const ScalarConverter &other);
         ~ScalarConverter();
 
-        int isBlacklisted(const std::string &literal);
+        static int  isBlacklisted(const std::string &literal);
+
+        static int  numType(const std::string &literal);
 
         int identify(const std::string &literal);
 
@@ -21,12 +23,6 @@ class ScalarConverter
         void beDouble(double d);
 
     public:
-        /*
-            1- detect type (convert calls identify)
-            2- convert from string to actual type (identify returns typeID and then it gets casted still inside convert)
-            3- convert to other types
-            4- display results
-        */
         static void convert(const std::string &literal);
 };
 #endif
