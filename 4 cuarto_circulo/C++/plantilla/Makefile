@@ -58,5 +58,10 @@ fclean: clean
 
 re:	fclean all
 
--include $(DEPS)
-.PHONY: all clean fclean re
+run: all
+	@echo "\033[1;32m"
+	@echo "==================================================="
+	@echo " ⚰️​  Executing $(NAME)... ⚰️​​​​"
+	@echo "==================================================="
+	@echo "\033[0m"
+	./$(NAME)
