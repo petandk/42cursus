@@ -9,7 +9,8 @@ SRC_DIR     = src/
 OBJ_DIR     = obj/
 INCLUDE_DIR = inc/
 
-SOURCE_FILES =
+SOURCE_FILES = ScalarConveter.cpp \
+                main.cpp
 
 SRCS		= $(addprefix $(SRC_DIR), $(SOURCE_FILES))
 OBJS		= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRCS))
@@ -62,7 +63,7 @@ debug: fclean all
 	@echo "	🐛 DEBUG MODE ENABLED 🐛"
 	@echo "==================================================="
 	@echo "\033[0m"
- 
+
  #		To show debug info you should do somenthing like this:
  #				#ifdef DEBUG
  #                   std::cout << "debug message" << std::endl;

@@ -11,16 +11,16 @@ class ScalarConverter
         ScalarConverter &operator=(const ScalarConverter &other);
         ~ScalarConverter();
 
-        static int  isBlacklisted(const std::string &literal);
-
+        static bool isBlacklisted(const std::string &literal);
+        static int isChar(const std::string &literal);
         static int  numType(const std::string &literal);
 
-        int identify(const std::string &literal);
+        static int identify(const std::string &literal);
 
-        void beString(char c);
-        void beInt(int i);
-        void beFloat(float f);
-        void beDouble(double d);
+        static void printFromChar(char c);
+        static void printFromInt(bool valid, int i);
+        static void printFromFloat(float f);
+        static void printFromDouble(double d);
 
     public:
         static void convert(const std::string &literal);
