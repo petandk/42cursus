@@ -9,7 +9,7 @@ SRC_DIR     = src/
 OBJ_DIR     = obj/
 INCLUDE_DIR = inc/
 
-SOURCE_FILES = ScalarConveter.cpp \
+SOURCE_FILES = ScalarConverter.cpp \
                 main.cpp
 
 SRCS		= $(addprefix $(SRC_DIR), $(SOURCE_FILES))

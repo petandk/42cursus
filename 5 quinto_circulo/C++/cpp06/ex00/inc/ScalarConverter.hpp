@@ -17,8 +17,11 @@ class ScalarConverter
 
         static int identify(const std::string &literal);
 
+        static void auxChar(double d);
+        static void auxInt(double d);
+
         static void printFromChar(char c);
-        static void printFromInt(bool valid, int i);
+        static void printFromInt( int i);
         static void printFromFloat(float f);
         static void printFromDouble(double d);
 
