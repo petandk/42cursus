@@ -59,7 +59,7 @@ int ScalarConverter::isChar(const std::string &literal)
  * 2 - double
  * 3 - float
  */
-int ScalarConverter::numType(const std::string &literal)
+NumType ScalarConverter::numType(const std::string &literal)
 {
     int     dots = 0;
     int     digits = 0;
@@ -74,17 +74,17 @@ int ScalarConverter::numType(const std::string &literal)
         else if (std::isdigit(literal[i]))
             digits++;
         else
-            return (0);
+            return (NUM_INVALID);
 
     }
     if (digits > 0)
     {
         if (dots == 0 && !endsF)
-            return (1);
+            return (NUM_INT);
         if (dots == 1)
-            return (endsF ? 3 : 2);
+            return (endsF ? NUM_FLOAT : NUM_DOUBLE);
     }
-    return (0);
+    return (NUM_INVALID);
 }
 
 /*
@@ -92,9 +92,9 @@ int ScalarConverter::numType(const std::string &literal)
     0 - error or cannot identify
     1 - pseudo
     2 - char
-    3 - int
-    4 - double
-    5 - float
+    3 - int (2+1)
+    4 - double (2+2)
+    5 - float (2+3)
  */
 int ScalarConverter::identify(const std::string &literal)
 {
@@ -104,8 +104,9 @@ int ScalarConverter::identify(const std::string &literal)
             return (1);
         if(isChar(literal) != 2)
             return (2);
-        if (numType(literal) != 0)
-            return (2 + numType(literal));
+        NumType n = numType(literal);
+        if (n != NUM_INVALID)
+            return (2 + n);
     }
     return (0);
 }
@@ -191,6 +192,14 @@ void ScalarConverter::printFromDouble(double d)
     2- convert from string to actual type (identify returns typeID and then it gets casted still inside convert)
     3- convert to other types
     4- display results
+
+    std::cout << std::fixed << std::setprecision(1); //std::cout switches big numbers (more than 6 digits) to scientific notation. 
+                                                        So 1234567891234 becomes 1.23457e+12.
+                                                        With fixed you prevent that, and setprecision for the .0
+                                                     //changes will work until modified or canceled, so we use 
+                                                            std::cout.unsetf(std::ios::fixed);
+                                                            std::cout.precision(6);
+                                                        to reset it to "default"
 */
 void ScalarConverter::convert(const std::string &literal)
 {

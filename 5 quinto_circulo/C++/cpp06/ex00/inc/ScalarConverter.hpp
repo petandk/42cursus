@@ -3,6 +3,14 @@
 
 # include <string>
 
+enum NumType
+{
+    NUM_INVALID,
+    NUM_INT,
+    NUM_DOUBLE,
+    NUM_FLOAT
+};
+
 class ScalarConverter
 {
     private:
@@ -13,7 +21,7 @@ class ScalarConverter
 
         static bool isBlacklisted(const std::string &literal);
         static int isChar(const std::string &literal);
-        static int  numType(const std::string &literal);
+        static NumType  numType(const std::string &literal);
 
         static int identify(const std::string &literal);
 
