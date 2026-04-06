@@ -31,7 +31,7 @@ int main (void)
                 << std::endl
                 << "res text: " << res->text
                 << std::endl
-                << "res address: " << &res
+                << "res address: " << res
                 << std::endl << std::endl;
     
     if (&dat == res)
