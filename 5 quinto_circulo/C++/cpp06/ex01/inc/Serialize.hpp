@@ -7,10 +7,10 @@
 class Serialize
 {
     private:
-        Serialize();
+        Serialize(void);
         Serialize(const Serialize &other);
         Serialize &operator=(const Serialize &other);
-        ~Serialize();
+        ~Serialize(void);
 
     public:
         static uintptr_t serialize(Data *ptr);
