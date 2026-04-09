@@ -17,5 +17,32 @@ int main(void)
     c[0] = 999;
     std::cout << "b[0] (should stay 0) = " << b[0] << std::endl;
     std::cout << "c[0] (should be 999) = " << c[0] << std::endl;
+    std::cout << std::endl << "------Assignment operator------" << std::endl;
+    Array<int> d;
+    d = b;
+    d[0] = 42;
+    std::cout << "b[0] (should stay 0) = " << b[0] << std::endl;
+    std::cout << "d[0] (should be 42) = " << d[0] << std::endl;
+    std::cout << std::endl << "------Const access------" << std::endl;
+    const Array<int> e(b);
+    std::cout << "e[2] (should be 20) = " << e[2] << std::endl;
+    std::cout << std::endl << "------Out of range exception------" << std::endl;
+    try
+    {
+        std::cout << b[5] << std::endl;
+    }
+    catch (const std::out_of_range &e)
+    {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+    std::cout << std::endl << "------Out of range on empty array------" << std::endl;
+    try
+    {
+        std::cout << a[0] << std::endl;
+    }
+    catch (const std::out_of_range &e)
+    {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
     return (0);
 }
