@@ -13,6 +13,9 @@ enum NumType
 
 class ScalarConverter
 {
+    public:
+        static void convert(const std::string &literal);
+        
     private:
         ScalarConverter();
         ScalarConverter(const ScalarConverter &other);
@@ -32,8 +35,5 @@ class ScalarConverter
         static void printFromInt( int i);
         static void printFromFloat(float f);
         static void printFromDouble(double d);
-
-    public:
-        static void convert(const std::string &literal);
 };
 #endif

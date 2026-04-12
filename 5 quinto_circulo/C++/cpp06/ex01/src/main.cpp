@@ -39,5 +39,5 @@ int main (void)
     else
         std::cout << RED << "dat address != res address" << RESET << std::endl << std::endl;
     
-       return (0);
+    return (0);
 }

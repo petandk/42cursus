@@ -10,6 +10,7 @@ OBJ_DIR     = obj/
 INCLUDE_DIR = inc/
 
 SOURCE_FILES =  Base.cpp \
+				Utils.cpp \
 				A.cpp \
 				B.cpp \
 				C.cpp \
