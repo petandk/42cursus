@@ -29,23 +29,28 @@ Array<T>::Array(const Array &other):_data(0), _size(0)
 template<typename T>
 Array<T> &Array<T>::operator=(const Array &other)
 {
-
-    if (this != &other)
+    if (this == &other)
+        return (*this);
+    T *newData = 0;
+    
+    if (other._size > 0)
     {
-        delete[] this->_data;
-        if (other._size <= 0)
+        newData = new T[other._size];
+        try
         {
-            this->_data = 0;
-            this->_size = other._size;
+            for(unsigned int i = 0; i < other._size; i++)
+                newData[i] = other._data[i];
         }
-        else
+        catch (...)
         {
-            this->_data = new T[other._size];
-            this->_size = other._size;
+            delete[] newData;
+            throw;
         }
-        for(unsigned int i=0; i < other._size; i++)
-            this->_data[i] = other._data[i];
     }
+    delete[] this->_data;
+    this->_data = newData;
+    this->_size = other._size;
+
     return (*this);        
 }
 

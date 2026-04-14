@@ -6,7 +6,7 @@ int main(void)
     std::cout << std::endl << "------Default constructor------" << std::endl;
     Array<int> a;
     std::cout << "a.size() = " << a.size() << std::endl;
-    std::cout << std::endl << "------Constructor with size------" << std::endl;
+    std::cout << std::endl << "------Constructor with size(5)------" << std::endl;
     Array<int> b(5);
     for(unsigned int i = 0; i < b.size(); i++)
         b[i] = i * 10;
@@ -31,18 +31,18 @@ int main(void)
     {
         std::cout << b[5] << std::endl;
     }
-    catch (const std::out_of_range &e)
+    catch (const std::out_of_range &ex)
     {
-        std::cout << "Error: " << e.what() << std::endl;
+        std::cout << "Error: " << ex.what() << std::endl;
     }
     std::cout << std::endl << "------Out of range on empty array------" << std::endl;
     try
     {
         std::cout << a[0] << std::endl;
     }
-    catch (const std::out_of_range &e)
+    catch (const std::out_of_range &ex)
     {
-        std::cout << "Error: " << e.what() << std::endl;
+        std::cout << "Error: " << ex.what() << std::endl;
     }
     return (0);
 }
