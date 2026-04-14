@@ -20,12 +20,12 @@ int main(void)
 
     std::cout << "before swap>> a: "
     << a << " b: " << b << std::endl;
-    swap(a,b);
+    ::swap(a,b);
     std::cout << "after swap>> a: "
     << a << " b: " << b << std::endl;
 
-    std::cout << "min(9,6)" << min(9,6) << std::endl;
-    std::cout << "max(9,6)" << max(9,6) << std::endl;
+    std::cout << "min(9,6)" << ::min(9,6) << std::endl;
+    std::cout << "max(9,6)" << ::max(9,6) << std::endl;
     
     return 0;
 }

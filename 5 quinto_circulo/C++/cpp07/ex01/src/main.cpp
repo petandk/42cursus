@@ -15,7 +15,7 @@ void doubleThem(T &n)
 
 void shout(std::string &s)
 {
-    s+= "!";
+    s += "!";
 }
 
 template <typename T>

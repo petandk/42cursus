@@ -1,7 +1,7 @@
 #ifndef ITER_HPP
 # define ITER_HPP
 
-#include <cstddef>
+# include <cstddef>
 
 /*
     arrT for the array type, they can be const
