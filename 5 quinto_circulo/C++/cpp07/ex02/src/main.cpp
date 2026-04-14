@@ -1,5 +1,6 @@
 #include "../inc/Array.hpp"
 #include <iostream>
+#include <string>
 
 int main(void)
 {
@@ -44,5 +45,19 @@ int main(void)
     {
         std::cout << "Error: " << ex.what() << std::endl;
     }
+
+    std::cout << std::endl << "------String type test------" << std::endl;
+    Array<std::string> words(3);
+    words[0] = "42";
+    words[1] = "rules";
+    words[2] = "!";
+
+    for (unsigned int i = 0; i < words.size(); i++)
+        std::cout << "words[" << i << "] = " << words[i] << std::endl;
+    Array<std::string> wordsCopy(words);
+    wordsCopy[1] = "Barna";
+    std::cout << "words[1] = " << words[1] << " (should stay as \"rules\")" << std::endl;
+    std::cout << "wordsCopy[1] = " << wordsCopy[1] << " (should be \"Barna\")" << std::endl;
+
     return (0);
 }
