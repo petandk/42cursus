@@ -1,6 +1,62 @@
-.vscode/settings.json
+# =========================
+# Sistema Operativo (Ubuntu / Linux)
+# =========================
+# Archivos temporales de editores de texto (Gedit, Nano, etc.)
+*~
+# Papeleras de particiones montadas y archivos ocultos del sistema
+.Trash-*
+.fuse_hidden*
+.directory
+
+# =========================
+# Sistema Operativo (macOS - Recomendado dejarlo por seguridad)
+# =========================
 .DS_Store
+.AppleDouble
+._*
+
+# =========================
+# Editores y Entornos
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# C / C++ (Archivos compilados)
+# =========================
 *.o
+*.ko
+*.a
+*.la
+*.lo
+*.so
+*.so.*
+
+# =========================
+# Herramientas de Linux (Depuración y Logs)
+# =========================
+# Archivos de dependencias generados por el compilador
 *.d
-obj/
-**/obj/
+*.su
+
+# Historial de GDB (GNU Debugger)
+.gdb_history
+
+# Volcados de memoria y logs de Valgrind (muy comunes en C/C++ en Linux)
+vgcore.*
+callgrind.out.*
+massif.out.*
+*.log
+
+# Ejecutables por defecto
+a.out
+*.out
+
+# =========================
+# Docker y Variables de entorno
+# =========================
+.env
+.env.local
+.env.*.local
