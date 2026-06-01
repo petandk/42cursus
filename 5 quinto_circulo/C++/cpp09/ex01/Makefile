@@ -1,4 +1,4 @@
-NAME        = btc
+NAME        = RPN
 
 COMPILER    = c++
 
@@ -13,7 +13,7 @@ OBJ_DIR     = obj/
 INCLUDE_DIR = inc/
 
 SOURCE_FILES =	main.cpp \
-				BitcoinExchange.cpp
+				RPN.cpp
 
 SRCS		= $(addprefix $(SRC_DIR), $(SOURCE_FILES))
 OBJS		= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRCS))
@@ -62,7 +62,6 @@ re:	fclean all
 new: 
 	@mkdir -p inc
 	@mkdir -p src
-	@mkdir -p files
 
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: fclean all
