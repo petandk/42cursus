@@ -51,6 +51,7 @@ static bool parseDate(const std::string &date)
     //date example: 2011-01-03
     if (date.size() != 10 || date[4] != '-' || date[7] != '-')
         return (false);
+        
     std::string year = date.substr(0, 4);
     std::string month = date.substr(5, 2);
     std::string day = date.substr(8, 2);
@@ -95,12 +96,16 @@ static std::map<std::string, float> readDB(std::ifstream &file, const std::strin
             since we want to find a substring std::string::find is it!!!
         */
         std::string::size_type separatorPos = line.find(separator);
+
         if (separatorPos == std::string::npos)
             throw std::runtime_error("ERROR: Missing separator in line: " + line);
+        
         std::string date = line.substr(0, separatorPos);
         std::string value = line.substr(separatorPos + separator.size());
+
         if (!parseDate(date))
             throw std::runtime_error("ERROR: Wrong date or date format: " + date);
+
         float parsedValue = strToFloat(value);
         data[date] = parsedValue;
     }
@@ -110,6 +115,7 @@ static std::map<std::string, float> readDB(std::ifstream &file, const std::strin
 static void processAndPrint(std::ifstream &file, std::map<std::string, float> &db, const std::string &header, const std::string &separator)
 {
     std::string line;
+
     if (!std::getline(file, line))
         throw std::runtime_error("ERROR: Cannot read the header.");
     if (line != header)
@@ -120,12 +126,14 @@ static void processAndPrint(std::ifstream &file, std::map<std::string, float> &d
             continue;
         try{
             std::string::size_type separatorPos = line.find(separator);
+
             if (separatorPos == std::string::npos)
             {
                 std::cout << "Error: bad input => " << line << std::endl;
                 continue;
             }
             std::string date = line.substr(0, separatorPos);
+
             if (!parseDate(date))
             {
                 std::cout << "Error: bad input => " << date << std::endl;
@@ -133,6 +141,7 @@ static void processAndPrint(std::ifstream &file, std::map<std::string, float> &d
             }
             std::string value = line.substr(separatorPos + separator.size());
             float parsedValue = strToFloat(value);
+
             if (parsedValue < 0)
             {
                 std::cout << "Error: not a positive number." << std::endl;
@@ -147,6 +156,7 @@ static void processAndPrint(std::ifstream &file, std::map<std::string, float> &d
             //so if date is end() we need the last one, and if it returns a date that is
             //not the one we are searching, means the date is older, so we need the one before
             std::map <std::string, float>::iterator it = db.lower_bound(date);
+
             if (it == db.end() || it->first != date)
             {
                 if (it == db.begin())
@@ -170,6 +180,7 @@ int btcExchange(const std::string &file)
 {
     std::map<std::string, float> database;
     std::ifstream db("files/data.csv"), am(file.c_str());
+
     if (!db.is_open())
         throw std::runtime_error("ERROR: Cannot open the database.");
     if (!am.is_open())

@@ -16,7 +16,7 @@ bool RPN(std::string &op)
 
     while (iss >> token)
     {
-        if (token.size() > 1)
+        if (token.size() != 1)
         {
             #ifdef DEBUG
                 std::cout <<  "\033[1;33m\t-----debug message-----\033[0m" << std::endl;
@@ -30,34 +30,47 @@ bool RPN(std::string &op)
             std::cout <<  "\033[1;33m\t-----debug message-----\033[0m" << std::endl;
             std::cout << "\033[1;33m\t"<< val << "\033[0m" << std::endl;
         #endif
-        if (std::isdigit(val))
+        if (std::isdigit(static_cast<unsigned char>(val)))
         {
             values.push(val - '0');
         }
-        else if (values.size() >= 2)
+        else if (val == '+' || val == '-' || val == '*' || val == '/') // I did it with std::find but this is easier to read
         {
-            int num1, num2;
-            num1 = values.top();
-            values.pop();
-            num2 = values.top();
-            values.pop();
-            if (val == '+')
-                values.push(num2 + num1);
-            if (val == '*')
-                values.push(num2 * num1);
-            if (val == '-')
-                values.push(num2 - num1);
-            if (val == '/')
+            if (values.size() < 2)
             {
-                if (num1 != 0)
-                    values.push(num2 / num1);
-                else
+                #ifdef DEBUG
+                    std::cout <<  "\033[1;33m\t-----debug message-----\033[0m" << std::endl;
+                    std::cout << "\033[1;33m\tNot enought numbers for a operation\033[0m" << std::endl;
+                #endif
+                return (false);
+            }
+            int num1 = values.top();
+            values.pop();
+            int num2 = values.top();
+            values.pop();
+            switch (val)
+            {
+                case '+':
+                    values.push(num2 + num1);
+                    break;
+                case '-':
+                    values.push(num2 - num1);
+                    break;
+                case '*':
+                    values.push(num2 * num1);
+                    break;
+                case '/':
                 {
-                    #ifdef DEBUG
-                        std::cout <<  "\033[1;33m\t-----debug message operation result-----\033[0m" << std::endl;
-                        std::cout << "\033[1;33m\tcannot divide by zero\033[0m" << std::endl;
-                    #endif
-                    return (false);
+                    if (num1 == 0)
+                    {
+                        #ifdef DEBUG
+                            std::cout <<  "\033[1;33m\t-----debug message operation result-----\033[0m" << std::endl;
+                            std::cout << "\033[1;33m\tcannot divide by zero\033[0m" << std::endl;
+                        #endif
+                        return (false);
+                    }
+                    values.push(num2 / num1);
+                    break;
                 }
             }
             #ifdef DEBUG
@@ -69,20 +82,19 @@ bool RPN(std::string &op)
         {
             #ifdef DEBUG
                 std::cout <<  "\033[1;33m\t-----debug message-----\033[0m" << std::endl;
-                std::cout << "\033[1;33m\tNot enought numbers for a operation\033[0m" << std::endl;
+                std::cout << "\033[1;33m\tInvalid char\033[0m" << std::endl;
             #endif
             return (false);
         }
-
     }
     if (values.size() != 1)
     {
-            #ifdef DEBUG
-                std::cout <<  "\033[1;33m\t-----debug message-----\033[0m" << std::endl;
-                std::cout << "\033[1;33m\tNeeded at least 2 numbers and a operator\033[0m" << std::endl;
-            #endif
-            return (false);
-        }
+        #ifdef DEBUG
+            std::cout <<  "\033[1;33m\t-----debug message-----\033[0m" << std::endl;
+            std::cout << "\033[1;33m\tNeeded at least 2 numbers and a operator\033[0m" << std::endl;
+        #endif
+        return (false);
+    }
     std::cout << values.top() << std::endl;
     return (true);
 }
