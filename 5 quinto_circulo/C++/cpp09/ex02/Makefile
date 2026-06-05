@@ -1,0 +1,90 @@
+NAME        = PmergeMe
+
+COMPILER    = c++
+
+#-Wshadow warns when a variable declaration shadows (hides)
+# another variable from an outer scope'
+# e.g., a local variable hiding a global or a function parameter.
+CFLAGS      = -Wall -Werror -Wextra -std=c++98 -Wshadow
+DEBUG_FLAGS = -DDEBUG -g
+
+SRC_DIR     = src/
+OBJ_DIR     = obj/
+INCLUDE_DIR = inc/
+
+SOURCE_FILES =	main.cpp \
+				$(NAME).cpp
+
+SRCS		= $(addprefix $(SRC_DIR), $(SOURCE_FILES))
+OBJS		= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRCS))
+DEPS		= $(OBJS:.o=.d)
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(COMPILER) $(CFLAGS) $(OBJS) -o $(NAME)
+	@echo "\033[1;36m"
+	@echo "==================================================="
+	@echo "	🍏​🍎 $(NAME) Compiled! 🍎​🍏"
+	@echo "==================================================="
+	@echo "\033[0m"
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
+	@mkdir -p $(OBJ_DIR)
+	$(COMPILER) $(CFLAGS) -I $(INCLUDE_DIR) -MMD -c $< -o $@
+
+clean:
+	rm -rf $(OBJ_DIR)
+	@echo "\033[1;33m"
+	@echo "==================================================="
+	@echo "	🧹 Object files cleaned! 🧹"
+	@echo "==================================================="
+	@echo "\033[0m"
+
+fclean: clean
+	rm -f $(NAME)
+	@echo "\033[1;34m"
+	@echo "==================================================="
+	@echo "	🗑️  Executable removed! 🗑️"
+	@echo "==================================================="
+	@echo "\033[0m"
+
+re:	fclean all
+
+#run: all
+#	@echo "\033[1;32m"
+#	@echo "==================================================="
+#	@echo " ⚰️​  Executing $(NAME)... ⚰️​​​​"
+#	@echo "==================================================="
+#	@echo "\033[0m"
+#	./$(NAME)
+
+rerun: re
+	@echo "\033[1;35m"
+	@echo "==================================================="
+	@echo " 🧹 Cleaned & Executing $(NAME)... 🧹"
+	@echo "==================================================="
+	@echo "\033[0m"
+	./$(NAME)
+
+new: 
+	@mkdir -p inc
+	@mkdir -p src
+	@touch inc/$(NAME).hpp
+	@touch src/$(NAME).cpp
+
+debug: CFLAGS += $(DEBUG_FLAGS)
+debug: fclean all
+	@echo "\033[1;31m"
+	@echo "==================================================="
+	@echo "	🐛 DEBUG MODE ENABLED 🐛"
+	@echo "==================================================="
+	@echo "\033[0m"
+
+ #		To show debug info you should do something like this:
+ #				#ifdef DEBUG
+ #              	std::cout <<  "\033[1;33m\t-----debug message-----\033[0m" << std::endl;
+ #              #endif
+
+-include $(DEPS)
+.PHONY: all clean fclean re new debug #run
