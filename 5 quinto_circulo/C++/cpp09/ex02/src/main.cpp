@@ -15,5 +15,6 @@ int main (int argc, char *argv[])
         pm.debugValues();
     #endif
     pm.FordJohnson();
+    
     return (0);
 }

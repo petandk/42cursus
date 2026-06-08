@@ -2,10 +2,18 @@
 
 PmergeMe::PmergeMe()
 {
+    #ifdef DEBUG
+    this->_contV = 0;
+    this->_contD = 0;
+    #endif
 }
 
 PmergeMe::PmergeMe(const PmergeMe &other):_valuesV(other._valuesV), _valuesD(other._valuesD)
 {
+    #ifdef DEBUG
+        this->_contV = other._contV;
+        this->_contD = other._contD;
+    #endif
 }
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &other)
@@ -14,6 +22,10 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
     {
         this->_valuesV = other._valuesV;
         this->_valuesD = other._valuesD;
+        #ifdef DEBUG
+            this->_contV = other._contV;
+            this->_contD = other._contD;
+        #endif
     }
     return (*this);
 }
@@ -22,7 +34,23 @@ PmergeMe::~PmergeMe()
 {
 }
 
-static unsigned int parseAndCast(const std::string  &value)
+// Max comparisons allowed by Merge-Insertion Sort.
+// sum(ceil(log2(3/4 * i))). Had to hack log2 with std::log() / std::log(2) for c++98.
+#ifdef DEBUG
+    #include <cmath>
+
+    size_t PmergeMe::FordJohnsonTheoricalMax(size_t n)
+    {
+        size_t limit = 0;
+        for (size_t i = 1; i <= n; ++i)
+        {
+            limit += std::ceil(std::log(3.0 * i / 4.0) / std::log(2.0));
+        }
+        return limit;
+    }
+#endif
+
+unsigned int PmergeMe::parseAndCast(const std::string  &value)
 {
     const std::string RED = "\033[31m";
     const std::string RESET = "\033[0m";
@@ -44,9 +72,12 @@ bool PmergeMe::readValues(int argc, char *argv[])
     {
         for (int i = 1; i < argc; i++)
         {
-            std::pair <unsigned int, int> p = std::make_pair(parseAndCast(argv[i]), i - 1);
-            this->_valuesV.push_back(p);
-            this->_valuesD.push_back(p);
+            std::vector<unsigned int> v;
+            std::deque<unsigned int> d;
+            v.push_back(parseAndCast(argv[i]));
+            d.push_back(parseAndCast(argv[i]));
+            this->_valuesV.push_back(v);
+            this->_valuesD.push_back(d);
         }
         return (true);
     }
@@ -56,54 +87,34 @@ bool PmergeMe::readValues(int argc, char *argv[])
         return (false);
     }
 }
-/*
-    For a vector like [1, 2, 3]
-    The loop checks elements in pairs:
-    first loop  -> (1, 2)
-    second loop -> (3, end)
 
-    If next == fighters.end(), it means there is one element left
-    (odd amount of numbers), so we put that last one in losers.
+// I'm using left + (right - left) / 2 to prevent overflow when left + right.
+// 
+// because 3 + (4 - 3) / 2 is 3 + (1 / 2); so 1/2 = 0.5 wich becomes 0, then 3 + 0 = 3.
+std::vector<std::vector<unsigned int> >::iterator PmergeMe::binarySearchV(
+                            std::vector<std::vector<unsigned int> > &ordered, 
+                            const std::vector<unsigned int> &target)
+{
+    int left = 0;
+    int right = ordered.size() - 1;
 
-    Iterator basics:
-    ++it      moves to the next element
-    *it       gets the element
-    it->first gets the first value in the pair
-    it->second gets the second value in the pair
-*/
-void PmergeMe::fightVector(std::vector<std::pair<unsigned int, int> > &fighters, 
-                            std::vector<std::pair<unsigned int, int> > &winers,
-                            std::vector<std::pair<unsigned int, int> > &losers)
-{   
-    winers.clear();
-    losers.clear();
-    std::vector<std::pair<unsigned int, int> >::iterator fg = fighters.begin();
-    while (fg != fighters.end())
+    while (left <= right)
     {
-        std::vector<std::pair<unsigned int, int> >::iterator next = fg;
-        ++next;
-        if (next == fighters.end())
-        {
-            losers.push_back(*fg);
-            break;
-        }
+        int mid = left + (right - left) / 2;
+        
+        #ifdef DEBUG
+            this->_compV++;
+        #endif
 
-        if (fg->first > next->first)
-        {
-            winers.push_back(*fg);
-            losers.push_back(*next);
-        }
+        if (target.front() < ordered[mid].front())
+            right = mid - 1;
         else
-        {
-            winers.push_back(*next);
-            losers.push_back(*fg);
-        }
-        fg = next;
-        ++fg;
+            left = mid + 1;
     }
+    return (ordered.begin() + left);
 }
 
-std::vector<int> PmergeMe::jacobsthal(int size)
+std::vector<int> PmergeMe::calcJacobsthalV(int size)
 {
     std::vector<int> retSeq;
 
@@ -128,64 +139,110 @@ std::vector<int> PmergeMe::jacobsthal(int size)
     return (retSeq);
 }
 
-std::vector<int> PmergeMe::jacobsthalVectorSeq(int n)
+/*
+    For a vector like [1, 2, 3]
+    The loop checks elements in pairs:
+    first loop  -> (1, 2)
+    second loop -> (3, end)
+
+    If next == fighters.end(), it means there is one element left
+    (odd amount of numbers), so we put that last one in losers.
+
+    Iterator basics:
+    ++it      moves to the next element
+    *it       gets the element
+    it->first gets the first value in the pair
+    it->second gets the second value in the pair
+*/
+std::vector<int> PmergeMe::jacobsthalVectorSeq(int size)
 {
-    std::vector<int> retSeq;
-    int jacob = 1;
-    if (n <= 0)
-        return (retSeq);
-    retSeq.push_back(jacob);
-    if (n == 1)
-        return (retSeq);
-    while (jacob <= n && retSeq.size() <= n)
+    std::vector<int>    retSeq;
+    std::vector<int>    jacobSeq;
+
+    jacobSeq = calcJacobsthalV(size);
+    if (jacobSeq.empty())
+        return (jacobSeq);
+    std::vector<int>::iterator it = jacobSeq.begin();
+    int last = 1;
+    for (size_t i = 0; i < jacobSeq.size(); i++)
     {
-         //jacob = nextJacobsthal(retSeq.size() + 1);
+        if (*it == 1)
+        {
+            retSeq.push_back(*it);
+            it++;
+            continue;
+        }
+        int jac = *it;
+        while(last < jac)
+            retSeq.push_back(jac--);
+        last = *it;
+        it++;
     }
-
+    if(last < size)
+    {
+        int aux = size;
+        while(last < aux)
+            retSeq.push_back(aux--);
+    }
+    return (retSeq);
 }
 
-void PmergeMe::jacobsthalVector(std::vector<std::pair<unsigned int, int> > &winers,
-                        std::vector<std::pair<unsigned int, int> > &losers)
+std::vector<std::vector<unsigned int> > PmergeMe::fightVector(
+                        const std::vector<std::vector<unsigned int> > &vec,
+                        std::vector<unsigned int> &oddElement,
+                        bool hasOdd)
 {
+    // getting ready
+    std::vector<std::vector<unsigned int> > retVec;
 
+    hasOdd = (vec.size() %2 != 0);
+    if (hasOdd)
+        oddElement = vec.back();
+
+    size_t limit = hasOdd ? vec.size() - 1 : vec.size();
+
+    // battles
+    for (size_t i = 0; i < limit; i += 2)
+    {
+        std::vector<unsigned int> winner = vec[i];
+        std::vector<unsigned int> loser = vec[i + 1];
+
+        #ifdef DEBUG
+            this->_compV++;
+        #endif
+        if (winner.front() > loser.front())
+            std::swap(winner, loser);
+        
+        winner.insert(winner.end(), loser.begin(), loser.end());
+        retVec.push_back(winner);
+    }
+    return (retVec);
 }
 
-std::vector<std::pair<unsigned int, int> > PmergeMe::sortVector(std::vector<std::pair<unsigned int, int> > &vec)
+std::vector<std::vector<unsigned int> >    PmergeMe::applyJacobsthalV(std::vector<std::vector<unsigned int> > &results, 
+                                const std::vector<unsigned int> &oddElement, 
+                                bool hasOdd)
+{
+    
+}
+
+std::vector<std::vector<unsigned int> > PmergeMe::sortVector(std::vector<std::vector<unsigned int> > &vec)
 {
     // special case for when vec.size == 1 from beginning
     if(vec.size() <= 1)
         return (vec);
 
-    std::vector<std::pair<unsigned int, int> > winers;
-    std::vector<std::pair<unsigned int, int> > losers;
-    //sort winers (going down):
-    fightVector(vec, winers, losers);
-    //recursive calls:
-    winers = sortVector(winers);
-    //sort losers (coming back):
-    jacobsthalVector(winers, losers);
-    return (winers);
+    std::vector<unsigned int>  oddElement;
+    bool hasOdd = false;
+    //1. Batte phase (going down):
+    std::vector<std::vector<unsigned int> > results = fightVector(vec, oddElement, hasOdd);
+    //2. recursive calls:
+    results = sortVector(results);
+    //3. merge-insertion (coming back):
+    return (applyJacobsthalV(results, oddElement, hasOdd));
 }
 
 void PmergeMe::FordJohnson(void)
 {
-    this->sortVector(this->_valuesV);
+    std::vector<std::vector<unsigned int> > orderedV = this->sortVector(this->_valuesV);
 }
-
-#ifdef DEBUG
-    void PmergeMe::debugValues(void)
-    {
-        std::cout <<  "\033[1;33m\t----- debug message: containters after readValues -----" << std::endl;
-        
-        std::vector<std::pair<unsigned int, int> >::iterator itV = this->_valuesV.begin();
-        std::deque<std::pair<unsigned int, int> >::iterator itD = this->_valuesD.begin();
-        while (itV != this->_valuesV.end() && itD != this->_valuesD.end())
-        {
-            std::cout << "\t\tVector value: " << itV->first << " | Index: " << itV->second << std::endl;
-            std::cout << "\t\t Deque value: " << itD->first << " | Index: " << itD->second << std::endl;
-            itV++;
-            itD++;
-        }
-        std::cout << "\033[0m";
-    }   
-#endif
