@@ -59,19 +59,22 @@ re:	fclean all
 #	@echo "\033[0m"
 #	./$(NAME)
 
-rerun: re
-	@echo "\033[1;35m"
-	@echo "==================================================="
-	@echo " 🧹 Cleaned & Executing $(NAME)... 🧹"
-	@echo "==================================================="
-	@echo "\033[0m"
-	./$(NAME)
+#rerun: re
+#	@echo "\033[1;35m"
+#	@echo "==================================================="
+#	@echo " 🧹 Cleaned & Executing $(NAME)... 🧹"
+#	@echo "==================================================="
+#	@echo "\033[0m"
+#	./$(NAME)
 
 new: 
 	@mkdir -p inc
 	@mkdir -p src
 	@touch inc/$(NAME).hpp
 	@touch src/$(NAME).cpp
+
+suff: all
+	./PmergeMe `shuf -i 1-100000 -n 3000 | tr "\n" " "`
 
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: fclean all
@@ -87,4 +90,4 @@ debug: fclean all
  #              #endif
 
 -include $(DEPS)
-.PHONY: all clean fclean re new debug #run
+.PHONY: all clean fclean re new debug shuff #run

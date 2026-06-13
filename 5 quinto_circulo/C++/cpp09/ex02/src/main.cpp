@@ -11,10 +11,6 @@ int main (int argc, char *argv[])
     PmergeMe pm;
     if (!pm.readValues(argc, argv))
         return (1);
-    #ifdef DEBUG
-        pm.debugValues();
-    #endif
     pm.FordJohnson();
-    
     return (0);
 }
