@@ -1,0 +1,113 @@
+name: ${PROJECT_NAME}
+services:
+  mariadb:
+    container_name: mariadb
+    build: 
+      context: ./requirements/mariadb
+      args:
+        OS_NAME: ${OS_NAME}
+        OS_VERSION: ${OS_VERSION}
+    env_file:
+      - .env
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    secrets:
+      - db_pass
+      - db_root_pass
+    networks:
+      - priv_lan
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_pass
+      MYSQL_PASSWORD_FILE: /run/secrets/db_pass
+      MYSQL_CHARSET: ${MYSQL_CHARSET}
+      MYSQL_COLLATION: ${MYSQL_COLLATION}
+    restart: unless-stopped
+
+  wordpress:
+    container_name: wordpress
+    build: 
+      context: ./requirements/wordpress
+      args:
+        OS_NAME: ${OS_NAME}
+        OS_VERSION: ${OS_VERSION}
+        PHP_VERSION: ${PHP_VERSION}
+        HTTPS_PORT: ${HTTPS_PORT}
+    env_file:
+      - .env
+    volumes:
+      - wp-data:/var/www/html
+    secrets:
+      - wp_admin_pass
+      - wp_user_pass
+      - db_pass
+    networks:
+      - priv_lan
+    environment:
+      WP_THEME: ${WP_THEME}
+      MYSQL_PASSWORD_FILE: /run/secrets/db_pass
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      WP_URL: ${WP_URL}
+      WP_TITLE: ${WP_TITLE}
+      WP_ADMIN_LOGIN: ${WP_ADMIN_LOGIN}
+      WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
+      WP_ADMIN_PASSWORD_FILE: /run/secrets/wp_admin_pass
+      WP_USER_LOGIN: ${WP_USER_LOGIN}
+      WP_USER_EMAIL: ${WP_USER_EMAIL}
+      WP_USER_PASSWORD_FILE: /run/secrets/wp_user_pass
+    depends_on:
+      - mariadb
+    restart: unless-stopped
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./requirements/nginx
+      args:
+        OS_NAME: ${OS_NAME}
+        OS_VERSION: ${OS_VERSION}
+        DOMAIN_NAME: ${DOMAIN_NAME}
+        HTTPS_PORT: ${HTTPS_PORT}
+    env_file:
+      - .env
+    volumes:
+      - wp-data:/var/www/html
+    networks:
+      - priv_lan
+    depends_on:
+      - wordpress
+    ports:
+      - "${HTTPS_PORT}:${HTTPS_PORT}"
+    restart: unless-stopped
+
+volumes:
+  mariadb-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${HOME}/data/mariadb
+
+  wp-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${HOME}/data/wordpress
+
+secrets:
+  db_root_pass:
+    file: ../secrets/db_root_pass.secret
+  db_pass:
+    file: ../secrets/db_pass.secret
+  wp_admin_pass:
+    file: ../secrets/wp_admin_pass.secret
+  wp_user_pass:
+    file: ../secrets/wp_user_pass.secret
+
+networks:
+  priv_lan:
+    driver: bridge

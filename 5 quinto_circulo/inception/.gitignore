@@ -1,0 +1,12 @@
+# security
+secrets/
+*.secret
+
+# env garbage
+.DS_Store
+._*
+*.swp
+*.swo
+*.swn
+*~
+.vscode/
