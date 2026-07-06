@@ -28,6 +28,7 @@ $(NAME): $(OBJS)
 	@echo "	🍏​🍎 $(NAME) Compiled! 🍎​🍏"
 	@echo "==================================================="
 	@echo "\033[0m"
+	@echo "Don't forget to make prepare"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	@mkdir -p $(OBJ_DIR)
@@ -43,6 +44,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -rf ./files
 	@echo "\033[1;34m"
 	@echo "==================================================="
 	@echo "	🗑️  Executable removed! 🗑️"
@@ -62,7 +64,10 @@ re:	fclean all
 new: 
 	@mkdir -p inc
 	@mkdir -p src
+
+prepare:
 	@mkdir -p files
+	@cp ~/Desktop/cpp09files/* ./files/
 
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: fclean all
@@ -78,4 +83,4 @@ debug: fclean all
  #              #endif
 
 -include $(DEPS)
-.PHONY: all clean fclean re new debug #run
+.PHONY: all clean fclean re new debug prepare #run
