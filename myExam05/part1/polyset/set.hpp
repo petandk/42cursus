@@ -8,7 +8,7 @@ class set
 		set(const set &other):_bag(other._bag){};
 		~set(){};
 
-		bool has(int vaue) const;
+		bool has(int value) const;
 		void insert(int value);
 		void insert(int *arr, int size);
 		void print() const;
