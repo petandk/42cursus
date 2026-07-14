@@ -6,6 +6,7 @@ bigint::bigint(unsigned int nbr)
 	ss << nbr;
 	_big = ss.str();
 }
+
 bigint &bigint::operator=(const bigint &other)
 {
 	if (this != &other)
@@ -13,50 +14,31 @@ bigint &bigint::operator=(const bigint &other)
 	return (*this);
 }
 
-std::string bigint::getBig() const
-{
-	return _big;
-}
-
-bigint &bigint::operator++()
-{
-	bigint dummy(1);
-	*this += dummy;
-	return (*this);
-}
-
-bigint bigint::operator++(int)
-{
-	bigint dummy(1);
-	bigint copy(*this);
-	*this += dummy;
-	return (copy); 
-}
-
 bigint &bigint::operator+=(const bigint &other)
 {
 	int carry = 0;
 	int i = _big.size() - 1;
 	int j = other._big.size() - 1;
-
+	
 	std::string result;
 
 	while (i >= 0 || j >= 0 || carry)
 	{
-		int currentDigit = i >= 0 ? _big[i] - '0' : 0;
-		int otherDigit = j >= 0 ? other._big[j] - '0' : 0;
+		int thisval = (i >= 0) ? _big[i] - '0' : 0;
+		int otherval = (j >=0) ? other._big[j] - '0' : 0;
 
-		int sum = currentDigit + otherDigit + carry;
+		int res = thisval + otherval + carry;
 
-		carry = sum / 10;
-		result.push_back((sum%10) + '0');
+		carry = res / 10;
+
+		result.push_back((res % 10) +'0');
 		--i;
 		--j;
 	}
-	int siz = result.size();
 	std::string rev;
-	for (int s = siz -1; s >= 0; s--)
-		rev.push_back(result[s]);
+	int siz = result.size() -1;
+	for (; siz >= 0; siz--)
+		rev.push_back(result[siz]);
 	_big = rev;
 	return (*this);
 }
@@ -68,79 +50,94 @@ bigint bigint::operator+(const bigint &other) const
 	return (copy);
 }
 
-bigint bigint::operator<<(unsigned int n)
+bigint &bigint::operator++()
+{
+	bigint dummy(1);
+	*this += dummy;
+	return (*this);
+}
+
+bigint bigint::operator++(int)
 {
 	bigint copy(*this);
-	copy._big.insert(copy._big.end(), n, '0');
+	bigint dummy(1);
+	*this += dummy;
 	return (copy);
 }
 
-bigint bigint::operator>>(unsigned int n)
+bigint bigint::operator<<(unsigned int amount)
 {
 	bigint copy(*this);
-	if (n < copy._big.size())
-		copy._big.erase(copy._big.size()  - n, n);
-	else
+	copy._big.append(amount, '0');
+	return (copy);
+}
+
+bigint bigint::operator>>(unsigned int amount)
+{
+	bigint copy(*this);
+	if(amount > _big.size())
 		copy._big = "0";
+	else
+		copy._big.resize(copy._big.size() - amount);
 	return (copy);
 }
 
-bigint &bigint::operator<<=(unsigned int n)
+bigint &bigint::operator<<=(unsigned int amount)
 {
-	*this = *this << n;
-	return *this;
+	*this = *this << amount;
+	return (*this);
 }
 
-bigint &bigint::operator>>=(unsigned int n)
+bigint &bigint::operator>>=(unsigned int amount)
 {
-	*this = *this >> n;
-	return *this;
+	*this = *this >> amount;
+	return (*this);
 }
 
-unsigned int stringToUnInt(const std::string &val)
+unsigned int strtouint(const std::string &val)
 {
 	std::stringstream ss(val);
 	unsigned int num;
-	ss>>num;
+	ss >> num;
 	return num;
 }
 
 bigint bigint::operator<<(const bigint &other)
 {
-	bigint tmp(*this);
-	tmp = tmp << stringToUnInt(other._big);
-	return tmp;
+	bigint copy(*this);
+	copy <<= strtouint(other._big);
+	return (copy);
 }
 
 bigint bigint::operator>>(const bigint &other)
 {
-	bigint tmp(*this);
-	tmp = tmp >> stringToUnInt(other._big);
-	return tmp;
+	bigint copy(*this);
+	copy >>= strtouint(other._big);
+	return (copy);
 }
 
 bigint &bigint::operator<<=(const bigint &other)
 {
-	*this = *this << stringToUnInt(other._big);
+	*this <<= strtouint(other._big);
 	return (*this);
 }
 
 bigint &bigint::operator>>=(const bigint &other)
 {
-	*this = *this >> stringToUnInt(other._big);
+	*this >>= strtouint(other._big);
 	return (*this);
 }
 
 bool bigint::operator<(const bigint &other) const
 {
 	return (_big.size() != other._big.size())
-			? _big.size() < other._big.size()
-			: _big < other._big;
+		? _big.size() < other._big.size()
+		: _big < other._big;
 }
 
 bool bigint::operator>(const bigint &other) const
 {
-	return (other < *this);
+	return ( other < *this );
 }
 
 bool bigint::operator<=(const bigint &other) const
@@ -155,7 +152,7 @@ bool bigint::operator>=(const bigint &other) const
 
 bool bigint::operator==(const bigint &other) const
 {
-	return (_big == other._big);
+	return(_big == other._big);
 }
 
 bool bigint::operator!=(const bigint &other) const

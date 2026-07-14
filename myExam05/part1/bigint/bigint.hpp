@@ -6,38 +6,38 @@
 class bigint
 {
 	public:
-		bigint (unsigned int nbr = 0);
-		bigint (const bigint &other):_big(other._big){};
+		bigint(unsigned int nbr = 0);
+		bigint(const bigint &other):_big(other._big){};
 		bigint &operator=(const bigint &other);
-
-		std::string getBig() const;
-
+		~bigint(){};
+		
 		bigint operator+(const bigint &other) const;
 		bigint &operator+=(const bigint &other);
 
 		bigint &operator++();
 		bigint operator++(int);
 
-		bigint operator<<(unsigned int n);
-		bigint operator>>(unsigned int n);
-		bigint &operator<<=(unsigned int n);
-		bigint &operator>>=(unsigned int n);
+		bigint operator<<(unsigned int amount);
+		bigint operator>>(unsigned int amount);
+		bigint &operator<<=(unsigned int amount);
+		bigint &operator>>=(unsigned int amount);
 
 		bigint operator<<(const bigint &other);
 		bigint operator>>(const bigint &other);
 		bigint &operator<<=(const bigint &other);
 		bigint &operator>>=(const bigint &other);
-	
+
 		bool operator<(const bigint &other) const;
 		bool operator>(const bigint &other) const;
 		bool operator<=(const bigint &other) const;
 		bool operator>=(const bigint &other) const;
 		bool operator==(const bigint &other) const;
 		bool operator!=(const bigint &other) const;
-	
+
+		std::string getBig() const {return (_big);};
+
 	private:
 		std::string _big;
 };
 
 std::ostream &operator<<(std::ostream &out, const bigint &other);
-
