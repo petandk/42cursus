@@ -1,174 +1,188 @@
 #include "bsq.h"
 
-void free_map(map *mp)
+static void free_map(char **map, int lines)
 {
-	if (mp->map)
+	if (map)
 	{
-		for (int i = 0; i < mp->lines_num; i++)
-			free(mp->map[i]);
+		for (int y = 0; y < lines; y++)
+			if (map[y])
+				free(map[y]);
+		free(map);
 	}
-	free(mp->map);
 }
 
-bool	is_printable(char c)
+static void free_matrix(int **matrix, int rows)
+{
+	if (matrix)
+	{
+		for (int y = 0; y < rows; y++)
+			if (matrix[y])
+				free(matrix[y]);
+		free(matrix);
+	}
+}
+
+static bool is_printable(char c)
 {
 	return (c >= 32 && c <= 126);
 }
 
-int validate_map(FILE *map_file, map *mp)
+static int validate_map(FILE *file, t_map *map)
 {
 	char *buffer = NULL;
 	size_t len = 0;
 	ssize_t nread;
 
-	if (fscanf(map_file, "%d %c %c %c", &mp->lines_num, &mp->empty, &mp->obstacle, &mp->full) != 4)
-		return 0;
-	
-	if (mp->lines_num <= 0)
-		return 0;
-	
-	if (!is_printable(mp->empty) || !is_printable(mp->obstacle) || !is_printable(mp->full))
-		return 0;
-	
-	if (mp->empty == mp->obstacle || mp->obstacle == mp->full || mp->full == mp->empty)
+	if (fscanf(file, "%d %c %c %c", &map->lines, &map->empty, &map->obstacle, &map->full) != 4)
 		return 0;
 
-	mp->map = calloc(mp->lines_num, sizeof(char *));
-	if (!mp->map)
+	if (map->lines <= 0)
 		return 0;
-	
-	getline(&buffer, &len, map_file);
+
+	if (!is_printable(map->empty) || !is_printable(map->obstacle) || !is_printable(map->full))
+		return 0;
+
+	if (map->empty == map->obstacle || map->obstacle == map->full || map->full == map->empty)
+		return 0;
+
+	map->map = calloc(map->lines, sizeof(char *));
+	if (!map->map)
+		return 0;
+
+	getline(&buffer, &len, file);
 	free(buffer);
 	buffer = NULL;
 	len = 0;
 
-	for (int i = 0; i < mp->lines_num; i++)
+	for (int y = 0; y < map->lines; y++)
 	{
-		if ((nread = getline(&buffer, &len, map_file)) == -1)
-			return free(buffer), 0;
+		if ((nread = getline(&buffer, &len, file)) == -1)
+			return (free(buffer),free_map(map->map, y), 0);
 
 		if (nread > 0 && buffer[nread - 1] == '\n')
 		{
 			buffer[nread - 1] = '\0';
 			nread--;
 		}
-		if (i == 0)
-			mp->line_length = nread;
-		else if (nread != mp->line_length)
-			return free(buffer), 0;
-		
-		for (int j = 0; j < nread; j++)
-		{
-			if (buffer[j] != mp->empty && buffer[j] != mp->obstacle)
-				return free(buffer), 0;
-		}
+		if (y == 0)
+			map->length = nread;
+		else if (nread != map->length)
+			return (free(buffer), free_map(map->map, y), 0);
 
-		mp->map[i] = buffer;
+		for (int x = 0; x < nread; x++)
+		{
+			if (buffer[x] != map->empty && buffer[x] != map->obstacle)
+				return (free(buffer), free_map(map->map, y), 0);
+		}
+		map->map[y] = buffer;
 		buffer = NULL;
 		len = 0;
 	}
 	return 1;
 }
 
-int **allocate_matrix(int rows, int columns)
+static int **allocate_matrix(int rows, int columns)
 {
-	int **dp = calloc(rows, sizeof(int *));
-	if (!dp)
+	int **matrix = calloc(rows, sizeof(int *));
+	if (!matrix)
 		return NULL;
-
-	for (int i = 0; i < rows; i++)
+	for (int y = 0; y < rows; y++)
 	{
-		dp[i] = calloc(columns, sizeof(int));
-		if (!dp[i])
-		{
-			for (int j = 0; j < i; j++)
-				free(dp[j]);
-			free(dp);
-			return NULL;
-		}
+		matrix[y] = calloc(columns, sizeof(int));
+		if (!matrix[y])
+			return (free_matrix(matrix, y), NULL);
 	}
-	return dp;
+	return matrix;
 }
 
-static int min(int a, int b) { return a < b ? a : b; }
-
-int solve_bsq(map *mp)
+static int min(int a, int b)
 {
-	int best_size = 0;
-	int best_row = 0;
-	int best_col = 0;
+	return (a < b) ? a : b;
+}
 
-	int **dp = allocate_matrix(mp->lines_num, mp->line_length);
-	if (!dp)
+static int solve_bsq(t_map *map)
+{
+	int size = 0;
+	int row = 0;
+	int col = 0;
+
+	int **copy = allocate_matrix(map->lines, map->length);
+	if (!copy)
 		return 0;
-
-	for (int i = 0; i < mp->lines_num; i++)
+	for (int y = 0; y < map->lines; y++)
 	{
-		for (int j = 0; j < mp->line_length; j++)
+		for (int x = 0; x < map->length; x++)
 		{
-			if (mp->map[i][j] == mp->obstacle)
+			if (map->map[y][x] == map->obstacle)
 			{
-				dp[i][j] = 0;
+				copy[y][x] = 0;
 				continue;
 			}
-			if (i == 0 || j == 0)
-				dp[i][j] = 1;
+			if (y == 0 || x == 0)
+				copy[y][x] = 1;
 			else
-				dp[i][j] = min(dp[i-1][j], min(dp[i][j-1], dp[i-1][j-1])) + 1;
+				copy[y][x] = min(copy[y-1][x], min(copy[y][x-1], copy[y-1][x-1])) + 1;
 
-			if (dp[i][j] > best_size)
+			if (copy[y][x] > size)
 			{
-				best_size = dp[i][j];
-				best_row  = i;
-				best_col  = j;
+				size = copy[y][x];
+				row = y;
+				col = x;
 			}
 		}
 	}
-
-	for (int i = best_row - best_size + 1; i <= best_row; i++)
-		for (int j = best_col - best_size + 1; j <= best_col; j++)
-			mp->map[i][j] = mp->full;
-
-	for (int i = 0; i < mp->lines_num; i++)
+	for (int y = row - size + 1; y <= row; y++)
+		for (int x = col - size + 1; x <= col; x++)
+			map->map[y][x] = map->full;
+	for (int y = 0; y < map->lines; y++)
 	{
-		fputs(mp->map[i], stdout);
-		fputs("\n", stdout);
+		fprintf(stdout, "%s\n", map->map[y]);
 	}
 
-	for (int i = 0; i < mp->lines_num; i++)
-		free(dp[i]);
-	free(dp);
-
+	free_matrix(copy, map->lines);
+	
 	return 1;
 }
 
-int bsq_from_file(FILE *map_file)
+static int bsq_from_file(FILE *file)
 {
-	map mp;
-	mp.map = NULL;
-	mp.line_length = 0;
-	mp.lines_num = 0;
+	t_map map;
+	map.map = NULL;
+	map.length = 0;
+	map.lines = 0;
 
-	if (!validate_map(map_file, &mp))
-	{
-		free_map(&mp);
-		return -1;
-	}
-	if (!solve_bsq(&mp))
-	{
-		free_map(&mp);
-		return -1;
-	}
-	free_map(&mp);
+	if (!validate_map(file, &map))
+		return (free_map(map.map, map.lines), -1);
+	if (!solve_bsq(&map))
+		return (free_map(map.map, map.lines), -1);
+	free_map(map.map, map.lines);
 	return 1;
 }
 
-int bsq(char *map_filename)
+static int bsq(char *filename)
 {
-	FILE *map_file = fopen(map_filename, "r");
-	if (!map_file)
+	FILE *file = fopen(filename, "r");
+	if (!file)
 		return -1;
-	int result = bsq_from_file(map_file);
-	fclose(map_file);
+	int result = bsq_from_file(file);
+	fclose(file);
 	return result;
+}
+
+int main (int argc, char *argv[])
+{
+	if (argc == 1)
+	{
+		if (bsq_from_file(stdin) == -1)
+			return(fputs("map error\n", stderr), 1);
+		return 0;
+	}
+	for (int i = 1; i <argc; i++)
+	{
+		if (bsq(argv[i]) == -1)
+			return(fputs("map error\n", stderr), 1);
+		if (i < argc - 1)
+			fputs("\n", stdout);
+	}
+	return 0;
 }
