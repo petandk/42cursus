@@ -1,12 +1,14 @@
 #include <errno.h>
 #include <string.h>
 #include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <netdb.h>
 #include <sys/socket.h>
-#include <sys/select.h>
 #include <netinet/in.h>
+// ^^^ given
+// vvv need to add
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/select.h>
 
 enum
 {
@@ -61,7 +63,7 @@ int main(int argc, char *argv[])
 
     //assign IP, PORT
     servaddr.sin_family = AF_INET;
-    servaddr.sin_addr.s_addr = htonl(0x7F000001); //127.0.0.1 -> I like hex better than htonl(2130706433);
+    servaddr.sin_addr.s_addr = htonl(2130706433); //127.0.0.1
     servaddr.sin_port = htons(atoi(argv[1]));
 
     // bind new socket to given IP
