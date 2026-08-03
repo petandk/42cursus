@@ -93,26 +93,26 @@ static void handle_msg(int fd)
 	}
 }
 
-int main(int argc, char **argv) 
+int main(int argc, char **argv)
 {
-	struct sockaddr_in servaddr; 
+	struct sockaddr_in servaddr;
 
 	if (argc != 2)
 		err("Wrong number of arguments\n");
 
-	sockfd = socket(AF_INET, SOCK_STREAM, 0); 
-	if (sockfd == -1) 
+	sockfd = socket(AF_INET, SOCK_STREAM, 0);
+	if (sockfd == -1)
 		err(NULL);
 
-	bzero(&servaddr, sizeof(servaddr)); 
+	bzero(&servaddr, sizeof(servaddr));
 
-	servaddr.sin_family = AF_INET; 
+	servaddr.sin_family = AF_INET;
 	servaddr.sin_addr.s_addr = htonl(2130706433); //127.0.0.1 => num is given but can use 0x7F000001 instead
-	servaddr.sin_port = htons(atoi(argv[1])); 
+	servaddr.sin_port = htons(atoi(argv[1]));
   
 	if ((bind(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr))) != 0)
 		err(NULL);
-	if (listen(sockfd, 10) != 0) 
+	if (listen(sockfd, 10) != 0)
 		err(NULL);
 
 	bzero(&client, sizeof(client));
@@ -133,7 +133,7 @@ int main(int argc, char **argv)
 			if (fd == sockfd)
 				add_client();
 			else
-				handle_msg(fd);		
+				handle_msg(fd);
 		}
 	}
 	return 0;
