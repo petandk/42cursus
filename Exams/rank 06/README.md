@@ -1,5 +1,5 @@
 # Apuntes de Estudio: Servidor TCP con `select` (mini_serv)
-### el codigo que se explica pertenece a [v3 - mini_serv(simplified).c](v3%20-%20mini_serv(simplified).c)
+### Esta explicación sigue el codigo en [v3 - mini_serv(simplified).c](v3%20-%20mini_serv(simplified).c)
 ## 🧠 Conceptos Core y "Exam Hacks"
 
 Estas son las decisiones de diseño clave para teclear rápido, evitar errores de sintaxis y pasar los tests de rendimiento de la Moulinette:
