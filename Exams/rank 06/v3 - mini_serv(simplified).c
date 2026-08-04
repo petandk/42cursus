@@ -22,9 +22,12 @@ typedef struct
 	char msg[MAXBUF];
 }	client_t;
 
-int serverfd = -1, nextid = 0, maxfd = -1;
+int serverfd = -1;
+int nextid = 0;
+int maxfd = -1;
 fd_set activesockets, readsockets, writesockets;
-char buftowrite[MAXBUF + 100], buftoread[MAXBUF];
+char buftowrite[MAXBUF + 100];
+char buftoread[MAXBUF];
 client_t clients[MAXCLI];
 
 static void err(char *msg)
@@ -32,9 +35,9 @@ static void err(char *msg)
 	if (!msg)
 		msg = "Fatal error\n";
 	write(2, msg, strlen(msg));
-	if (serverfd != -1)
+	if(serverfd != -1)
 		close(serverfd);
-	exit (1);
+	exit(1);
 }
 
 static void sendall(int senderfd)
@@ -48,13 +51,9 @@ static void sendall(int senderfd)
 
 static void addclient(void)
 {
-	struct sockaddr cli;
-	socklen_t len = sizeof(cli);
-
-	int clientfd = accept(serverfd, &cli, &len);
+	int clientfd = accept(serverfd, NULL, NULL);
 	if (clientfd < 0)
 		return;
-
 	if (maxfd < clientfd)
 		maxfd = clientfd;
 
@@ -72,7 +71,7 @@ static void removeclient(int clientfd)
 
 	FD_CLR(clientfd, &activesockets);
 	close(clientfd);
-	bzero(clients[clientfd].msg, sizeof(clients[clientfd].msg));
+	clients[clientfd].msg[0] = '\0';
 }
 
 static void handlemsg(int clientfd)
@@ -93,15 +92,15 @@ static void handlemsg(int clientfd)
 			clients[clientfd].msg[j] = '\0';
 			sprintf(buftowrite, "client %d: %s\n", clients[clientfd].id, clients[clientfd].msg);
 			sendall(clientfd);
-			bzero(clients[clientfd].msg, sizeof(clients[clientfd].msg));
+			clients[clientfd].msg[0] = '\0';
 			j = -1;
 		}
 	}
 }
 
-int main(int argc, char **argv)
+int main (int argc, char **argv)
 {
-	struct sockaddr_in servaddr;
+	struct sockaddr_in servaddr = {0};
 
 	if (argc != 2)
 		err("Wrong number of arguments\n");
@@ -109,10 +108,9 @@ int main(int argc, char **argv)
 	serverfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (serverfd == -1)
 		err(NULL);
-
-	bzero(&servaddr, sizeof(servaddr));
+	
 	servaddr.sin_family = AF_INET;
-	servaddr.sin_addr.s_addr = htonl(2130706433);
+	servaddr.sin_addr.s_addr = htonl(0x7F000001); // they give you htonl(2130706433);
 	servaddr.sin_port = htons(atoi(argv[1]));
 
 	if ((bind(serverfd, (const struct sockaddr *)&servaddr, sizeof(servaddr))) != 0)
@@ -120,7 +118,6 @@ int main(int argc, char **argv)
 	if (listen(serverfd, 10) != 0)
 		err(NULL);
 
-	bzero(&clients, sizeof(clients));
 	FD_ZERO(&activesockets);
 	FD_SET(serverfd, &activesockets);
 	maxfd = serverfd;
@@ -132,11 +129,10 @@ int main(int argc, char **argv)
 		if (select(maxfd + 1, &readsockets, &writesockets, 0, 0) <= 0)
 			continue;
 
-		for (int fd = 0; fd <= maxfd; fd++)
+		for(int fd = 0; fd <= maxfd; fd++)
 		{
 			if (!FD_ISSET(fd, &readsockets))
 				continue;
-
 			if (fd == serverfd)
 				addclient();
 			else
