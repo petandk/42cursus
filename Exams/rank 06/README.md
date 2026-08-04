@@ -4,7 +4,7 @@
 
 Estas son las decisiones de diseño clave para teclear rápido, evitar errores de sintaxis y pasar los tests de rendimiento de la Moulinette:
 
-*   **El truco de `\0` vs `bzero` (Ant-Timeout):** El array `msg` tiene 1.000.000 de posiciones. Si usas `bzero` para limpiarlo en cada mensaje, el tester (que envía miles de mensajes por segundo) te suspenderá por *Timeout* por culpa de la CPU consumida en escribir ceros.
+*   **El truco de `\0` vs `bzero` (Ant-Timeout):** El array `msg` tiene 1.000.000 de posiciones. Si usas `bzero` para limpiarlo en cada mensaje, el tester (que envía miles de mensajes por segundo) te podría suspender por *Timeout* por culpa de la CPU consumida en escribir ceros.
     *   **La solución:** Como las funciones de string (`strlen`, `sprintf`) paran en el primer carácter nulo `\0`, usamos `msg[0] = '\0'`. El resto de la "basura" anterior se queda en memoria, pero el programa se vuelve ciego a ella. Rendimiento máximo.
 *   **`accept` a ciegas:** `accept(serverfd, NULL, NULL)`. No nos importa de qué IP o puerto viene el cliente, solo queremos su *File Descriptor* (fd). Pasar `NULL` nos ahorra declarar un `struct sockaddr_in` extra y su tamaño. Menos variables = menos posibilidades de equivocarse.
 *   **`bzero` vs `= {0}` (Supervivencia a `-Werror`):** Para inicializar el struct del servidor (`servaddr`), usamos `bzero(&servaddr, sizeof(servaddr));` en lugar de la abreviatura moderna `= {0}`. 
