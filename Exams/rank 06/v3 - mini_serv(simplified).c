@@ -109,6 +109,7 @@ int main (int argc, char **argv)
 	if (serverfd == -1)
 		err(NULL);
 	
+    bzero(&servaddr, sizeof(servaddr));
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_addr.s_addr = htonl(0x7F000001); // they give you htonl(2130706433);
 	servaddr.sin_port = htons(atoi(argv[1]));
