@@ -18,7 +18,7 @@ Estas son las decisiones de diseño clave para teclear rápido, evitar errores d
 ### 1. `main(int argc, char **argv)`
 **Objetivo:** Levantar el servidor, configurarlo y mantener el bucle infinito de eventos.
 *   **Sockets básicos:** `socket()`, `bind()`, `listen()`. Es la triada obligatoria.
-*   **La IP Hardcodeada:** `htonl(0x7F000001)`. Es `127.0.0.1` en hexadecimal. Te salva de tener que memorizar y teclear el número gigante `2130706433`.
+*   **La IP Hardcodeada:** `htonl(0x7F000001)`. Es `127.0.0.1` en hexadecimal. Te salva de tener que memorizar y teclear el número gigante `2130706433`. Fácil de memorizar, 0x7F cinco ceros 1. Aunque el numero gigante te lo dan en el main del examen, almenos para practicar prefiero usar el hexadecimal.
 *   **Inicializar la multiplexación:**
     *   `FD_ZERO(&activesockets);` -> Limpia la lista maestra.
     *   `FD_SET(serverfd, &activesockets);` -> Añade el servidor a la lista maestra. Es crucial porque una nueva conexión entrante se detecta como "algo listo para leer" en el fd principal.
