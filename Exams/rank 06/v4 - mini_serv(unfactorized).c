@@ -37,7 +37,7 @@ static void err(char *msg)
     exit (1);
 }
 
-static void send_all(int senderfd)
+static void sendall(int senderfd)
 {
     for (int fd = 0; fd <= maxfd; fd++)
     {
@@ -83,10 +83,7 @@ int main(int argc, char *argv[])
                 continue;
             if (fd == serverfd)
             {
-                struct sockaddr_in cli;
-                socklen_t len = sizeof(cli);
-                bzero(&cli, len);
-                int clientfd = accept(serverfd, (struct sockaddr *)&cli, &len);
+                int clientfd = accept(serverfd, NULL, NULL);
                 if (clientfd < 0)
                     continue;
                 clients[clientfd].id = nextid++;
@@ -94,7 +91,7 @@ int main(int argc, char *argv[])
                     maxfd = clientfd;
                 FD_SET(clientfd, &activesockets);
                 sprintf(buftowrite, "server: client %d just arrived\n", clients[clientfd].id);
-                send_all(clientfd);
+                sendall(clientfd);
                 break;
             }
             else
@@ -103,7 +100,7 @@ int main(int argc, char *argv[])
                 if (bytesread <= 0)
                 {
                     sprintf(buftowrite, "server: client %d just left\n", clients[fd].id);
-                    send_all(fd);
+                    sendall(fd);
                     FD_CLR(fd, &activesockets);
                     close(fd);
                     bzero(clients[fd].msg, sizeof(clients[fd].msg));
@@ -119,7 +116,7 @@ int main(int argc, char *argv[])
                         {
                             clients[fd].msg[j] = '\0';
                             sprintf(buftowrite, "client %d: %s\n", clients[fd].id, clients[fd].msg);
-                            send_all(fd);
+                            sendall(fd);
                             bzero(clients[fd].msg, sizeof(clients[fd].msg));
                             j = -1;
                         }
