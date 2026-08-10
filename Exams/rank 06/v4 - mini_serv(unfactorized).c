@@ -22,7 +22,7 @@ typedef struct
     char msg[MAX_BUF];
 }   client_t;
 
-int serverfd = -1, nextid = 0, maxfd = -1;
+int sockfd = -1, nextid = 0, maxfd = -1;
 fd_set  readsockets, writesockets, activesockets;
 char    buftowrite[MAX_BUF + 100], buftoread[MAX_BUF];
 client_t clients[MAX_CLI];
@@ -32,8 +32,8 @@ static void err(char *msg)
     if (!msg)
         msg = "Fatal error\n";
     write(2, msg, strlen(msg));
-    if (serverfd != -1)
-        close(serverfd);
+    if (sockfd != -1)
+        close(sockfd);
     exit (1);
 }
 
@@ -41,7 +41,7 @@ static void sendall(int senderfd)
 {
     for (int fd = 0; fd <= maxfd; fd++)
     {
-        if (FD_ISSET(fd, &writesockets) && fd != senderfd && fd != serverfd)
+        if (FD_ISSET(fd, &writesockets) && fd != senderfd && fd != sockfd)
             send(fd, buftowrite, strlen(buftowrite), 0);
     }
 }
@@ -53,21 +53,21 @@ int main(int argc, char *argv[])
     if (argc != 2)
         err("Wrong number of arguments\n");
 
-    serverfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (serverfd == -1)
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockfd == -1)
         err(NULL);
     bzero(&servaddr, sizeof(servaddr));
     FD_ZERO(&activesockets);
-    FD_SET(serverfd, &activesockets);
-    maxfd = serverfd;
+    FD_SET(sockfd, &activesockets);
+    maxfd = sockfd;
 
     servaddr.sin_family = AF_INET;
-    servaddr.sin_addr.s_addr = htonl(2130706433); // 127.0.0.1
+    servaddr.sin_addr.s_addr = htonl(2130706433); // 127.0.0.1 but I like 0x7f000001 better.
     servaddr.sin_port = htons(atoi(argv[1]));
 
-    if ((bind(serverfd, (const struct sockaddr *) &servaddr, sizeof(servaddr))) != 0)
+    if ((bind(sockfd, (const struct sockaddr *) &servaddr, sizeof(servaddr))) != 0)
         err(NULL);
-    if (listen(serverfd, 10) != 0)
+    if (listen(sockfd, 10) != 0)
         err(NULL);
     bzero(&clients, sizeof(clients));
 
@@ -81,17 +81,17 @@ int main(int argc, char *argv[])
         {
             if (FD_ISSET(fd, &readsockets) <= 0)
                 continue;
-            if (fd == serverfd)
+            if (fd == sockfd)
             {
-                int clientfd = accept(serverfd, NULL, NULL);
-                if (clientfd < 0)
+                int connfd = accept(sockfd, NULL, NULL);
+                if (connfd < 0)
                     continue;
-                clients[clientfd].id = nextid++;
-                if (maxfd < clientfd)
-                    maxfd = clientfd;
-                FD_SET(clientfd, &activesockets);
-                sprintf(buftowrite, "server: client %d just arrived\n", clients[clientfd].id);
-                sendall(clientfd);
+                clients[connfd].id = nextid++;
+                if (maxfd < connfd)
+                    maxfd = connfd;
+                FD_SET(connfd, &activesockets);
+                sprintf(buftowrite, "server: client %d just arrived\n", clients[connfd].id);
+                sendall(connfd);
                 break;
             }
             else

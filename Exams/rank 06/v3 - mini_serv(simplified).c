@@ -35,7 +35,7 @@ static void err(char *msg)
 	if (!msg)
 		msg = "Fatal error\n";
 	write(2, msg, strlen(msg));
-	if(serverfd != -1)
+	if (serverfd != -1)
 		close(serverfd);
 	exit(1);
 }
