@@ -29,20 +29,20 @@ Todo este bloque va **100% de memoria** antes de ninguna función. Trabajar con 
 // --- ESCRIBE DE MEMORIA ---
 enum
 {
-    MAX_CLI = 2000, 
-    MAX_BUF = 1000000
+    MAXCLI = 2000, 
+    MAXBUF = 1000000
 };
 
 typedef struct
 {
     int id;
-    char msg[MAX_BUF];
+    char msg[MAXBUF];
 }   client_t;
 
 int sockfd = -1, nextid = 0, maxfd = -1;
 fd_set  readsockets, writesockets, activesockets;
-char    buftowrite[MAX_BUF + 100], buftoread[MAX_BUF];
-client_t clients[MAX_CLI];
+char    buftowrite[MAXBUF + 100], buftoread[MAXBUF];
+client_t clients[MAXCLI];
 ```
 
 ## 3. Funciones de Soporte
