@@ -120,7 +120,7 @@ Si el fd activo es el `sockfd`, significa que un cliente nuevo se quiere conecta
             {
 ```
 
-📋 **<span style="color:green">Copiar y Modificar:</span>** La línea de la función `accept`. Cambia los dos últimos valores por `NULL`.
+📋 **<span style="color:green">Copiar y Modificar:</span>** La línea de la función `accept`. Cambia los dos últimos valores por `NULL` y acuerdate de poner int al principio ya que en esta solución aún no la hemos creado.
 > 💡 *Tip: Es bueno saber que sus tipos originales son `(struct sockaddr *)&cli` y `(socklen_t *)&len` (con `int len = sizeof(cli);`) por si acaso da fallo de segmentación usar NULL en el sistema del examen. De todas formas, la otra version esta en el archivo que te dan, solo lo he simplificado a NULL por capricho.*
 
 📋 **<span style="color:green">Copiar y Modificar:</span>** El `if` de comprobación de error del `accept`. Cambia su interior por un simple `continue;`.
