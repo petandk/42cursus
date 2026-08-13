@@ -4,7 +4,7 @@ Esta guía detalla paso a paso cómo estructurar el ejercicio `mini_serv`. El fo
 *<small><br><br>&emsp; &emsp; &emsp;El código que aquí se explica pertenece a [v4 - mini_serv(unfactorized).c](<v4 - mini_serv(unfactorized).c>)</small>*
 
 ### <span style="color:blue">Leyenda</span>
-* 📋 **<span style="color:green">Copiar / Modificar:</span>** Código que debes extraer del archivo que te dan y adaptar.
+* 📋 **<span style="color:green">Copiar / Modificar:</span>** Código que debes extraer del  [archivo que te dan](<given_main.c>) y adaptar.
 * ✍️ **<span style="color:orange">Escribir:</span>** Código que debes memorizar o deducir e implementar tú mismo.
 
 ---
