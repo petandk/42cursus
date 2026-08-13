@@ -1,7 +1,6 @@
 # Mini_serv - Step by Step Guide
 
 Esta guía detalla paso a paso cómo estructurar el ejercicio `mini_serv`. El formato diferencia visualmente las partes que debes copiar y las partes que debes escribir o modificar.
-
 *<small><br><br>&emsp; &emsp; &emsp;El código que aquí se explica pertenece a [v4 - mini_serv(unfactorized).c](<v4 - mini_serv(unfactorized).c>)</small>*
 
 ### <span style="color:blue">Leyenda</span>
