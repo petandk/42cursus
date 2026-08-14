@@ -19,12 +19,16 @@ Esta guía detalla paso a paso cómo estructurar el ejercicio `mini_serv`. El fo
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/select.h>
-
+/*
 enum
 {
     MAXCLI = 2000,
     MAXBUF = 1000000
 };
+*/
+### creo que enum no funciona en el examen, he tenido problemas, pero tambien creo que soy gilipoyas, hasta que lo confirme, tocara usar defines
+#define MAXCLI 2000
+#define MAXBUF 1000000
 
 typedef struct
 {
