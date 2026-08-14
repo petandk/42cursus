@@ -26,7 +26,7 @@ enum
     MAXBUF = 1000000
 };
 */
-### creo que enum no funciona en el examen, he tenido problemas, pero tambien creo que soy gilipoyas, hasta que lo confirme, tocara usar defines
+// -- creo que enum no funciona en el examen, he tenido problemas, pero tambien creo que soy gilipoyas, hasta que lo confirme, tocara usar defines
 #define MAXCLI 2000
 #define MAXBUF 1000000
 
