@@ -1,7 +1,7 @@
 # Mini_serv - Step by Step Guide
 
 Esta guía detalla paso a paso cómo estructurar el ejercicio `mini_serv`. El formato diferencia visualmente las partes que debes copiar y las partes que debes escribir o modificar.
-*<small><br><br>&emsp; &emsp; &emsp;El código que aquí se explica pertenece a [v4 - mini_serv(unfactorized).c](<v4 - mini_serv(unfactorized).c>)</small>*
+*<small><br><br>&emsp; &emsp; &emsp;El código que aquí se explica pertenece a [v5 - mini_serv(final-aproved).c](<v5 - mini_serv(final-aproved).c>)</small>*
 
 ### <span style="color:blue">Leyenda</span>
 * 📋 **<span style="color:green">Copiar / Modificar:</span>** Código que debes extraer del  [archivo que te dan](<given_main.c>) y adaptar.
@@ -19,16 +19,9 @@ Esta guía detalla paso a paso cómo estructurar el ejercicio `mini_serv`. El fo
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/select.h>
-/*
-enum
-{
-    MAXCLI = 2000,
-    MAXBUF = 1000000
-};
-*/
-// -- creo que enum no funciona en el examen, he tenido problemas, pero tambien creo que soy gilipoyas, hasta que lo confirme, tocara usar defines
+
 #define MAXCLI 2000
-#define MAXBUF 1000000
+#define MAXBUF 10000000 // -- Al ver las traces he visto que tenia un problema de buffer, así que he añadido un 0 aquí (ahora son 7 '0s')
 
 typedef struct
 {
@@ -152,7 +145,7 @@ Si el fd activo es distinto a `sockfd`, se trata de un cliente existente enviand
 ```c
             else
             {
-                int bytesread = recv(fd, buftoread, 100, 0);
+                int bytesread = recv(fd, buftoread, 1000, 0); // -- este es otro buffer, así que para corregir traces también he añadido otro 0.
                 
                 // caso desconexion
                 if (bytesread <= 0)
