@@ -1,5 +1,5 @@
 # Apuntes de Estudio: Servidor TCP con select (mini_serv)
-*<small>&emsp; &emsp; &emsp;El código que aquí se explica pertenece a [v4 - mini_serv(unfactorized).c](<v4 - mini_serv(unfactorized).c>)</small>*
+*<small>&emsp; &emsp; &emsp;El código que aquí se explica pertenece a [v5 - mini_serv(final-aproved).c](<v5 - mini_serv(final-aproved).c>)</small>*
 
 ## 🧠 Trucos y cositas que te salvan el examen
 Aquí van las decisiones clave para ir rápido, no liarla con la sintaxis, y que la Moulinette no te trolee con un timeout:
@@ -61,7 +61,7 @@ La idea: aceptar al que llama, darle un ID, avisar a los demás y guardarlo.
 ### 3. Bloque de mensaje entrante (`fd != sockfd`)
 La idea: leer lo que llega, ir guardándolo aunque venga en trozos, y mandarlo en cuanto aparezca un salto de línea.
 
-*   `bytesread = recv(fd, buftoread, 100, 0)`: lee hasta 100 caracteres.
+*   `bytesread = recv(fd, buftoread, 1000, 0)`: lee hasta ~~100~~ 1000 caracteres. (me han chivado que el tester se raya y con 100 es bastante; "si falla, reentrega y ya esta!", pero... dale amor, ponle un cerete extra y tomate un valium mientras esperas a que el grademe acabe!
 *   Si `bytesread <= 0` (se desconectó o hubo error) -> tira para el bloque de desconexión (punto 4).
 *   Si hay datos, el bucle chungo de montar el mensaje:
     *   `i` recorre lo que se acaba de leer.
