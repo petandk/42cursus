@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
             }
             else
             {
-                int bytesread = recv(fd, buftoread, 1000, 0);
+                int bytesread = recv(fd, buftoread, 100, 0);
                 if (bytesread <= 0)
                 {
                     sprintf(buftowrite, "server: client %d just left\n", clients[fd].id);
