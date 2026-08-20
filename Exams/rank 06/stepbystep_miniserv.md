@@ -167,6 +167,7 @@ Si el fd activo es distinto a `sockfd`, se trata de un cliente existente enviand
                     for (int i = 0, j = strlen(clients[fd].msg); i < bytesread; i++, j++)
                     {
                         clients[fd].msg[j] = buftoread[i];
+                        clients[fd].msg[j + 1] = '\0'; //esto arregla mi problema del buffer!! esta sin probar XD
                         if (clients[fd].msg[j] == '\n')
                         {
                             clients[fd].msg[j] = '\0';
