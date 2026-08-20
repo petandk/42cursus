@@ -145,7 +145,11 @@ Si el fd activo es distinto a `sockfd`, se trata de un cliente existente enviand
 ```c
             else
             {
-                int bytesread = recv(fd, buftoread, 1000, 0); // -- este es otro buffer, así que para corregir traces también he añadido otro 0.
+                /*
+                    He hecho diferentes pruebas durante el examen y pegando el subject entero, pasa sin problemas, pero las traces
+                    decían que no, no se si el server añade delay o que, pero se comía trozos... solución? buffer mas grande!
+                */
+                int bytesread = recv(fd, buftoread, 1000, 0); 
                 
                 // caso desconexion
                 if (bytesread <= 0)
