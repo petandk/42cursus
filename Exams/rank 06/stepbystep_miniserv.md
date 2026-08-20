@@ -133,6 +133,8 @@ Si el fd activo es el `sockfd`, significa que un cliente nuevo se quiere conecta
 ```c
                 clients[connfd].id = nextid++;
                 FD_SET(connfd, &activesockets);
+                if (maxfd < connfd)
+                    maxfd = connfd;
                 sprintf(buftowrite, "server: client %d just arrived\n", clients[connfd].id);
                 sendall(connfd);
                 break;
